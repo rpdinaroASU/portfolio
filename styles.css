@@ -57,7 +57,7 @@
     text-align: center;
     color: white;
 }
-#secondary-title {
+.secondary-title {
     font-family: ROSSTEN, serif;
     font-size: clamp(2rem, 4vw, 4vh);
     text-align: center;
@@ -258,6 +258,7 @@
 
 #content {
     display: flex;
+    background-color: var(--primary-color);
     flex-direction: column;
     justify-content: center;
     height: 80%;
@@ -329,16 +330,17 @@ body {
     padding: 0;
     height: 100%;
     width: 100%;
-    background-color: var(--primary-color);
+    background-color: var(--tertiary-dark-color);
     overflow-x: hidden;
 }
-
+.last-project {
+    margin-bottom: 50px;
+}
 #footer {
     display: flex;
     flex-direction: column-reverse;
     width: 100%;
     height: 10vh;
-    margin-top: 50px;
     padding: 0;
     border-bottom-color: var(--tertiary-dark-color);
     background-color: var(--tertiary-dark-color);
@@ -371,7 +373,6 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--transparent-color);;
     z-index: 0;
 }
 #close-button-container {
@@ -407,72 +408,67 @@ body {
 #close-button:hover .line {
     border-bottom-color: var(--tertiary-light-color);
 }
+
+.contact-container {
+    height: 75px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
 #contact-title {
     margin-right: auto;
     margin-left: auto;
     font-size: 7vh;
     position: relative;
-    top: 10px
+    top: 10px;
+    margin-bottom: 10px;
 }
 #contact-info {
     height: 100%;
     width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    text-align: center;
 }
-#contact-icons {
+.contact-icons {
     display: flex;
     flex-direction: column;
     width: 15%;
     height: 100%;
 }
-#contact-locations {
+.contact-locations {
     margin: auto auto auto 0;
     display: flex;
     flex-direction: column;
     width: 80%;
     height: 100%;
-}
-
-#location-image {
-    margin: auto auto 5px auto;
-    width: 75px;
-}
-#email-image {
-    margin: 0 auto 0 auto;
-    width: 75px;
-}
-#phone-image {
-    margin: 0 auto 5px auto;
-    width: 75px;
-}
-#github-image {
-    margin: 20px auto 5px auto;
-    width: 50px;
-}
-#psyche-image {
-    margin: 20px auto auto auto;
+    text-align: center;
 }
 .contact-title {
     font-size: 27px !important;
     align-self: flex-start ;
-}
-#location-title {
-    margin: 7% auto 0 10px;
-}
-#email-title {
-    margin: 45px auto 0 10px;
-}
-#phone-title {
-    margin: 45px auto 0 10px;
+    margin: auto auto auto 15px;
 }
 #github-title {
-    margin: 45px auto 0 10px;
     text-decoration-line: underline;
     cursor: pointer;
 }
 #psyche-title {
-    margin: 45px auto auto 10px;
     text-decoration-line: underline;
     cursor: pointer;
+}
+/* About Me */
+#about-me {
+    display: none;
+    background-color: var(--primary-color);
+    min-height: 72vh;
+    min-width: 100vw;
+}
+#about-me-picture {
+    max-width: 300px;
+}
+.about-image-container {
+    max-width: 400px !important;
+    max-height: 400px !important;
 }
