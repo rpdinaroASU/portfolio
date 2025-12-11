@@ -262,7 +262,8 @@
     flex-direction: column;
     justify-content: center;
     height: 80%;
-    width: 100%;
+    width: 100vw;
+    min-height: 70vh;
 }
 .text {
     margin-top: 20px;
@@ -283,7 +284,7 @@
     display: flex;
     flex-direction: row-reverse;
 }
-.more-information {
+.more-information-button {
     color: white;
     border: 4px solid white;
     border-radius: 25px;
@@ -294,7 +295,7 @@
     font-family: KGLoveMolly, serif;
     cursor: pointer;
 }
-.more-information:hover {
+.more-information-button:hover {
     background-color: var(--tertiary-light-color);
 }
 .project-image-description {
@@ -465,10 +466,18 @@ body {
     min-height: 72vh;
     min-width: 100vw;
 }
+.about-me {
+    max-width: 1000px;
+}
 #about-me-picture {
     max-width: 300px;
 }
 .about-image-container {
     max-width: 400px !important;
     max-height: 400px !important;
+}
+
+#project-information {
+    display: none;
+    margin: 0 auto auto auto;
 }
