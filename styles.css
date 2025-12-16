@@ -9,6 +9,7 @@
     --trans-pink-color:#F5A9B8;
 
     --transparent-color:rgba(0,0,0,0);
+    --text-color:#FFFFFF;
 }
 @font-face {
     font-family: ROSSTEN;
@@ -18,6 +19,63 @@
     font-family: KGLoveMolly;
     src: url(fonts/kg_love_molly/KGLoveMolly.ttf);
 }
+@media (max-width: 1100px) {
+    .project-image-description {
+        flex-direction: column;
+    }
+    .project-image-container {
+        margin: 10px auto;
+    }
+    .stage-text {
+        flex-direction: column;
+    }
+    .stage-image-container {
+        margin: 10px auto;
+        flex-direction: column  !important;
+        padding: 10px !important;
+        max-height: 600px;
+    }
+    .stage-description-image {
+        margin: 20px auto 20px auto !important;
+        max-width: 60vw !important;
+        height: auto;
+    }
+    .bottom-stage-image {
+        position: relative;
+        top: -421px;
+    }
+}
+@media (min-width: 1101px) {
+    .project-image-description {
+        flex-direction: row;
+    }
+    .project-image-container {
+        margin: auto 10px;
+    }
+    .stage-text {
+        flex-direction: row !important;
+    }
+    .stage-image-container {
+        margin: auto 10px auto 10px !important;
+        padding: 10px !important;
+        flex-direction: column  !important;
+        max-height: 600px;
+    }
+    .stage-description-image {
+        margin: 20px auto 20px auto !important;
+        max-width: 60vw !important;
+        height: auto;
+    }
+    .bottom-stage-image {
+        position: relative;
+        top: -421px;
+    }
+}
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
 /* BANNER */
 #banner {
     display: flex;
@@ -55,13 +113,13 @@
     font-family: ROSSTEN, serif;
     font-size: clamp(2rem, 9vw, 7vh);
     text-align: center;
-    color: white;
+    color: var(--text-color);
 }
 .secondary-title {
     font-family: ROSSTEN, serif;
     font-size: clamp(2rem, 4vw, 4vh);
     text-align: center;
-    color: white;
+    color: var(--text-color);
 }
 .dropdown-menu {
     background-color: var(--secondary-light-color);
@@ -78,7 +136,7 @@
     height: 3vh;
     font-family: KGLoveMolly, serif;
     font-weight: bold;
-    color: white;
+    color: var(--text-color);
     border: 1px solid var(--secondary-dark-color);
     cursor: pointer;
 }
@@ -88,7 +146,7 @@
 .title {
     font-family: KGLoveMolly, serif;
     font-weight: bold;
-    color: white;
+    color: var(--text-color);
     
 }
 
@@ -100,7 +158,7 @@
     text-align: center;
     font-family: KGLoveMolly, serif;
     font-weight: bold;
-    color: white;
+    color: var(--text-color);
 }
 .hidden-dropdown-item {
     display: none;
@@ -124,6 +182,7 @@
 }
 .dropdown-menu:hover .hidden-dropdown-item{
     display: block;
+    z-index: 10;
 }
 .dropdown-menu:hover{
     border: 1px solid white;
@@ -182,7 +241,7 @@
     display: flex;
     align-self: baseline;
     flex-direction: row;
-    color: white;
+    color: var(--text-color);
     font-weight: bold;
     margin: 0 0 8px 0;
     padding-bottom: 0.5vh;
@@ -216,11 +275,11 @@
 
 .project-title {
     font-weight: bold;
-    color: white;
+    color: var(--text-color);
     font-size: 20px;
 }
 .project-description {
-    color:white;
+    color:var(--text-color);
     background-color: var(--tertiary-light-color);
     padding: 10px;
     border-radius: 20px;
@@ -245,7 +304,7 @@
 }
 
 .project-tag {
-    color: white;
+    color: var(--text-color);
     border: 2px solid white;
     border-radius: 20px;
     margin-left: 5px;
@@ -285,7 +344,7 @@
     flex-direction: row-reverse;
 }
 .more-information-button {
-    color: white;
+    color: var(--text-color);
     border: 4px solid white;
     border-radius: 25px;
     white-space: nowrap;
@@ -303,22 +362,6 @@
     flex-direction: row;
     margin-top: 15px;
     margin-bottom: 2px;
-}
-@media (max-width: 850px) {
-    .project-image-description {
-        flex-direction: column;
-    }
-    .project-image-container {
-        margin: 10px auto;
-    }
-}
-@media (min-width: 851px) {
-    .project-image-description {
-        flex-direction: row;
-    }
-    .project-image-container {
-        margin: auto 10px;
-    }
 }
 /* Global Section */
 body {
@@ -350,7 +393,7 @@ body {
     justify-content: center;
 }
 #copyright {
-    color: white;
+    color: var(--text-color);
 }
 /* Contact Me */
 #contact-me {
@@ -477,7 +520,100 @@ body {
     max-height: 400px !important;
 }
 
+/* Project Information */
 #project-information {
     display: none;
     margin: 0 auto auto auto;
+}
+.project-stage {
+    display: flex;
+    background-color: var(--secondary-dark-color) !important ;
+    margin-top: 7px;
+    border-radius: 10px;
+    min-height: 40px;
+}
+.more-information {
+    display: flex;
+    flex-direction: column;
+}
+.stage-title {
+    margin: auto auto auto 10px;
+    text-align: left;
+
+}
+.stage-container {
+    display: flex;
+    flex-direction: column;
+}
+.stage-image {
+    margin: auto 0 auto 0;
+    min-width: 40px;
+    max-width: 40px;
+    min-height: 40px;
+    max-height: 40px;
+}
+.stage-text {
+    display: flex;
+    flex-direction: column;
+    padding: 30px 10px 10px 10px;
+    margin: -15px 0 0 0 !important;
+    z-index: 0;
+    background-color: var(--secondary-dark-color) !important;
+    font-weight: bold;
+}
+.project-title {
+    z-index: 1;
+}
+.stage-description {
+    background-color: var(--tertiary-dark-color) !important ;
+}
+.stage-image-container {
+    display: flex;
+    flex-direction: row;
+    margin: 10px auto;
+    background-color: var(--tertiary-dark-color);
+    border-radius: 25px;
+    max-height: 455px;
+}
+.stage-description-image {
+    max-width: 375px;
+    min-width: 375px;
+    max-height: 375px;
+    min-height: 375px;
+    margin: 20px 10px;
+    border-radius: 25px;
+    border: 4px solid white;
+}
+.img-scroll-container {
+    position: relative;
+    top: -430px;
+    display: flex;
+    flex-direction: row;
+    margin: auto auto 20px auto;
+    z-index: 100;
+}
+.image-circle {
+    min-width: 10px;
+    min-height: 10px;
+    border-radius: 20px;
+    margin: auto 10px;
+    border: 1px solid white;
+    background-color: white;
+}
+.left-arrow {
+    transform: rotate(90deg);
+    min-width: 30px !important;
+    max-width: 30px !important;
+    cursor: pointer;
+}
+.right-arrow {
+    transform: rotate(-90deg);
+    min-width: 30px !important;
+    max-width: 30px !important;
+    cursor: pointer;
+}
+
+.fadeOut {
+    animation: fadeOut 1s ease-in;
+    opacity: 0;
 }

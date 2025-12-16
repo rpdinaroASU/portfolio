@@ -1,3 +1,10 @@
+let imgCount = 0;
+let projectPage = -1;
+const firstStageImages = document.getElementsByClassName("first-stage-image");
+const secondStageImages = document.getElementsByClassName("second-stage-image");
+const thirdStageImages = document.getElementsByClassName("third-stage-image");
+
+
 window.onload = () => {
     /* Contact me page */
     const contactPage = document.querySelector("#contact-me");
@@ -59,17 +66,34 @@ window.onload = () => {
 
     const satButton = document.getElementsByClassName("sat-button");
     for (let i = 0; i < satButton.length; i++)
-        addProjectInfoButtonListener(satButton.item(i), satelliteExperience, projects, aboutPage, moreInformation);
+        addProjectInfoButtonListener(satButton.item(i), satelliteExperience, projects, aboutPage, moreInformation, 0);
 
     const lmButton = document.getElementsByClassName("lore-button");
     for(let i = 0; i < lmButton.length; i++)
-        addProjectInfoButtonListener(lmButton.item(i), loreMythologyExperience, projects, aboutPage, moreInformation);
+        addProjectInfoButtonListener(lmButton.item(i), loreMythologyExperience, projects, aboutPage, moreInformation, 1);
 
     const geneticButton = document.getElementsByClassName("genetic-algorithm-button");
     for(let i = 0; i < geneticButton.length; i++)
-        addProjectInfoButtonListener(geneticButton.item(i), geneticAlgorithm, projects, aboutPage, moreInformation);
+        addProjectInfoButtonListener(geneticButton.item(i), geneticAlgorithm, projects, aboutPage, moreInformation, 2);
+
+    document.querySelector(".left-arrow").addEventListener("click", function () {
+        if(imgCount === 0) {
+            imgCount = 2;
+        } else {
+            imgCount--;
+        }
+        updateImage();
+    });
+    document.querySelector(".right-arrow").addEventListener("click", function () {
+        if(imgCount === 2) {
+            imgCount = 0;
+        } else {
+            imgCount++;
+        }
+        updateImageSelector();
+    });
 }
-function addProjectInfoButtonListener(button, projectInfo, projects, aboutPage, moreInformation) {
+function addProjectInfoButtonListener(button, projectInfo, projects, aboutPage, moreInformation, item) {
     button.addEventListener("click", function () {
         projects.style.display = "none";
         aboutPage.style.display = "none";
@@ -78,5 +102,35 @@ function addProjectInfoButtonListener(button, projectInfo, projects, aboutPage, 
         }
         projectInfo.style.display = "flex";
         projectInfo.parentElement.style.display = "initial";
+        imgCount = 0;
+        projectPage = item;
+        updateImageSelector();
     })
+}
+function updateImageSelector() {
+    imgCount %= 3;
+    if(imgCount === 0) {
+        document.querySelector(".first-img-circle").style.backgroundColor = "white";
+        document.querySelector(".first-img-circle").style.border = "1px solid white";
+        document.querySelector(".second-img-circle").style.backgroundColor = "var(--secondary-light-color)";
+        document.querySelector(".second-img-circle").style.border = "1px solid var(--secondary-light-color)";
+        document.querySelector(".third-img-circle").style.backgroundColor = "var(--secondary-light-color)";
+        document.querySelector(".third-img-circle").style.border = "1px solid var(--secondary-light-color)";
+    }
+    else if(imgCount ===1) {
+        document.querySelector(".first-img-circle").style.backgroundColor = "var(--secondary-light-color)";
+        document.querySelector(".first-img-circle").style.border = "1px solid var(--secondary-light-color)";
+        document.querySelector(".second-img-circle").style.backgroundColor = "white";
+        document.querySelector(".second-img-circle").style.border = "1px solid white";
+        document.querySelector(".third-img-circle").style.backgroundColor = "var(--secondary-light-color)";
+        document.querySelector(".third-img-circle").style.border = "1px solid var(--secondary-light-color)";
+    }
+    else if(imgCount ===2) {
+        document.querySelector(".first-img-circle").style.backgroundColor = "var(--secondary-light-color)";
+        document.querySelector(".first-img-circle").style.border = "1px solid var(--secondary-light-color)";
+        document.querySelector(".second-img-circle").style.backgroundColor = "var(--secondary-light-color)";
+        document.querySelector(".second-img-circle").style.border = "1px solid var(--secondary-light-color)";
+        document.querySelector(".third-img-circle").style.backgroundColor = "white";
+        document.querySelector(".third-img-circle").style.border = "1px solid white";
+    }
 }
