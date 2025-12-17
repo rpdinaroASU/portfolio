@@ -6,6 +6,7 @@ export class ImageFSM {
         this.imageNameArray = imageNameArray;
         this.scrollContainer = scrollContainer;
         this.imgCount = 0;
+        topImage.style.opacity = "1";
     }
     createImageSelector() {
         topImage.src = this.imageNameArray[0];
@@ -55,12 +56,12 @@ export class ImageFSM {
         let currentNode = this.scrollContainer.childNodes.item(imgCount+1);
         currentNode.style.backgroundColor = "white";
         currentNode.style.border = "1px solid white";
-        this.fadeInterval = setInterval(() => this.fadeOutAnimation(), 200);
+        this.fadeInterval = setInterval(() => this.fadeOutAnimation(), 30);
     }
     fadeOutAnimation() {
-        let opacity = parseFloat(topImage.style.opacity) || 1;
+        let opacity = parseFloat(topImage.style.opacity);
         if (opacity > 0) {
-            opacity-=0.1;
+            opacity-=0.075;
             topImage.style.opacity = opacity.toString();
         } else {
             topImage.src = bottomImage.src;

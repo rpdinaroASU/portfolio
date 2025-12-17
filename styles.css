@@ -618,3 +618,9 @@ body {
     animation: fadeOut 1s ease-in;
     opacity: 0;
 }
+.top-stage-image {
+    z-index: 99999;
+}
+.bottom-stage-image {
+    z-index: 0;
+}
