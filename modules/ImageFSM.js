@@ -1,5 +1,6 @@
 const topImage = document.getElementsByClassName("top-stage-image").item(0);
 const bottomImage = document.getElementsByClassName("bottom-stage-image").item(0);
+const imageChangeInterval = 4000;
 
 export class ImageFSM {
     constructor(imageNameArray, scrollContainer) {
@@ -7,6 +8,9 @@ export class ImageFSM {
         this.scrollContainer = scrollContainer;
         this.imgCount = 0;
         topImage.style.opacity = "1";
+        this.rollingInterval = setInterval(() => {
+            this.rightArrowClick();
+        }, imageChangeInterval);
     }
     createImageSelector() {
         topImage.src = this.imageNameArray[0];
@@ -76,6 +80,10 @@ export class ImageFSM {
             this.imgCount--;
         }
         this.updateImage(this.imgCount);
+        clearInterval(this.rollingInterval);
+        this.rollingInterval = setInterval(() => {
+            this.leftArrowClick();
+        }, imageChangeInterval);
     }
     rightArrowClick() {
         if(this.imgCount === this.imageNameArray.length-1) {
@@ -84,5 +92,10 @@ export class ImageFSM {
             this.imgCount++;
         }
         this.updateImage(this.imgCount);
+
+        clearInterval(this.rollingInterval);
+        this.rollingInterval = setInterval(() => {
+            this.rightArrowClick();
+        }, imageChangeInterval);
     }
 }
