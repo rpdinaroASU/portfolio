@@ -535,6 +535,7 @@ body {
 .more-information {
     display: flex;
     flex-direction: column;
+    margin-bottom: 20px !important;
 }
 .stage-title {
     margin: auto auto auto 10px;
