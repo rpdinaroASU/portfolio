@@ -5,7 +5,12 @@ const imageChangeInterval = 4000;
 export class ImageFSM {
     constructor(imageNameArray, scrollContainer) {
         this.imageNameArray = imageNameArray;
-        this.scrollContainer = scrollContainer;
+        let parentNode = scrollContainer.parentNode;
+        parentNode.removeChild(scrollContainer);
+        this.scrollContainer = document.createElement("div");
+        parentNode.appendChild(this.scrollContainer);
+
+        this.scrollContainer.className = "img-scroll-container";
         this.imgCount = 0;
         topImage.style.opacity = "1";
         this.rollingInterval = setInterval(() => {

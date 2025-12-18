@@ -73,7 +73,7 @@ window.onload = () => {
     for(let i = 0; i < geneticButton.length; i++)
         addProjectInfoButtonListener(geneticButton.item(i), geneticAlgorithm, satelliteImageArray, projects, aboutPage, moreInformation);
 }
-function addProjectInfoButtonListener(button, projectInfo, imageArr, projects, aboutPage, moreInformation, item) {
+function addProjectInfoButtonListener(button, projectInfo, imageArr, projects, aboutPage, moreInformation) {
     button.addEventListener("click", function () {
         projects.style.display = "none";
         aboutPage.style.display = "none";
@@ -82,7 +82,7 @@ function addProjectInfoButtonListener(button, projectInfo, imageArr, projects, a
         }
         projectInfo.style.display = "flex";
         projectInfo.parentElement.style.display = "initial";
-        const scrollContainer = projectInfo.querySelector(".img-scroll-container");
+        let scrollContainer = projectInfo.querySelector(".img-scroll-container");
         const ImageSelector = new ImageFSM(imageArr, scrollContainer);
         ImageSelector.createImageSelector();
     });
