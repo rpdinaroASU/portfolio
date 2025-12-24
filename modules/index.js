@@ -72,6 +72,20 @@ window.onload = () => {
     const geneticButton = document.getElementsByClassName("genetic-algorithm-button");
     for(let i = 0; i < geneticButton.length; i++)
         addProjectInfoButtonListener(geneticButton.item(i), geneticAlgorithm, satelliteImageArray, projects, aboutPage, moreInformation);
+
+    const dropdownHitbox = document.getElementsByClassName("dropdown-hitbox");
+    for(let i = 0; i < dropdownHitbox.length; i++){
+        dropdownHitbox.item(i).addEventListener("click", function () {
+            if(dropdownHitbox.item(i).getElementsByClassName("selected-arrow").item(0).classList.contains("selected-arrow")) {
+                dropdownHitbox.item(i).parentElement.getElementsByClassName("stage-text").item(0).style.display = "none";
+                dropdownHitbox.item(i).getElementsByClassName("selected-arrow").item(0).classList.remove("selected-arrow");
+            } else {
+                dropdownHitbox.item(i).parentElement.getElementsByClassName("stage-text").item(0).style.display = "initial";
+                dropdownHitbox.item(i).getElementsByClassName("selected-arrow").item(0).classList.add("selected-arrow");
+            }
+        });
+    }
+
 }
 function addProjectInfoButtonListener(button, projectInfo, imageArr, projects, aboutPage, moreInformation) {
     button.addEventListener("click", function () {
