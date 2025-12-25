@@ -11,6 +11,7 @@ export class ImageFSM {
         parentNode.appendChild(this.scrollContainer);
 
         this.scrollContainer.className = "img-scroll-container";
+        this.scrollContainer.style.gridTemplateColumns = "repeat(" + (imageNameArray.length + 2)+ "auto)";
         this.imgCount = 0;
         topImage.style.opacity = "1";
         this.rollingInterval = setInterval(() => {
@@ -27,25 +28,29 @@ export class ImageFSM {
         leftArrow.addEventListener("click", () => {
             this.leftArrowClick();
         })
+        leftArrow.style.gridArea = "1 / 1 / 2 / 2";
         this.scrollContainer.appendChild(leftArrow);
-        let first = true;
+        let count = 2;
         this.imageNameArray.forEach(() => {
             let imageSelector = document.createElement("div");
-            if(first) {
+            if(count===2) {
                 imageSelector.style.backgroundColor = "white";
                 imageSelector.style.border = "1px solid white";
-                first = false;
             } else {
                 imageSelector.style.backgroundColor = "var(--secondary-light-color)";
                 imageSelector.style.border = "1px solid var(--secondary-light-color)";
             }
             imageSelector.className = "image-circle";
+            imageSelector.style.gridArea = "1 / " + count + " / 2 / " + (count + 1);
+            imageSelector.style.margin = "auto 10px";
             this.scrollContainer.appendChild(imageSelector);
+            count++;
         })
         let rightArrow = document.createElement("img");
         rightArrow.src = "../images/down-arrow.svg";
         rightArrow.alt = " > ";
         rightArrow.className = "right-arrow";
+        rightArrow.style.gridArea = "1 / " + count + " / 2 / " + (count + 1);
         rightArrow.addEventListener("click", () => {
             this.rightArrowClick();
         })
