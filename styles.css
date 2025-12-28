@@ -552,6 +552,10 @@ body {
 }
 .more-information-title {
     grid-area: 1 / 1 / 2 / 2;
+    border-radius: var(--border-radius);
+    border-color: white !important;
+    cursor: default !important;
+    padding: 10px !important;
 }
 .stage-zero {
     grid-area: 2 / 1 / 3 / 2;
@@ -625,7 +629,7 @@ body {
     background-color: var(--tertiary-dark-color) !important;
     width: 95% !important;
     max-width: 600px !important;
-    padding-bottom: 38px;
+    padding-bottom: 34px;
     aspect-ratio: 1 / 1;
 }
 .stage-description-image {
@@ -657,12 +661,24 @@ body {
 }
 
 .image-circle {
-    min-width: 30px;
+    width: 30px;
     min-height: 10px;
     border-radius: var(--border-radius);
     margin: auto 10px;
-    border: 1px solid white;
-    background-color: white;
+    border: 1px solid var(--secondary-light-color);
+    background-color: var(--secondary-light-color);
+}
+.image-circle-selector {
+    visibility: hidden;
+    background-color: white !important;
+    border-color: white !important;
+    width: 0;
+    overflow: hidden;
+}
+.image-circle-transition-grow {
+    visibility: visible;
+    width: 30px;
+    transition: width 5s ease-out;
 }
 .left-arrow {
     transform: rotate(90deg);
@@ -702,7 +718,7 @@ body {
     display: grid;
     border-top-left-radius: var(--border-radius);
     border-top-right-radius: var(--border-radius);
-    border-color: var(--transparent-color) var(--transparent-color) white var(--transparent-color) !important;
+    border-color: var(--transparent-color) var(--transparent-color) white var(--transparent-color);
     border-width: 2px;
     border-style: solid;
     background-color: var(--tertiary-dark-color) !important;
