@@ -1,5 +1,5 @@
 const imageChangeInterval = 5000;
-const baseImagePath = "../images/";
+const imagePath = "../images/";
 
 /**
  * Creates a finite state machine that cycles through a set of images.
@@ -74,7 +74,7 @@ export class ImageFSM {
 
         const makeArrow = (isRight, gridColumn) => {
             const arrow = document.createElement("img");
-            arrow.src = `${baseImagePath}down-arrow.svg`;
+            arrow.src = `${imagePath}down-arrow.svg`;
             arrow.alt = isRight ? " > " : " < ";
             arrow.className = isRight ? "right-arrow" : "left-arrow";
             arrow.style.gridArea = `1 / ${gridColumn} / 2 / ${gridColumn + 1}`;
@@ -112,13 +112,18 @@ export class ImageFSM {
         // Cache selectors
         this.circles = [...this.scrollContainer.querySelectorAll(".image-circle-selector")];
         this.circlesLen = this.circles.length;
+        for(let i = 0; i < this.circlesLen; i++) {
+            const img = new Image();
+            img.src = imagePath + this.imageNameArray[i];
+            this.images[i] = img;
+        }
 
         this.startAutoScroll();
     }
 
     setUpVisibleStageImages(isTopImage) {
         let node = document.createElement("img");
-        node.src = baseImagePath + this.imageNameArray[0];
+        node.src = imagePath + this.imageNameArray[0];
         node.alt = "Example Image";
         node.classList.add("stage-description-image");
         node.classList.add(isTopImage ? "top-stage-image" : "bottom-stage-image");
@@ -138,16 +143,22 @@ export class ImageFSM {
 
         this.imgCount = ImageFSM.mod(this.imgCount + (this.right ? 1 : -1), this.circlesLen);
 
-        this.bottomImage.src = this.images[this.imgCount];
+        this.bottomImage.src = imagePath + this.imageNameArray[this.imgCount];
 
         // Start fade
         this.topImage.classList.add("image-fade-out");
 
         // Wait for CSS transition to finish
         await new Promise(resolve => {
-            this.topImage.addEventListener("animationend", resolve, { once: true });
+            const handler = () => {
+                this.topImage.removeEventListener("animationend", handler);
+                this.topImage.removeEventListener("animationcancel", handler);
+                resolve();
+            };
             const currentNode = this.circles[this.imgCount % this.circlesLen];
             currentNode.classList.add("image-circle-transition-grow");
+            this.topImage.addEventListener("animationend", handler);
+            this.topImage.addEventListener("animationcancel", handler);
         });
 
         // Swap image AFTER fade completes
