@@ -2,7 +2,18 @@ const topImage = document.getElementsByClassName("top-stage-image").item(0);
 const bottomImage = document.getElementsByClassName("bottom-stage-image").item(0);
 const imageChangeInterval = 5000;
 
+/**
+ * Creates a finite state machine that cycles through a set of images
+ * Generates a scrollable container with circles that can be clicked to cycle through images
+ * Animation is done using css transitions and intervals to simulate a rolling carousel
+ * The image fades out in set intervals.
+ */
 export class ImageFSM {
+    /**
+     * Creates a finite state machine that cycles through a set of images
+     * @param imageNameArray the array of image names
+     * @param scrollContainer the node to contain the scrollable container
+     */
     constructor(imageNameArray, scrollContainer) {
         this.imageNameArray = imageNameArray;
         let parentNode = scrollContainer.parentNode;
@@ -18,6 +29,9 @@ export class ImageFSM {
         topImage.style.opacity = "1";
     }
 
+    /**
+     * Starts the auto-scroll interval
+     */
     startAutoScroll() {
         this.stopAutoScroll();
         // start css transition on current node
@@ -34,10 +48,16 @@ export class ImageFSM {
         }, imageChangeInterval);
     }
 
+    /**
+     * stops the auto-scroll interval
+     */
     stopAutoScroll() {
         clearInterval(this.rollingInterval);
     }
 
+    /**
+     * Creates the scrollable carousel and adds the image selectors to it
+     */
     createImageSelector() {
         topImage.src = this.imageNameArray[0];
         bottomImage.src = this.imageNameArray[0];
@@ -79,12 +99,19 @@ export class ImageFSM {
         this.startAutoScroll();
     }
 
+    /**
+     * updates the image displayed
+     * @param imgCount
+     */
     updateImage(imgCount) {
         imgCount %= this.imageNameArray.length;
         bottomImage.src = this.imageNameArray[imgCount];
         this.fadeInterval = setInterval(() => this.fadeOutAnimation(), 60);
     }
 
+    /**
+     * fade out the image
+     */
     fadeOutAnimation() {
         let opacity = parseFloat(topImage.style.opacity);
         if (opacity > 0) {
@@ -97,6 +124,9 @@ export class ImageFSM {
         }
     }
 
+    /**
+     * updates the image count and starts the auto-scroll interval
+     */
     arrowClick() {
         this.circles.forEach(node => {
             node.classList.remove("image-circle-transition-grow");
@@ -119,6 +149,10 @@ export class ImageFSM {
         this.updateImage(this.imgCount);
 
     }
+
+    /**
+     * updates the image count and starts the auto-scroll interval
+     */
     rollingIntervalAnimation() {
         this.circles.forEach(node => {
             node.classList.remove("image-circle-transition-grow");
