@@ -1,32 +1,46 @@
-const topImage = document.getElementsByClassName("top-stage-image").item(0);
-const bottomImage = document.getElementsByClassName("bottom-stage-image").item(0);
 const imageChangeInterval = 5000;
+const baseImagePath = "../images/";
 
 /**
- * Creates a finite state machine that cycles through a set of images
- * Generates a scrollable container with circles that can be clicked to cycle through images
- * Animation is done using css transitions and intervals to simulate a rolling carousel
+ * Creates a finite state machine that cycles through a set of images.
+ * Generates a scrollable container with circles that can be clicked to cycle through images.
+ * Animation is done using CSS transitions and intervals to simulate a rolling carousel.
  * The image fades out in set intervals.
  */
 export class ImageFSM {
     /**
      * Creates a finite state machine that cycles through a set of images
      * @param imageNameArray the array of image names
-     * @param scrollContainer the node to contain the scrollable container
+     * @param parentNode the parent container for the scrollable container and the image
      */
-    constructor(imageNameArray, scrollContainer) {
+    constructor(imageNameArray, parentNode) {
         this.imageNameArray = imageNameArray;
-        let parentNode = scrollContainer.parentNode;
-        parentNode.removeChild(scrollContainer);
+        this.parentNode = parentNode;
+        this.parentNode.innerHTML = "";
+        this.bottomImage = this.setUpVisibleStageImages(false);
+        this.topImage = this.setUpVisibleStageImages(true);
+
+        this.parentNode.appendChild(this.bottomImage);
+        this.parentNode.appendChild(this.topImage);
+
         this.scrollContainer = document.createElement("div");
-        parentNode.appendChild(this.scrollContainer);
 
         this.scrollContainer.className = "img-scroll-container";
-        this.scrollContainer.style.gridTemplateColumns = "repeat(" + (imageNameArray.length + 2)+ "auto)";
+        this.scrollContainer.style.gridTemplateColumns = `repeat( ${imageNameArray.length + 2}, auto)`;
+        this.parentNode.appendChild(this.scrollContainer);
         this.imgCount = 0;
         this.right = true;
         this.circles = [];
-        topImage.style.opacity = "1";
+        this.images = [];
+    }
+    /**
+     * Helper function to calculate the modulus of two numbers within the length of FSM
+     * @param targetNumber number to be modded
+     * @param FSMLength length of finite state machine
+     * @returns {number} returns the modulus of n and m
+     */
+    static mod(targetNumber, FSMLength) {
+        return ((targetNumber % FSMLength) + FSMLength) % FSMLength;
     }
 
     /**
@@ -35,16 +49,14 @@ export class ImageFSM {
     startAutoScroll() {
         this.stopAutoScroll();
         // start css transition on current node
-        const circles = [...this.scrollContainer.querySelectorAll(".image-circle-selector")];
-        const len = circles.length;
-        const currentNode = circles[this.imgCount % len];
+        const currentNode = this.circles[this.imgCount % this.circlesLen];
         currentNode.offsetWidth; // force reflow
 
         currentNode.classList.add("image-circle-transition-grow");
 
         //start rolling timer
         this.rollingInterval = setInterval(() => {
-            this.rollingIntervalAnimation();
+            this.arrowClick().then(() => {});
         }, imageChangeInterval);
     }
 
@@ -59,108 +71,89 @@ export class ImageFSM {
      * Creates the scrollable carousel and adds the image selectors to it
      */
     createImageSelector() {
-        topImage.src = this.imageNameArray[0];
-        bottomImage.src = this.imageNameArray[0];
-        let leftArrow = document.createElement("img");
-        leftArrow.src = "../images/down-arrow.svg";
-        leftArrow.alt = " < ";
-        leftArrow.className = "left-arrow";
-        leftArrow.addEventListener("click", () => {
-            this.right = false;
-            this.arrowClick();
-        })
-        leftArrow.style.gridArea = "1 / 1 / 2 / 2";
-        this.scrollContainer.appendChild(leftArrow);
-        let count = 2;
+
+        const makeArrow = (isRight, gridColumn) => {
+            const arrow = document.createElement("img");
+            arrow.src = `${baseImagePath}down-arrow.svg`;
+            arrow.alt = isRight ? " > " : " < ";
+            arrow.className = isRight ? "right-arrow" : "left-arrow";
+            arrow.style.gridArea = `1 / ${gridColumn} / 2 / ${gridColumn + 1}`;
+            arrow.addEventListener("click", () => {
+                this.right = isRight;
+                this.startAutoScroll();
+                this.arrowClick().then(() => {});
+            });
+            return arrow;
+        };
+        const makeCircle = (column) => {
+            const circle = document.createElement("div");
+            circle.className = "image-circle";
+            circle.style.gridArea = `1 / ${column} / 2 / ${column + 1}`;
+            return circle;
+        }
+
+        // Left arrow
+        this.scrollContainer.appendChild(makeArrow(false, 1));
+
+        // Circles
+        let col = 2;
         this.imageNameArray.forEach(() => {
-            let imageSelector = document.createElement("div");
-            imageSelector.className = "image-circle";
-            imageSelector.style.gridArea = "1 / " + count + " / 2 / " + (count + 1);
-            imageSelector.style.backgroundColor = "var(--secondary-light-color)";
-            imageSelector.style.border = "1px solid var(--secondary-light-color)";
-            this.scrollContainer.appendChild(imageSelector);
-            let node = imageSelector.cloneNode(true);
-            node.classList.add("image-circle-selector");
-            node.style.gridArea = "1 / " + count + " / 2 / " + (count + 1);
-            this.scrollContainer.appendChild(node);
-            count++;
-        })
-        let rightArrow = document.createElement("img");
-        rightArrow.src = "../images/down-arrow.svg";
-        rightArrow.alt = " > ";
-        rightArrow.className = "right-arrow";
-        rightArrow.style.gridArea = "1 / " + count + " / 2 / " + (count + 1);
-        rightArrow.addEventListener("click", () => {
-            this.right = true;
-            this.arrowClick();
-        })
-        this.scrollContainer.appendChild(rightArrow);
+            this.scrollContainer.appendChild(makeCircle(col));
+            let selector = makeCircle(col);
+            selector.classList.add("image-circle-selector");
+            this.scrollContainer.appendChild(selector);
+
+            col++;
+        });
+
+        // Right arrow
+        this.scrollContainer.appendChild(makeArrow(true, col));
+
+        // Cache selectors
         this.circles = [...this.scrollContainer.querySelectorAll(".image-circle-selector")];
+        this.circlesLen = this.circles.length;
+
         this.startAutoScroll();
     }
 
-    /**
-     * updates the image displayed
-     * @param imgCount
-     */
-    updateImage(imgCount) {
-        imgCount %= this.imageNameArray.length;
-        bottomImage.src = this.imageNameArray[imgCount];
-        this.fadeInterval = setInterval(() => this.fadeOutAnimation(), 60);
+    setUpVisibleStageImages(isTopImage) {
+        let node = document.createElement("img");
+        node.src = baseImagePath + this.imageNameArray[0];
+        node.alt = "Example Image";
+        node.classList.add("stage-description-image");
+        node.classList.add(isTopImage ? "top-stage-image" : "bottom-stage-image");
+        node.style.opacity = isTopImage ? "1" : "0";
+
+        return node;
     }
 
-    /**
-     * fade out the image
-     */
-    fadeOutAnimation() {
-        let opacity = parseFloat(topImage.style.opacity);
-        if (opacity > 0) {
-            opacity-=0.1;
-            topImage.style.opacity = opacity.toString();
-        } else {
-            topImage.src = bottomImage.src;
-            topImage.style.opacity = "1";
-            clearInterval(this.fadeInterval);
-        }
-    }
 
     /**
      * updates the image count and starts the auto-scroll interval
      */
-    arrowClick() {
+    async arrowClick() {
         this.circles.forEach(node => {
             node.classList.remove("image-circle-transition-grow");
         });
-        if(this.right) {
-            if (this.imgCount === this.imageNameArray.length - 1) {
-                this.imgCount = 0;
-            } else {
-                this.imgCount++;
-            }
-        } else {
-            if(this.imgCount === 0) {
-                this.imgCount = this.imageNameArray.length-1;
-            } else {
-                this.imgCount--;
-            }
-        }
 
-        this.startAutoScroll();
-        this.updateImage(this.imgCount);
+        this.imgCount = ImageFSM.mod(this.imgCount + (this.right ? 1 : -1), this.circlesLen);
 
-    }
+        this.bottomImage.src = this.images[this.imgCount];
 
-    /**
-     * updates the image count and starts the auto-scroll interval
-     */
-    rollingIntervalAnimation() {
-        this.circles.forEach(node => {
-            node.classList.remove("image-circle-transition-grow");
+        // Start fade
+        this.topImage.classList.add("image-fade-out");
+
+        // Wait for CSS transition to finish
+        await new Promise(resolve => {
+            this.topImage.addEventListener("animationend", resolve, { once: true });
+            const currentNode = this.circles[this.imgCount % this.circlesLen];
+            currentNode.classList.add("image-circle-transition-grow");
         });
-        this.arrowClick();
 
-        const len = this.circles.length;
-        const currentNode = this.circles[this.imgCount % len];
-        currentNode.classList.add("image-circle-transition-grow");
+        // Swap image AFTER fade completes
+        this.topImage.src = this.bottomImage.src;
+
+        // Reset for next cycle
+        this.topImage.classList.remove("image-fade-out");
     }
 }

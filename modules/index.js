@@ -1,6 +1,6 @@
 import {ImageFSM} from './ImageFSM.js';
 
-const satelliteImageArray = ["../images/sat-img-1.png", "../images/sat-img-2.png", "../images/sat-img-3.png"];
+const satelliteImageArray = ["sat-img-1.png", "sat-img-2.png", "sat-img-3.png"];
 
 window.onload = () => {
     /* Contact me page */
@@ -96,7 +96,7 @@ function addProjectInfoButtonListener(button, projectInfo, imageArr, projects, a
         }
         projectInfo.style.display = "flex";
         projectInfo.parentElement.style.display = "initial";
-        let scrollContainer = projectInfo.querySelector(".img-scroll-container");
+        let scrollContainer = projectInfo.querySelector(".stage-image-container");
         const ImageSelector = new ImageFSM(imageArr, scrollContainer);
         ImageSelector.createImageSelector();
     });
