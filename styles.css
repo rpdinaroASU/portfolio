@@ -673,6 +673,7 @@ body {
     margin: auto 10px;
     border: 1px solid var(--secondary-light-color);
     background-color: var(--secondary-light-color);
+    cursor: pointer;
 }
 .image-circle-selector {
     visibility: hidden;

@@ -76,19 +76,27 @@ export class ImageFSM {
         documentFragment.appendChild(this.makeArrow(false, 1));
 
         // Circles
-        let col = 2;
-        this.imageNameArray.forEach(() => {
-            documentFragment.appendChild(this.makeSelectorElement(col));
+        for (let i = 0; i < this.imageNameArray.length; i++) {
+            let col = i + 2;
+
+            let backgroundCircle = this.makeSelectorElement(col);
+            backgroundCircle.addEventListener("click", () => {
+                this.imgCount = i-1;
+                this.startAutoScroll();
+                this.arrowClick().then(r => {});
+            });
+
+            documentFragment.appendChild(backgroundCircle);
+
             let selector = this.makeSelectorElement(col);
-            selector.classList.toggle("image-circle-selector", true);
+            selector.classList.add("image-circle-selector");
             this.circles.push(selector);
             documentFragment.appendChild(selector);
+        }
 
-            col++;
-        });
 
         // Right arrow
-        documentFragment.appendChild(this.makeArrow(true, col));
+        documentFragment.appendChild(this.makeArrow(true, this.imageNameArray.length + 2));
 
         this.scrollContainer.appendChild(documentFragment);
 
