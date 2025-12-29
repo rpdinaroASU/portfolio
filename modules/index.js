@@ -76,13 +76,8 @@ window.onload = () => {
     const dropdownHitbox = document.getElementsByClassName("dropdown-hitbox");
     for(let i = 0; i < dropdownHitbox.length; i++){
         dropdownHitbox.item(i).addEventListener("click", function () {
-            if(dropdownHitbox.item(i).getElementsByClassName("selected-arrow").item(0).classList.contains("selected-arrow")) {
-                dropdownHitbox.item(i).parentElement.getElementsByClassName("stage-content").item(0).style.display = "none";
-                dropdownHitbox.item(i).getElementsByClassName("selected-arrow").item(0).classList.remove("selected-arrow");
-            } else {
-                dropdownHitbox.item(i).parentElement.getElementsByClassName("stage-content").item(0).style.display = "initial";
-                dropdownHitbox.item(i).getElementsByClassName("selected-arrow").item(0).classList.add("selected-arrow");
-            }
+            dropdownHitbox.item(i).getElementsByClassName("stage-image").item(0).classList.toggle("selected-arrow");
+            dropdownHitbox.item(i).parentElement.getElementsByClassName("stage-content").item(0).classList.toggle("hidden");
         });
     }
 

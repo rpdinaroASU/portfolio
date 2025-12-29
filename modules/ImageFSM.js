@@ -83,7 +83,7 @@ export class ImageFSM {
             backgroundCircle.addEventListener("click", () => {
                 this.imgCount = i-1;
                 this.startAutoScroll();
-                this.arrowClick().then(r => {});
+                this.arrowClick().then(() => {});
             });
 
             documentFragment.appendChild(backgroundCircle);
