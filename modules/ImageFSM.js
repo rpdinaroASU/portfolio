@@ -1,3 +1,5 @@
+import {FSMFunctions} from './FSMFunctions.js';
+
 const imageChangeInterval = 5000;
 const imagePath = "../images/";
 
@@ -37,10 +39,10 @@ export class ImageFSM {
     /**
      * Helper function to calculate the modulus of two numbers within the length of FSM
      * @param targetNumber number to be modded
-     * @returns {number} returns the modulus of n and m
+     * @returns {number} returns the modulus of targetNumber and FSM length
      */
     mod(targetNumber) {
-        return ((targetNumber % this.circles.length) + this.circles.length) % this.circles.length;
+        return FSMFunctions.mod(targetNumber, this.circles.length);
     }
 
     /**
