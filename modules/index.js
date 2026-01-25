@@ -1,6 +1,8 @@
 import {ImageFSM} from './ImageFSM.js';
+import {ModalFSM} from "./ModalFSM.js";
 
 const satelliteImageArray = ["sat-img-1.png", "sat-img-2.png", "sat-img-3.png"];
+let modalFSM;
 
 window.onload = () => {
     const $ = (sel) => document.querySelector(sel);
@@ -18,12 +20,21 @@ window.onload = () => {
     const geneticAlgorithm = $("#genetic-algorithm-information");
     const copyrightElement = $("#copyright");
     const about = $("#about");
-    const moreInformation = $$(".more-information");
     const dropdownHitbox = $$(".dropdown-hitbox");
     const geneticButton = $$(".genetic-algorithm-button");
     const lmButton = $$(".lore-button");
     const satButton = $$(".sat-button");
 
+    //Create an Enum of modals
+    const modals ={
+        SATELLITE_MODAL: satelliteExperience,
+        LORE_MYTHOLOGY_MODAL: loreMythologyExperience,
+        GENETIC_ALGORITHM_MODAL: geneticAlgorithm,
+        ABOUT_MODAL: aboutPage,
+        CONTACT_MODAL: contactPage,
+        HOME_MODAL: projects,
+    };
+    modalFSM = new ModalFSM(modals, blurrable, modalBackdrop);
 
     $("#close-button").addEventListener("click", function () {
         contactPage.style.visibility = "hidden";
@@ -31,11 +42,7 @@ window.onload = () => {
         blurrable.style.filter = "none";
     });
     $("#contact").addEventListener("click", function () {
-        contactPage.style.visibility = "visible";
-        contactPage.display = "flex";
-        body.style.overflow = "hidden";
-        modalBackdrop.style.display = "flex";
-        blurrable.style.filter = "blur(5px)";
+        modalFSM.setState(modals.CONTACT_MODAL);
     });
     $("#github-title").addEventListener("click", function () {
         window.location.assign('https://github.com/rpdinaroASU');
@@ -56,30 +63,23 @@ window.onload = () => {
         })();
     }
     about.addEventListener("click", function () {
-        projects.style.display = "none";
-        aboutPage.style.display = "flex";
-        for (let i = 0; i < moreInformation.length; i++) {
-            moreInformation.item(i).style.display = "none";
-        }
+        modalFSM.setState(modals.ABOUT_MODAL);
+        console.log("ABOUT CLICKED");
     });
     homePage.addEventListener("click", function () {
-        projects.style.display = "initial";
-        aboutPage.style.display = "none";
-        for (let i = 0; i < moreInformation.length; i++) {
-            moreInformation.item(i).style.display = "none";
-        }
+        modalFSM.setState(modals.HOME_MODAL)
     });
 
     for (let i = 0; i < satButton.length; i++)
-        addProjectInfoButtonListener(satButton.item(i), satelliteExperience, satelliteImageArray, projects, aboutPage, moreInformation);
+        addProjectInfoButtonListener(satButton.item(i), satelliteExperience, satelliteImageArray, modals.SATELLITE_MODAL);
 
 
     for(let i = 0; i < lmButton.length; i++)
-        addProjectInfoButtonListener(lmButton.item(i), loreMythologyExperience, satelliteImageArray, projects, aboutPage, moreInformation);
+        addProjectInfoButtonListener(lmButton.item(i), loreMythologyExperience, satelliteImageArray, modals.LORE_MYTHOLOGY_MODAL);
 
 
     for(let i = 0; i < geneticButton.length; i++)
-        addProjectInfoButtonListener(geneticButton.item(i), geneticAlgorithm, satelliteImageArray, projects, aboutPage, moreInformation);
+        addProjectInfoButtonListener(geneticButton.item(i), geneticAlgorithm, satelliteImageArray, modals.GENETIC_ALGORITHM_MODAL);
 
     for(let i = 0; i < dropdownHitbox.length; i++){
         dropdownHitbox.item(i).addEventListener("click", function () {
@@ -89,17 +89,10 @@ window.onload = () => {
     }
 
 }
-function addProjectInfoButtonListener(button, projectInfo, imageArr, projects, aboutPage, moreInformation) {
+function addProjectInfoButtonListener(button, projectInfo, imageArr, modal) {
     button.addEventListener("click", function () {
-        projects.style.display = "none";
-        aboutPage.style.display = "none";
-        for (let i = 0; i < moreInformation.length; i++) {
-            moreInformation.item(i).style.display = "none";
-        }
-        projectInfo.style.display = "flex";
-        projectInfo.parentElement.style.display = "initial";
-        let scrollContainer = projectInfo.querySelector(".stage-image-container");
-        const ImageSelector = new ImageFSM(imageArr, scrollContainer);
+        modalFSM.setState(modal);
+        const ImageSelector = new ImageFSM(imageArr, projectInfo.querySelector(".stage-image-container"));
         ImageSelector.createImageSelector();
     });
 }

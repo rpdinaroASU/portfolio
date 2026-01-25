@@ -125,7 +125,7 @@ export class ImageFSM {
      */
     makeArrow(isRight, gridColumn) {
         const arrow = document.createElement("img");
-        arrow.src = `${imagePath}down-arrow.svg`;
+        arrow.src = `${imagePath}/icons/down-arrow.svg`;
         arrow.alt = isRight ? " > " : " < ";
         arrow.className = isRight ? "right-arrow" : "left-arrow";
         arrow.style.gridArea = `1 / ${gridColumn} / 2 / ${gridColumn + 1}`;
