@@ -64,7 +64,6 @@ window.onload = () => {
     }
     about.addEventListener("click", function () {
         modalFSM.setState(modals.ABOUT_MODAL);
-        console.log("ABOUT CLICKED");
     });
     homePage.addEventListener("click", function () {
         modalFSM.setState(modals.HOME_MODAL)

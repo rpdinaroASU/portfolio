@@ -144,7 +144,7 @@ export class ImageFSM {
      */
     setUpVisibleStageImages(isTopImage) {
         let node = document.createElement("img");
-        node.src = imagePath + this.imageNameArray[0];
+        node.src = imagePath + "project-resources/" + this.imageNameArray[0];
         node.alt = "Example Image";
         node.classList.toggle("stage-description-image",true);
         node.classList.toggle(isTopImage ? "top-stage-image" : "bottom-stage-image", true);
@@ -164,7 +164,7 @@ export class ImageFSM {
 
         this.imgCount = this.mod(this.imgCount + (this.right ? 1 : -1));
 
-        this.bottomImage.src = imagePath + this.imageNameArray[this.imgCount];
+        this.bottomImage.src = imagePath + "project-resources/" + this.imageNameArray[this.imgCount];
 
         // Start fade
         this.topImage.classList.toggle("image-fade-out",true);
