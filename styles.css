@@ -538,12 +538,6 @@ body {
 #satellite-experience {
     grid-template-rows: repeat(8, auto);
 }
-#lore-mythology-experience {
-    display: none !important;
-}
-#genetic-algorithm-information {
-    display: none !important;
-}
 
 .more-information-title {
     grid-area: 1 / 1 / 2 / 2;
