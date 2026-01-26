@@ -27,8 +27,8 @@ export class ModalFSM {
                     this.currentProject = state;
                 }
                 //Show the new state
-                this.lastState.style.display = "none";
-                state.style.display = "block";
+                this.toggle(this.lastState,false);
+                this.toggle(state,true);
                 this.lastState = state;
             }
         } else {
@@ -44,23 +44,26 @@ export class ModalFSM {
     updateContactModalDisplay(isVisible) {
         this.contact = isVisible;
         this.blurrableParent.style.filter = this.contact ? "blur(5px)" : "none";
-        this.modals.CONTACT_MODAL.style.display = this.contact ? "initial" : "none";
+        this.toggle(this.modals.CONTACT_MODAL, this.contact);
         this.modals.CONTACT_MODAL.style.visibility = this.contact ? "visible" : "hidden";
-        this.backdrop.style.display = this.contact ? "flex" : "none";
+        this.toggle(this.backdrop, this.contact);
     }
     updateProjectModalDisplay(projectModal) {
         this.currentProject = projectModal;
         if (this.projectModals.has(this.currentProject)) {
-            this.lastState.style.display = "none";
-            this.currentProject.parentElement.style.display = "block";
+            this.toggle(this.lastState, false);
+            this.toggle(this.currentProject.parentElement,true);
             this.projectModals.forEach(modal => {
-                modal.style.display = (modal.id === this.currentProject.id) ? "block" : "none";
+                this.toggle(modal, modal.id === this.currentProject.id);
             });
         } else {
             this.hideProjectModal();
         }
     }
     hideProjectModal() {
-        this.modals.SATELLITE_MODAL.parentElement.style.display = "none";
+        this.toggle(this.modals.SATELLITE_MODAL.parentElement, false);
+    }
+    toggle(el, show, displayType = "block") {
+        el.style.display = show ? displayType : "none";
     }
 }
