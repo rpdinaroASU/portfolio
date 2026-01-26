@@ -34,12 +34,13 @@ window.onload = () => {
         CONTACT_MODAL: contactPage,
         HOME_MODAL: projects,
     };
-    modalFSM = new ModalFSM(modals, blurrable, modalBackdrop);
+    modalFSM = new ModalFSM(modals, blurrable, modalBackdrop,satelliteExperience.parentElement );
 
     $("#close-button").addEventListener("click", function () {
-        contactPage.style.visibility = "hidden";
+        contactPage.classList.remove("modal-visible");
         body.style.overflowY = "visible";
-        blurrable.style.filter = "none";
+        modalBackdrop.classList.remove("modal-visible");
+        blurrable.style.filter =  "none";
     });
     $("#contact").addEventListener("click", function () {
         modalFSM.setState(modals.CONTACT_MODAL);
@@ -51,9 +52,9 @@ window.onload = () => {
         window.location.assign('https://psyche.ssl.berkeley.edu/get-involved/capstone-projects/capstone-projects-iridium-class/ar-webxr-for-public-engagement-asu-e/');
     });
     modalBackdrop.addEventListener("click", function () {
-        contactPage.style.visibility = "hidden";
+        contactPage.classList.remove("modal-visible");
         body.style.overflowY = "visible";
-        modalBackdrop.style.display = "none";
+        modalBackdrop.classList.remove("modal-visible");
         blurrable.style.filter =  "none";
     });
 
@@ -94,4 +95,7 @@ function addProjectInfoButtonListener(button, projectInfo, imageArr, modal) {
         const ImageSelector = new ImageFSM(imageArr, projectInfo.querySelector(".stage-image-container"));
         ImageSelector.createImageSelector();
     });
+}
+function closeContactModal() {
+
 }

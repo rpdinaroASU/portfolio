@@ -1,12 +1,13 @@
 export class ModalFSM {
-    constructor(modals, blurrableParent, backdrop) {
-        this.modals = modals;
-        this.blurrableParent = blurrableParent;
-        this.backdrop = backdrop;
+    constructor(modalList, contactBackground, contactBackgroundHitbox, projectContainer) {
+        this.modals = modalList;
+        this.contactBackground = contactBackground;
+        this.contactBackgroundHitbox = contactBackgroundHitbox;
         this.lastState = this.modals.HOME_MODAL;
         this.projectModals = new Set([this.modals.SATELLITE_MODAL, this.modals.GENETIC_ALGORITHM_MODAL, this.modals.LORE_MYTHOLOGY_MODAL]);
         this.contact = false;
         this.currentProject = this.modals.HOME_MODAL;
+        this.projectContainer = projectContainer;
     }
     setState(state) {
         if(state.id !== this.modals.CONTACT_MODAL.id) {
@@ -14,6 +15,7 @@ export class ModalFSM {
             //Hide the contact modal
             if(this.contact) {
                 this.updateContactModalDisplay(false);
+                return;
             }
 
             //If the state is a project modal, show the project modal
@@ -23,12 +25,12 @@ export class ModalFSM {
                 //If the state is not a project modal,
                 // hide the project modals.
                 if(this.projectModals.has(this.currentProject)) {
-                    this.hideProjectModal();
+                    this.toggleModalVisibility(this.projectContainer, false);
                     this.currentProject = state;
                 }
                 //Show the new state
-                this.toggle(this.lastState,false);
-                this.toggle(state,true);
+                this.toggleModalVisibility(this.lastState,false);
+                this.toggleModalVisibility(state,true);
                 this.lastState = state;
             }
         } else {
@@ -43,27 +45,28 @@ export class ModalFSM {
     // When the contact modal is hidden, unblur the background.
     updateContactModalDisplay(isVisible) {
         this.contact = isVisible;
-        this.blurrableParent.style.filter = this.contact ? "blur(5px)" : "none";
-        this.toggle(this.modals.CONTACT_MODAL, this.contact);
-        this.modals.CONTACT_MODAL.style.visibility = this.contact ? "visible" : "hidden";
-        this.toggle(this.backdrop, this.contact);
+        this.toggleBackdropBlur(this.contactBackground, this.contact)
+        this.toggleModalVisibility(this.modals.CONTACT_MODAL, this.contact);
+        this.toggleModalVisibility(this.contactBackgroundHitbox, this.contact);
     }
     updateProjectModalDisplay(projectModal) {
         this.currentProject = projectModal;
         if (this.projectModals.has(this.currentProject)) {
-            this.toggle(this.lastState, false);
-            this.toggle(this.currentProject.parentElement,true);
+            this.toggleModalVisibility(this.lastState, false);
+            this.toggleModalVisibility(this.projectContainer, true);
             this.projectModals.forEach(modal => {
-                this.toggle(modal, modal.id === this.currentProject.id);
+                this.toggleModalVisibility(modal, modal === this.currentProject);
             });
         } else {
-            this.hideProjectModal();
+            this.toggleModalVisibility(this.projectContainer, false);
         }
     }
-    hideProjectModal() {
-        this.toggle(this.modals.SATELLITE_MODAL.parentElement, false);
+    toggleModalVisibility(el, show) {
+        el.classList.add(show ? "modal-visible" : "modal-hidden");
+        el.classList.remove(show ? "modal-hidden" : "modal-visible");
     }
-    toggle(el, show, displayType = "block") {
-        el.style.display = show ? displayType : "none";
+    toggleBackdropBlur(el, show) {
+        if(show) el.classList.add("contact-blur");
+        else el.classList.remove("contact-blur");
     }
 }

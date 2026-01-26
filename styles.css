@@ -406,7 +406,7 @@ body {
 /* Contact Me */
 #contact-me {
     position: fixed;
-    display: flex;
+    display: none;
     flex-direction: column;
     top: calc(50vh - 25vh);
     left: auto;
@@ -415,7 +415,6 @@ body {
     height: auto;
     border: 2px solid var(--tertiary-dark-color);
     box-shadow: var(--tertiary-dark-color) 0 0 15px;
-    visibility: hidden;
     z-index: 1;
 }
 #modal-backdrop {
@@ -738,4 +737,15 @@ body {
 }
 .project-title {
     padding-bottom: 10px;
+}
+.modal-hidden {
+    display: none !important;
+}
+
+.modal-visible {
+    display: block !important;
+}
+
+.contact-blur {
+    filter: blur(5px);
 }
