@@ -530,7 +530,7 @@ body {
     margin: 0 auto auto auto;
 }
 .more-information {
-    display: grid !important;
+    display: grid;
     margin-bottom: 20px !important;
     grid-row-gap: 10px;
     grid-template-columns: 1fr;
