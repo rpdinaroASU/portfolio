@@ -809,4 +809,7 @@ body {
     .main-title {
         font-size: 12vw;
     }
+    .secondary-title {
+        font-size: 6vw;
+    }
 }
