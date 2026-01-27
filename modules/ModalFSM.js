@@ -1,5 +1,5 @@
 export class ModalFSM {
-    constructor(modalList, contactBackground, contactBackgroundHitbox, projectContainer) {
+    constructor(modalList, contactBackground, contactBackgroundHitbox, projectContainer, body) {
         this.modals = modalList;
         this.contactBackground = contactBackground;
         this.contactBackgroundHitbox = contactBackgroundHitbox;
@@ -8,12 +8,14 @@ export class ModalFSM {
         this.contact = false;
         this.currentProject = this.modals.HOME_MODAL;
         this.projectContainer = projectContainer;
+        this.contactBackgroundHitbox.classList.add('modal-hidden');
+        this.body = body;
     }
     setState(state) {
-        if(state.id !== this.modals.CONTACT_MODAL.id) {
+        if(state !== this.modals.CONTACT_MODAL) {
             //If a modal change occurs and the contact modal is active,
             //Hide the contact modal
-            if(this.contact) {
+            if(this.contact || state === this.modals.CLOSE_CONTACT_MODAL) {
                 this.updateContactModalDisplay(false);
                 return;
             }
@@ -45,28 +47,39 @@ export class ModalFSM {
     // When the contact modal is hidden, unblur the background.
     updateContactModalDisplay(isVisible) {
         this.contact = isVisible;
-        this.toggleBackdropBlur(this.contactBackground, this.contact)
+        this.toggleCSSClass(this.body,this.contact,"overflow-hidden");
+        this.toggleCSSClass(this.contactBackground, this.contact, "contact-blur")
         this.toggleModalVisibility(this.modals.CONTACT_MODAL, this.contact);
         this.toggleModalVisibility(this.contactBackgroundHitbox, this.contact);
     }
     updateProjectModalDisplay(projectModal) {
-        this.currentProject = projectModal;
-        if (this.projectModals.has(this.currentProject)) {
-            this.toggleModalVisibility(this.lastState, false);
-            this.toggleModalVisibility(this.projectContainer, true);
-            this.projectModals.forEach(modal => {
-                this.toggleModalVisibility(modal, modal === this.currentProject);
-            });
-        } else {
-            this.toggleModalVisibility(this.projectContainer, false);
+        if (this.currentProject === projectModal && this.projectContainer.classList.contains("modal-visible")) {
+            return;
         }
+
+        this.currentProject = projectModal;
+        this.toggleModalVisibility(this.lastState, false);
+        this.toggleModalVisibility(this.projectContainer, true);
+        this.projectModals.forEach(modal => {
+            this.toggleModalVisibility(modal, modal === this.currentProject);
+        });
     }
     toggleModalVisibility(el, show) {
-        el.classList.add(show ? "modal-visible" : "modal-hidden");
-        el.classList.remove(show ? "modal-hidden" : "modal-visible");
+        const add = show ? "modal-visible" : "modal-hidden";
+        const remove = show ? "modal-hidden" : "modal-visible";
+
+        if (!el.classList.contains(add)) {
+            el.classList.add(add);
+        }
+        if (el.classList.contains(remove)) {
+            el.classList.remove(remove);
+        }
     }
-    toggleBackdropBlur(el, show) {
-        if(show) el.classList.add("contact-blur");
-        else el.classList.remove("contact-blur");
+    toggleCSSClass(el, show, cssClass) {
+        if (show) {
+            if (!el.classList.contains(cssClass)) el.classList.add(cssClass);
+        } else {
+            if (el.classList.contains(cssClass)) el.classList.remove(cssClass);
+        }
     }
 }

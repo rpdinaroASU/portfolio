@@ -32,15 +32,14 @@ window.onload = () => {
         GENETIC_ALGORITHM_MODAL: geneticAlgorithm,
         ABOUT_MODAL: aboutPage,
         CONTACT_MODAL: contactPage,
+        CLOSE_CONTACT_MODAL: "CLOSE_CONTACT_MODAL",
         HOME_MODAL: projects,
+
     };
-    modalFSM = new ModalFSM(modals, blurrable, modalBackdrop,satelliteExperience.parentElement );
+    modalFSM = new ModalFSM(modals, blurrable, modalBackdrop,satelliteExperience.parentElement, body);
 
     $("#close-button").addEventListener("click", function () {
-        contactPage.classList.remove("modal-visible");
-        body.style.overflowY = "visible";
-        modalBackdrop.classList.remove("modal-visible");
-        blurrable.style.filter =  "none";
+        modalFSM.setState(modals.CLOSE_CONTACT_MODAL);
     });
     $("#contact").addEventListener("click", function () {
         modalFSM.setState(modals.CONTACT_MODAL);
@@ -52,10 +51,7 @@ window.onload = () => {
         window.location.assign('https://psyche.ssl.berkeley.edu/get-involved/capstone-projects/capstone-projects-iridium-class/ar-webxr-for-public-engagement-asu-e/');
     });
     modalBackdrop.addEventListener("click", function () {
-        contactPage.classList.remove("modal-visible");
-        body.style.overflowY = "visible";
-        modalBackdrop.classList.remove("modal-visible");
-        blurrable.style.filter =  "none";
+        modalFSM.setState(modals.CLOSE_CONTACT_MODAL);
     });
 
     if (copyrightElement) {
@@ -73,10 +69,8 @@ window.onload = () => {
     for (let i = 0; i < satButton.length; i++)
         addProjectInfoButtonListener(satButton.item(i), satelliteExperience, satelliteImageArray, modals.SATELLITE_MODAL);
 
-
     for(let i = 0; i < lmButton.length; i++)
         addProjectInfoButtonListener(lmButton.item(i), loreMythologyExperience, satelliteImageArray, modals.LORE_MYTHOLOGY_MODAL);
-
 
     for(let i = 0; i < geneticButton.length; i++)
         addProjectInfoButtonListener(geneticButton.item(i), geneticAlgorithm, satelliteImageArray, modals.GENETIC_ALGORITHM_MODAL);
@@ -95,7 +89,4 @@ function addProjectInfoButtonListener(button, projectInfo, imageArr, modal) {
         const ImageSelector = new ImageFSM(imageArr, projectInfo.querySelector(".stage-image-container"));
         ImageSelector.createImageSelector();
     });
-}
-function closeContactModal() {
-
 }

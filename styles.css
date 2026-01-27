@@ -418,7 +418,6 @@ body {
     z-index: 1;
 }
 #modal-backdrop {
-    display: none;
     position: absolute;
     top: 0;
     left: 0;
@@ -745,7 +744,9 @@ body {
 .modal-visible {
     display: block !important;
 }
-
 .contact-blur {
     filter: blur(5px);
+}
+.overflow-hidden {
+    overflow: hidden;
 }
