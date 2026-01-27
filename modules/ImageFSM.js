@@ -52,7 +52,6 @@ export class ImageFSM {
         this.stopAutoScroll();
         // start css transition on current node
         const currentNode = this.circles[this.mod(this.imgCount)];
-        currentNode.offsetWidth; // force reflow
 
         currentNode.classList.toggle("image-circle-transition-grow",true);
 
