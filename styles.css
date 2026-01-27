@@ -110,6 +110,7 @@
 
 #banner-center {
     display: flex;
+    height: 100%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -119,14 +120,14 @@
 
 .main-title {
     font-family: ROSSTEN, serif;
-    font-size: clamp(2rem, 75px, 50px);
+    font-size: 500%;
     text-align: center;
     color: var(--text-color);
 }
 
 .secondary-title {
     font-family: ROSSTEN, serif;
-    font-size: clamp(2rem, 4vw, 4vh);
+    font-size: 250%;
     text-align: center;
     color: var(--text-color);
 }
@@ -140,7 +141,6 @@
     margin-bottom: auto;
     margin-right: 10px;
     border-radius: var(--border-radius);
-    min-width: 110px;
     min-height: 30px;
     height: 3vh;
     font-family: "Open Sans", sans-serif;
@@ -749,6 +749,20 @@ body {
     border-style: solid;
     background-color: var(--tertiary-dark-color) !important;
     cursor: pointer;
+}
+.projects-dropdown:hover .hitbox-projects {
+    display: block;
+}
+.hitbox-parent {
+    position: relative;
+}
+.hitbox-projects {
+    position: absolute;
+    display: none;
+    left: -20%;
+    top: -20px;
+    width: 125px;
+    height: 100px;
 }
 
 .stage-content {
