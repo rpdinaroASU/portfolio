@@ -134,7 +134,7 @@
 .dropdown-menu {
     background-color: var(--secondary-light-color);
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     margin-top: auto;
     margin-bottom: auto;
@@ -142,13 +142,13 @@
     border-radius: var(--border-radius);
     min-width: 110px;
     min-height: 30px;
-    max-width: 110px;
     height: 3vh;
-    font-family: KGLoveMolly, serif;
+    font-family: "Open Sans", sans-serif;
     font-weight: bold;
     color: var(--text-color);
     border: 1px solid var(--secondary-dark-color);
     cursor: pointer;
+    padding: 2px;
 }
 
 #home-page {
@@ -168,9 +168,16 @@
     justify-content: center;
     height: 3vh;
     text-align: center;
-    font-family: KGLoveMolly, serif;
+    font-family: "Open Sans", sans-serif;
     font-weight: bold;
     color: var(--text-color);
+    margin: 5px;
+    padding-right: 15px;
+}
+.menu-icon {
+    height: 100%;
+    margin-left: 5px;
+    margin-right: auto;
 }
 
 .hidden-dropdown-item {
