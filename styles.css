@@ -237,7 +237,7 @@
 
 /* CONTENT SECTION */
 .project-container {
-    width: 70vw;
+    width: 90vw;
     height: 30%;
     background-color: var(--secondary-light-color);
     border-radius: var(--border-radius);
@@ -805,3 +805,6 @@ body {
 *       Phone Layout           *
 ********************************
  */
+@media only screen and (max-width: 600px) {
+
+}
