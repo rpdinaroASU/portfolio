@@ -12,14 +12,11 @@ export class ModalFSM {
         this.body = body;
     }
     setState(state) {
-        if(state !== this.modals.CONTACT_MODAL) {
-            //If a modal change occurs and the contact modal is active,
-            //Hide the contact modal
-            if(this.contact || state === this.modals.CLOSE_CONTACT_MODAL) {
-                this.updateContactModalDisplay(false);
-                return;
-            }
-
+        if(state === this.modals.CLOSE_CONTACT_MODAL) {
+            this.updateContactModalDisplay(false);
+        } else if(state === this.modals.CONTACT_MODAL) {
+            this.updateContactModalDisplay(true);
+        } else {
             //If the state is a project modal, show the project modal
             if(this.projectModals.has(state)){
                 this.updateProjectModalDisplay(state);
@@ -35,9 +32,6 @@ export class ModalFSM {
                 this.toggleModalVisibility(state,true);
                 this.lastState = state;
             }
-        } else {
-            //If the state is the contact modal, show it
-            this.updateContactModalDisplay(true);
         }
 
     }
