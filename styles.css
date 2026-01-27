@@ -120,14 +120,14 @@
 
 .main-title {
     font-family: ROSSTEN, serif;
-    font-size: 80px;
+    font-size: clamp(1rem,12vw,77px);
     text-align: center;
     color: var(--text-color);
 }
 
 .secondary-title {
     font-family: ROSSTEN, serif;
-    font-size: 250%;
+    font-size: clamp(1rem, 6vw, 35px);
     text-align: center;
     color: var(--text-color);
 }
@@ -806,10 +806,5 @@ body {
 ********************************
  */
 @media only screen and (max-width: 1000px) {
-    .main-title {
-        font-size: 12vw;
-    }
-    .secondary-title {
-        font-size: 6vw;
-    }
+
 }
