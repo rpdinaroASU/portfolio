@@ -597,7 +597,8 @@ body {
 }
 
 .hidden {
-    max-height: 0 !important;
+    transition: max-height 1s linear;
+    max-height: 0;
 }
 
 .stage-image {
@@ -750,7 +751,7 @@ body {
     background-color: var(--tertiary-dark-color) !important;
     cursor: pointer;
 }
-.projects-dropdown:hover .hitbox-projects {
+#projects-dropdown:hover .hitbox-projects {
     display: block;
 }
 .hitbox-parent {
@@ -777,7 +778,7 @@ body {
 }
 
 .selected-arrow {
-    transform: rotate(180deg);
+    transform: rotate(180deg) translateX(-19%);
 }
 
 .project-title {
@@ -799,12 +800,89 @@ body {
 .overflow-hidden {
     overflow: hidden;
 }
+#expanding-menu-button {
+    display: none;
+    cursor: pointer;
+    transition: max-height 1s ease-in-out;
+    max-height: 1000px;
+}
+#expanding-menu {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--tertiary-dark-color);
+    width: 100vw;
+    transition: max-height 1s ease-in-out;
+    max-height: 0;
+    overflow: hidden;
+
+}
+.expanding-animation {
+    transition: max-height 3s linear;
+    max-height: 1000px !important;
+}
 
 /*
 ********************************
 *       Phone Layout           *
 ********************************
  */
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 615px) {
+    .dropdown-menu {
+        width: 100vw;
+        border-radius: 0;
+        background-color: var(--tertiary-dark-color);
+        border: 1px solid var(--tertiary-dark-color);
+    }
+    .menu-horizontal {
+        display: none;
+    }
+    #expanding-menu-button {
+        display: flex !important;
+        flex-direction: row;
+        align-items: center;
+    }
+    .menu-icon {
+        margin: auto 0 auto 10px !important;
+    }
+    .parent-title {
+        justify-self: center;
+        margin-right: 0;
+    }
+    .dropdown-menu:hover .hidden-dropdown-item{
+        display: none;
+    }
+    .hidden-dropdown-item {
+        display: block;
+        position: initial;
+        border: none;
+        height: auto;
+        font-family: "Open Sans", sans-serif !important;
+        color: white;
+        font-weight: bold;
+        background-color: var(--tertiary-dark-color);
+        text-align: left;
+    }
+    .project {
+        display: flex;
+        flex-direction: row;
+        padding: 5px 25px 5px 50px;
+        background-color: var(--tertiary-dark-color);
+        border: 1px solid var(--tertiary-dark-color);
+        cursor: pointer;
+        margin-bottom: auto;
+        margin-top: auto;
 
+    }
+    .project:hover {
+        border: 1px solid white;
+    }
+    .menu-icon-projects {
+        max-width: 30px;
+        max-height: 30px;
+        margin-right: 10px;
+    }
+    .expanding-project-container {
+        margin-top: auto;
+        margin-bottom: auto;
+    }
 }

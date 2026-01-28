@@ -24,6 +24,11 @@ window.onload = () => {
     const geneticButton = $$(".genetic-algorithm-button");
     const lmButton = $$(".lore-button");
     const satButton = $$(".sat-button");
+    const expandingMenuButton = $("#expanding-menu-button");
+    const expandingMenu = $("#expanding-menu");
+    const expandingMenuArrow = $("#expanding-menu-arrow");
+    const projectArrow = $("#projects-dropdown");
+    const expandingMenuProjects = $("#expanding-menu-projects");
 
     //Create an Enum of modals
     const modals ={
@@ -52,6 +57,16 @@ window.onload = () => {
     });
     modalBackdrop.addEventListener("click", function () {
         modalFSM.setState(modals.CLOSE_CONTACT_MODAL);
+    });
+
+    expandingMenuButton.addEventListener("click", function() {
+        expandingMenu.classList.toggle("hidden")
+        expandingMenu.classList.toggle("expanding-animation")
+    });
+    projectArrow.addEventListener("click", function() {
+        expandingMenuProjects.classList.toggle("hidden");
+        expandingMenuProjects.classList.toggle("expanding-animation");
+        expandingMenuArrow.classList.toggle("selected-arrow");
     });
 
     if (copyrightElement) {

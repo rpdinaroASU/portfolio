@@ -24,13 +24,17 @@
         </div>
 
 
-        <div id = "menu">
-            <div class="dropdown-menu projects-dropdown">
+        <div class = "menu">
+            <div id="expanding-menu-button">
+                <img src="../images/icons/menu/menu.svg" alt="home icon" class="menu-icon">
+                <div class = "parent-title"> Menu </div>
+            </div>
+            <div class="dropdown-menu menu-horizontal">
                 <div class="hitbox-parent">
                     <div class = "hitbox-projects"></div>
                 </div>
                 <div class = "menu-icon">
-                    <img src="../images/icons/menu/menu.svg" alt="home icon" class="menu-icon">
+                    <img src="../images/icons/menu/projects.png" alt="home icon" class="menu-icon">
                 </div>
                 <div class = "parent-title"> Projects</div>
                 <div class = "hidden-dropdown-item">
@@ -39,13 +43,65 @@
                     <div class = "title genetic-algorithm-button"> Genetic Algorithms in Sustainability </div>
                 </div>
             </div>
-            <div class="dropdown-menu" id="home-page">
+            <div class="dropdown-menu menu-horizontal" id="home-page">
                 <div class = "menu-icon">
                     <img src="../images/icons/menu/home.png" alt="home icon" class="menu-icon">
                 </div>
                 <div class = "parent-title"> Home </div>
             </div>
-            <div class="dropdown-menu" id="about">
+            <div class="dropdown-menu menu-horizontal" id="about">
+                <div class = "menu-icon">
+                    <img src="../images/icons/menu/about-me.png" alt="home icon" class="menu-icon">
+                </div>
+                <div class = "parent-title"> About Me</div>
+            </div>
+            <div class="dropdown-menu menu-horizontal">
+                <div class = "menu-icon">
+                    <img src="../images/icons/menu/contact-me.png" alt="home icon" class="menu-icon">
+                </div>
+                <div class = "parent-title"> Contact Me </div>
+            </div>
+        </div>
+        <div id = "expanding-menu" class="hidden">
+            <div class="dropdown-menu">
+                <div class = "menu-icon">
+                    <img src="../images/icons/menu/home.png" alt="home icon" class="menu-icon">
+                </div>
+                <div class = "parent-title"> Home </div>
+            </div>
+            <div class="dropdown-menu" id="projects-dropdown">
+                <div class="hitbox-parent">
+                    <div class = "hitbox-projects"></div>
+                </div>
+                <div class = "menu-icon">
+                    <img src="../images/icons/menu/projects.png" alt="home icon" class="menu-icon">
+                </div>
+                <div class = "parent-title"> Projects</div>
+                <div class = "menu-icon" id = "expanding-menu-arrow">
+                    <img src="../images/icons/down-arrow.svg" alt="home icon" class="menu-icon">
+                </div>
+            </div>
+            <div id="expanding-menu-projects" class = "hidden-dropdown-item hidden" >
+                <div class = "project sat-button">
+                    <img class="menu-icon-projects" src="../images/icons/Psyche_Icon_BW-SVG.svg" alt = "O">
+                    <div class = "expanding-project-container">
+                        NASA Psyche Mission: Satellite Experience
+                    </div>
+                </div>
+                <div class = "project lore-button">
+                    <img class="menu-icon-projects" src="../images/icons/Psyche_Icon_BW-SVG.svg" alt = "O">
+                    <div class = "expanding-project-container">
+                        NASA Psyche Mission: Lore & Mythology Experience
+                    </div>
+                </div>
+                <div class = "project genetic-algorithm-button">
+                    <img class="menu-icon-projects" src="../images/icons/menu/genetic.png" alt = "O">
+                    <div class = "expanding-project-container">
+                        Genetic Algorithms in Sustainability
+                    </div>
+                </div>
+            </div>
+            <div class="dropdown-menu">
                 <div class = "menu-icon">
                     <img src="../images/icons/menu/about-me.png" alt="home icon" class="menu-icon">
                 </div>
@@ -58,7 +114,6 @@
                 <div class = "parent-title"> Contact Me </div>
             </div>
         </div>
-
 
         <div id = "content">
             <div id = "projects">
