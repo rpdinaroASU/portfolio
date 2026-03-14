@@ -3,6 +3,8 @@ import {ModalFSM} from "./ModalFSM.js";
 
 const satelliteImageArray = ["sat-img-1.png", "sat-img-2.png", "sat-img-3.png"];
 let modalFSM;
+let expandedProjectMenu = false;
+let expandedMenu = false;
 
 window.onload = () => {
     const $ = (sel) => document.querySelector(sel);
@@ -11,7 +13,7 @@ window.onload = () => {
     const contactPage = $("#contact-me");
     const projects = $("#projects");
     const aboutPage = $("#about-me");
-    const homePage = $("#home-page");
+    const homePage = $$(".home-page");
     const body = $("body");
     const modalBackdrop =  $("#modal-backdrop");
     const blurrable = $("#blurrable");
@@ -19,14 +21,13 @@ window.onload = () => {
     const loreMythologyExperience = $("#lore-mythology-experience");
     const geneticAlgorithm = $("#genetic-algorithm-information");
     const copyrightElement = $("#copyright");
-    const about = $("#about");
+    const about = $$(".about");
     const dropdownHitbox = $$(".dropdown-hitbox");
     const geneticButton = $$(".genetic-algorithm-button");
     const lmButton = $$(".lore-button");
     const satButton = $$(".sat-button");
     const expandingMenuButton = $("#expanding-menu-button");
     const expandingMenu = $("#expanding-menu");
-    const expandingMenuArrow = $("#expanding-menu-arrow");
     const projectArrow = $("#projects-dropdown");
     const expandingMenuProjects = $("#expanding-menu-projects");
 
@@ -44,6 +45,8 @@ window.onload = () => {
     modalFSM = new ModalFSM(modals, blurrable, modalBackdrop,satelliteExperience.parentElement, body);
 
     $("#close-button").addEventListener("click", function () {
+        if (expandedMenu) expandingMenuButton.dispatchEvent(new Event("click"));
+        if (expandedProjectMenu) projectArrow.dispatchEvent(new Event("click"));
         modalFSM.setState(modals.CLOSE_CONTACT_MODAL);
     });
     $("#contact").addEventListener("click", function () {
@@ -57,16 +60,21 @@ window.onload = () => {
     });
     modalBackdrop.addEventListener("click", function () {
         modalFSM.setState(modals.CLOSE_CONTACT_MODAL);
+        if (expandedMenu) expandingMenuButton.dispatchEvent(new Event("click"));
+        if (expandedProjectMenu) projectArrow.dispatchEvent(new Event("click"));
     });
-
     expandingMenuButton.addEventListener("click", function() {
         expandingMenu.classList.toggle("hidden")
-        expandingMenu.classList.toggle("expanding-animation")
+        expandingMenu.classList.toggle("expanding-animation");
+        expandingMenuButton.classList.toggle("project-hovered");
+        expandedMenu = !expandedMenu;
+        if(expandedProjectMenu) projectArrow.dispatchEvent(new Event("click"));
     });
     projectArrow.addEventListener("click", function() {
         expandingMenuProjects.classList.toggle("hidden");
         expandingMenuProjects.classList.toggle("expanding-animation");
-        expandingMenuArrow.classList.toggle("selected-arrow");
+        projectArrow.classList.toggle("project-hovered");
+        expandedProjectMenu = !expandedProjectMenu;
     });
 
     if (copyrightElement) {
@@ -74,21 +82,30 @@ window.onload = () => {
             copyrightElement.innerHTML = "&copy; 2025 - " + new Date().getFullYear() + " www.emily-dinaro-portfolio.com - All Rights Reserved.";
         })();
     }
-    about.addEventListener("click", function () {
-        modalFSM.setState(modals.ABOUT_MODAL);
-    });
-    homePage.addEventListener("click", function () {
-        modalFSM.setState(modals.HOME_MODAL)
-    });
+    for (let i = 0; i < about.length; i++) {
+        about.item(i).addEventListener("click", function () {
+            modalFSM.setState(modals.ABOUT_MODAL);
+            console.log("ABOUT");
+            if (expandedMenu) expandingMenuButton.dispatchEvent(new Event("click"));
+            if (expandedProjectMenu) projectArrow.dispatchEvent(new Event("click"));
+        });
+    }
+    for (let i = 0; i < homePage.length; i++) {
+        homePage.item(i).addEventListener("click", function () {
+            modalFSM.setState(modals.HOME_MODAL);
+            if (expandedMenu) expandingMenuButton.dispatchEvent(new Event("click"));
+            if (expandedProjectMenu) projectArrow.dispatchEvent(new Event("click"));
+        });
+    }
 
     for (let i = 0; i < satButton.length; i++)
-        addProjectInfoButtonListener(satButton.item(i), satelliteExperience, satelliteImageArray, modals.SATELLITE_MODAL);
+        addProjectInfoButtonListener(satButton.item(i), satelliteExperience, satelliteImageArray, modals.SATELLITE_MODAL, expandingMenuButton, projectArrow);
 
     for(let i = 0; i < lmButton.length; i++)
-        addProjectInfoButtonListener(lmButton.item(i), loreMythologyExperience, satelliteImageArray, modals.LORE_MYTHOLOGY_MODAL);
+        addProjectInfoButtonListener(lmButton.item(i), loreMythologyExperience, satelliteImageArray, modals.LORE_MYTHOLOGY_MODAL, expandingMenuButton, projectArrow);
 
     for(let i = 0; i < geneticButton.length; i++)
-        addProjectInfoButtonListener(geneticButton.item(i), geneticAlgorithm, satelliteImageArray, modals.GENETIC_ALGORITHM_MODAL);
+        addProjectInfoButtonListener(geneticButton.item(i), geneticAlgorithm, satelliteImageArray, modals.GENETIC_ALGORITHM_MODAL, expandingMenuButton, projectArrow);
 
     for(let i = 0; i < dropdownHitbox.length; i++){
         dropdownHitbox.item(i).addEventListener("click", function () {
@@ -98,10 +115,12 @@ window.onload = () => {
     }
 
 }
-function addProjectInfoButtonListener(button, projectInfo, imageArr, modal) {
+function addProjectInfoButtonListener(button, projectInfo, imageArr, modal, expandingMenuButton, projectArrow) {
     button.addEventListener("click", function () {
         modalFSM.setState(modal);
         const ImageSelector = new ImageFSM(imageArr, projectInfo.querySelector(".stage-image-container"));
         ImageSelector.createImageSelector();
+        if(expandedMenu) expandingMenuButton.dispatchEvent(new Event("click"));
+        if(expandedProjectMenu) projectArrow.dispatchEvent(new Event("click"));
     });
 }

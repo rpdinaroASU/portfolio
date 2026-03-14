@@ -1,0 +1,33 @@
+<svg
+        width="100"
+        height="100"
+        viewBox="-1 -1 34 34"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+>
+    <!-- Outer pin shape -->
+    <path
+            d="M16 3C11.03 3 7 6.9 7 11.7C7 18.2 16 29 16 29C16 29 25 18.2 25 11.7C25 6.9 20.97 3 16 3Z"
+            stroke="white"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+    />
+
+    <!-- Inner circle -->
+    <circle
+            cx="16"
+            cy="12"
+            r="4"
+            stroke="white"
+            stroke-width="2"
+            fill="none"
+    />
+    <circle
+        r="16"
+        stroke="white"
+        stroke-width="2"
+        cx="16"
+        cy="16"/>
+
+</svg>

@@ -22,33 +22,120 @@
     src: url("fonts/kg_love_molly/KGLoveMolly.ttf");
 }
 
-@media (width >= 1900px) {
-    .stage-image-container {
-        grid-area: 1 / 2 / 2 / 3;
-        margin-bottom: 10px !important;
+/* Base styles (mobile first)
+   0–600px: default mobile layout
+----------------------------------------- */
+/* -----------------------------------------
+   BASE (0–600px)
+----------------------------------------- */
+
+.dropdown-menu {
+    background-color: var(--secondary-dark-color) !important;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: auto auto auto 20px;
+    height: 30px;
+    font-family: "Open Sans", sans-serif;
+    font-weight: bold;
+    color: var(--text-color);
+    cursor: pointer;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    border-bottom: 2px solid var(--secondary-dark-color);
+}
+
+.menu-horizontal {
+    display: none;
+}
+
+.hidden-dropdown-item {
+    display: block;
+    background-color: var(--secondary-dark-color);
+    overflow: hidden;
+}
+
+.project {
+    display: flex;
+    flex-direction: row;
+    background-color: var(--secondary-dark-color);
+    border-bottom: 2px solid var(--secondary-dark-color);
+    cursor: pointer;
+    margin: 5px auto 5px 50px;
+    padding-bottom: 4px;
+}
+
+.project:hover {
+    border-bottom-color: white;
+}
+.project-hovered {
+    border-bottom: 2px solid white;
+}
+
+.menu-icon-projects {
+    max-width: 30px;
+    max-height: 30px;
+    margin-right: 10px;
+}
+
+.expanding-project-container {
+    margin: auto auto auto 0;
+}
+
+#menu-container {
+    width: 100%;
+    background-color: var(--secondary-dark-color);
+}
+.menu {
+    display: flex;
+    max-width: 800px;
+    margin: auto;
+    background-color: var(--secondary-dark-color);
+}
+#expanding-menu-button {
+    display: flex !important;
+    flex-direction: row;
+    align-items: center;
+}
+
+/* Small tablets / large phones
+   ≥600px
+----------------------------------------- */
+@media (min-width: 600px) {
+    .parent-title {
+        justify-self: center;
+        margin-right: 0;
     }
 
-    .stage-description {
-        grid-area: 1 / 3 / 2 / 4;
-        margin: auto auto auto 10px !important;
+    .dropdown-menu:hover .hidden-dropdown-item {
+        display: none;
     }
 }
 
-@media (width >= 1301px) and (width <= 1900px) {
-    .stage-image-container {
-        grid-area: 1 / 2 / 2 / 3;
-        margin-top: auto !important;
-        margin-bottom: auto !important;
+/* Tablets
+   ≥768px
+----------------------------------------- */
+@media (min-width: 768px) {
+    #expanding-menu-button {
+        display: none !important;
     }
 
-    .stage-description {
-        grid-area: 1 / 3 / 2 / 4;
-        margin-top: 15px;
-        margin-bottom: auto;
+    .menu-horizontal {
+        display: flex;
     }
 }
 
-@media (width >= 1301px) {
+/* Small desktops
+   ≥1024px
+----------------------------------------- */
+@media (min-width: 1024px) {
+
+}
+
+/* Medium desktops
+   ≥1300px
+----------------------------------------- */
+@media (min-width: 1301px) {
     .project-image-description {
         flex-direction: row;
     }
@@ -61,34 +148,25 @@
         grid-template-columns: 1fr !important;
         grid-template-rows: auto 0 auto;
     }
-}
-
-@media (width <= 1300px) {
-    .project-image-description {
-        flex-direction: column !important;
-    }
-
-    .project-image-container {
-        margin: 10px auto !important;
-    }
-
-    .stage-content {
-        grid-template-columns: 1fr !important;
-        grid-template-rows: 0 auto 0 auto 0;
-        row-gap: 15px;
-    }
 
     .stage-image-container {
-        grid-area: 2 / 1 / 3 / 2;
-        margin-top: 5px;
-        margin-left: auto !important;
-        margin-right: auto !important;
+        grid-area: 1 / 2 / 2 / 3;
+        margin-bottom: 10px !important;
     }
 
     .stage-description {
-        grid-area: 4 / 1 / 5 / 2;
+        grid-area: 1 / 3 / 2 / 4;
+        margin: auto auto auto 10px !important;
     }
+
+
 }
+
+
+/* Large desktops
+   ≥1900px
+----------------------------------------- */
+@media (min-width: 1900px) { }
 
 @keyframes fade-out {
     from { opacity: 1; }
@@ -99,7 +177,7 @@
 #banner {
     display: block;
     width: 100%;
-    height: 10vh;
+    height: 120px;
     margin: 0;
     padding: 1vh 0;
     border-top-color: var(--tertiary-dark-color);
@@ -132,26 +210,6 @@
     color: var(--text-color);
 }
 
-.dropdown-menu {
-    background-color: var(--secondary-light-color);
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-right: 10px;
-    border-radius: var(--border-radius);
-    min-height: 30px;
-    height: 3vh;
-    font-family: "Open Sans", sans-serif;
-    font-weight: bold;
-    color: var(--text-color);
-    border: 1px solid var(--secondary-dark-color);
-    cursor: pointer;
-    padding: 2px;
-}
-
-
 .title {
     font-family: KGLoveMolly, serif;
     font-weight: bold;
@@ -173,20 +231,9 @@
 }
 .menu-icon {
     height: 100%;
-    margin-left: 5px;
     margin-right: auto;
 }
 
-.hidden-dropdown-item {
-    display: none;
-    position: absolute;
-    left: 0;
-    top: calc(15vh + 25px);
-    background-color: var(--secondary-dark-color);
-    min-width: 200px;
-    box-shadow: 0 8px 16px 0 rgb(0 0 0 / 20%);
-    border: 3px solid var(--secondary-light-color);
-}
 
 .hidden-dropdown-item a {
     text-decoration: none;
@@ -208,7 +255,7 @@
 }
 
 .dropdown-menu:hover{
-    border: 1px solid white;
+    border-bottom-color: white;
 }
 
 .tag-label {
@@ -225,13 +272,13 @@
 }
 
 /* Dropdown Menu */
-#menu {
+.menu {
     display: flex;
     flex-direction: row;
     background-color: var(--secondary-dark-color);
     width: 100%;
-    height: auto;
-    padding: 5px;
+    height: 50px;
+    padding-left: 5px;
     align-items: flex-start;
 }
 
@@ -250,7 +297,7 @@
 .project-title-font {
     font-weight: bold;
     color: var(--text-color);
-    font-size: 20px;
+    font-size: 17px;
 }
 
 .project-description {
@@ -267,7 +314,7 @@
     border-radius: var(--border-radius);
     max-width: 280px;
     max-height: 280px;
-    margin: auto 10px;
+    margin: 10px auto;
 }
 
 .project-tags {
@@ -343,7 +390,7 @@
 
 .project-image-description {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     margin-top: 15px;
     margin-bottom: 2px;
 }
@@ -392,7 +439,8 @@ body {
     top: calc(50vh - 25vh);
     left: auto;
     right: auto;
-    width: 500px;
+    max-width: 500px;
+    width: 90%;
     height: auto;
     border: 2px solid var(--tertiary-dark-color);
     box-shadow: var(--tertiary-dark-color) 0 0 15px;
@@ -486,8 +534,9 @@ body {
 }
 
 .contact-title {
-    font-size: 27px !important;
-    align-self: flex-start ;
+    font-size: 20px;
+    align-self: center;
+    justify-self: center;
     margin: auto auto auto 15px;
 }
 
@@ -624,6 +673,7 @@ body {
     margin-bottom: 10px;
     height: fit-content;
     width: 95%;
+    grid-area: 4 / 1 / 5 / 2;
 }
 
 .stage-image-container {
@@ -638,6 +688,11 @@ body {
     max-width: 600px !important;
     padding-bottom: 34px;
     aspect-ratio: 1 / 1;
+
+    grid-area: 2 / 1 / 3 / 2;
+    margin-top: 5px;
+    margin-left: auto !important;
+    margin-right: auto !important;
 }
 
 .stage-description-image {
@@ -772,9 +827,12 @@ body {
     background-color: var(--secondary-dark-color) !important;
     border-top-width: 0;
     border-radius: 0 0 var(--border-radius) var(--border-radius);
-    max-height: 2000px;
+    max-height: 1500px;
     transition: max-height 1s ease-in-out;
     overflow: hidden;
+    grid-template-columns: 1fr !important;
+    grid-template-rows: 0 auto 0 auto 0;
+    row-gap: 15px;
 }
 
 .selected-arrow {
@@ -804,85 +862,30 @@ body {
     display: none;
     cursor: pointer;
     transition: max-height 1s ease-in-out;
-    max-height: 1000px;
+    max-height: 200px;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding: 3px;
+    border-bottom: 2px solid var(--secondary-dark-color);
 }
-#expanding-menu {
+#expanding-menu-button:hover {
+    border-bottom: 2px solid white;
+}
+.expanding-menu {
     display: flex;
     flex-direction: column;
-    background-color: var(--tertiary-dark-color);
+    background-color: var(--secondary-dark-color);
     width: 100vw;
     transition: max-height 1s ease-in-out;
     max-height: 0;
     overflow: hidden;
-
 }
 .expanding-animation {
-    transition: max-height 3s linear;
-    max-height: 1000px !important;
+    transition: max-height .5s linear;
+    max-height: 350px !important;
 }
-
-/*
-********************************
-*       Phone Layout           *
-********************************
- */
-@media only screen and (max-width: 615px) {
-    .dropdown-menu {
-        width: 100vw;
-        border-radius: 0;
-        background-color: var(--tertiary-dark-color);
-        border: 1px solid var(--tertiary-dark-color);
-    }
-    .menu-horizontal {
-        display: none;
-    }
-    #expanding-menu-button {
-        display: flex !important;
-        flex-direction: row;
-        align-items: center;
-    }
-    .menu-icon {
-        margin: auto 0 auto 10px !important;
-    }
-    .parent-title {
-        justify-self: center;
-        margin-right: 0;
-    }
-    .dropdown-menu:hover .hidden-dropdown-item{
-        display: none;
-    }
-    .hidden-dropdown-item {
-        display: block;
-        position: initial;
-        border: none;
-        height: auto;
-        font-family: "Open Sans", sans-serif !important;
-        color: white;
-        font-weight: bold;
-        background-color: var(--tertiary-dark-color);
-        text-align: left;
-    }
-    .project {
-        display: flex;
-        flex-direction: row;
-        padding: 5px 25px 5px 50px;
-        background-color: var(--tertiary-dark-color);
-        border: 1px solid var(--tertiary-dark-color);
-        cursor: pointer;
-        margin-bottom: auto;
-        margin-top: auto;
-
-    }
-    .project:hover {
-        border: 1px solid white;
-    }
-    .menu-icon-projects {
-        max-width: 30px;
-        max-height: 30px;
-        margin-right: 10px;
-    }
-    .expanding-project-container {
-        margin-top: auto;
-        margin-bottom: auto;
-    }
+.ico{
+    margin: auto auto auto auto;
+    width: 60px;
+    height: 60px;
 }

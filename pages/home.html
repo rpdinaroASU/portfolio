@@ -23,33 +23,31 @@
             </div>
         </div>
 
-
-        <div class = "menu">
+        <div id = "menu-container">
+            <div class = "menu">
             <div id="expanding-menu-button">
                 <img src="../images/icons/menu/menu.svg" alt="home icon" class="menu-icon">
                 <div class = "parent-title"> Menu </div>
             </div>
-            <div class="dropdown-menu menu-horizontal">
-                <div class="hitbox-parent">
-                    <div class = "hitbox-projects"></div>
-                </div>
-                <div class = "menu-icon">
-                    <img src="../images/icons/menu/projects.png" alt="home icon" class="menu-icon">
-                </div>
-                <div class = "parent-title"> Projects</div>
-                <div class = "hidden-dropdown-item">
-                    <div class = "title sat-button"> NASA Psyche Mission: Satellite Experience </div>
-                    <div class = "title lore-button"> NASA Psyche Mission: Lore & Mythology Experience </div>
-                    <div class = "title genetic-algorithm-button"> Genetic Algorithms in Sustainability </div>
-                </div>
-            </div>
-            <div class="dropdown-menu menu-horizontal" id="home-page">
+            <div class="dropdown-menu menu-horizontal home-page">
                 <div class = "menu-icon">
                     <img src="../images/icons/menu/home.png" alt="home icon" class="menu-icon">
                 </div>
                 <div class = "parent-title"> Home </div>
             </div>
-            <div class="dropdown-menu menu-horizontal" id="about">
+            <div class="dropdown-menu menu-horizontal">
+                <div class = "menu-icon">
+                    <img src="../images/icons/menu/projects.png" alt="home icon" class="menu-icon">
+                </div>
+                <div class = "parent-title" id="project-hover"> Projects</div>
+                <div class = "hidden-dropdown-item expanding-menu">
+                    <div class = "parent-title title sat-button"> NASA Psyche Mission: Satellite </div>
+                    <div class = "parent-title title lore-button"> NASA Psyche Mission: Lore & Mythology </div>
+                    <div class = "parent-title title genetic-algorithm-button"> Genetic Algorithms in Sustainability </div>
+                </div>
+            </div>
+
+            <div class="dropdown-menu menu-horizontal about">
                 <div class = "menu-icon">
                     <img src="../images/icons/menu/about-me.png" alt="home icon" class="menu-icon">
                 </div>
@@ -62,46 +60,41 @@
                 <div class = "parent-title"> Contact Me </div>
             </div>
         </div>
-        <div id = "expanding-menu" class="hidden">
-            <div class="dropdown-menu">
+        </div>
+        <div id = "expanding-menu" class="hidden expanding-menu">
+            <div class="dropdown-menu home-page">
                 <div class = "menu-icon">
                     <img src="../images/icons/menu/home.png" alt="home icon" class="menu-icon">
                 </div>
                 <div class = "parent-title"> Home </div>
             </div>
             <div class="dropdown-menu" id="projects-dropdown">
-                <div class="hitbox-parent">
-                    <div class = "hitbox-projects"></div>
-                </div>
                 <div class = "menu-icon">
                     <img src="../images/icons/menu/projects.png" alt="home icon" class="menu-icon">
                 </div>
                 <div class = "parent-title"> Projects</div>
-                <div class = "menu-icon" id = "expanding-menu-arrow">
-                    <img src="../images/icons/down-arrow.svg" alt="home icon" class="menu-icon">
-                </div>
             </div>
             <div id="expanding-menu-projects" class = "hidden-dropdown-item hidden" >
                 <div class = "project sat-button">
                     <img class="menu-icon-projects" src="../images/icons/Psyche_Icon_BW-SVG.svg" alt = "O">
-                    <div class = "expanding-project-container">
-                        NASA Psyche Mission: Satellite Experience
+                    <div class = "expanding-project-container project-title-font ">
+                        Psyche Mission: Satellite
                     </div>
                 </div>
                 <div class = "project lore-button">
                     <img class="menu-icon-projects" src="../images/icons/Psyche_Icon_BW-SVG.svg" alt = "O">
-                    <div class = "expanding-project-container">
-                        NASA Psyche Mission: Lore & Mythology Experience
+                    <div class = "expanding-project-container project-title-font">
+                        Psyche Mission: Lore & Mythology
                     </div>
                 </div>
                 <div class = "project genetic-algorithm-button">
                     <img class="menu-icon-projects" src="../images/icons/menu/genetic.png" alt = "O">
-                    <div class = "expanding-project-container">
+                    <div class = "expanding-project-container project-title-font">
                         Genetic Algorithms in Sustainability
                     </div>
                 </div>
             </div>
-            <div class="dropdown-menu">
+            <div class="dropdown-menu about">
                 <div class = "menu-icon">
                     <img src="../images/icons/menu/about-me.png" alt="home icon" class="menu-icon">
                 </div>
@@ -362,7 +355,7 @@
         <div id = "contact-info">
             <div class = "contact-container">
                 <div class = "contact-icons">
-                    <img src="../images/icons/location.png" alt="placeholder" id="location-image">
+                    <img src="../images/icons/location.svg" alt="placeholder" id="location-image" class ="ico">
                 </div>
                 <div class = "contact-locations">
                     <div id = "location-title" class = "contact-title project-title-font">Denver, CO</div>
@@ -370,7 +363,7 @@
             </div>
             <div class = "contact-container">
                 <div class = "contact-icons">
-                    <img src="../images/icons/email.png" alt="placeholder" id="email-image">
+                    <img src="../images/icons/email.svg" alt="placeholder" id="email-image" class ="ico">
                 </div>
                 <div class = "contact-locations" >
                     <div id = "email-title" class = "contact-title project-title-font">emilydinaro@gmail.com</div>
@@ -378,7 +371,7 @@
             </div>
             <div class = "contact-container">
                 <div class = "contact-icons">
-                    <img src="../images/icons/phone.png" alt="placeholder" id="phone-image">
+                    <img src="../images/icons/phone.svg" alt="placeholder" id="phone-image" class ="ico">
                 </div>
                 <div class = "contact-locations">
                     <div id = "phone-title" class = "contact-title project-title-font">(817) 456-5756</div>
@@ -386,7 +379,7 @@
             </div>
             <div class = "contact-container">
                 <div class = "contact-icons">
-                    <img src="../images/icons/github-mark-white.svg" alt="placeholder" id="github-image">
+                    <img src="../images/icons/github-mark-white.svg" alt="placeholder" id="github-image" class ="ico">
                 </div>
                 <div class = "contact-locations">
                     <div id = "github-title" class = "contact-title project-title-font">Github Portfolio</div>
@@ -394,7 +387,7 @@
             </div>
             <div class = "contact-container">
                 <div class = "contact-icons">
-                    <img src="../images/icons/Psyche_Icon_BW-SVG.svg" alt="placeholder" id="psyche-image">
+                    <img src="../images/icons/Psyche_Icon_BW-SVG.svg" alt="placeholder" id="psyche-image" class ="ico">
                 </div>
                 <div class = "contact-locations">
                     <div id = "psyche-title" class = "contact-title project-title-font">Psyche Project</div>
