@@ -48,7 +48,9 @@
 .menu-horizontal {
     display: none;
 }
-
+.project-horizontal {
+    max-width: 120px;
+}
 .hidden-dropdown-item {
     display: block;
     background-color: var(--secondary-dark-color);
@@ -292,6 +294,7 @@
     margin-right: auto;
     margin-top: 20px;
     padding: 10px;
+    box-shadow: var(--tertiary-dark-color) 0 0 15px;
 }
 
 .project-title-font {

@@ -5,6 +5,9 @@ const satelliteImageArray = ["sat-img-1.png", "sat-img-2.png", "sat-img-3.png"];
 let modalFSM;
 let expandedProjectMenu = false;
 let expandedMenu = false;
+let expandingMenuButton;
+let expandingMenu;
+let projectArrow;
 
 window.onload = () => {
     const $ = (sel) => document.querySelector(sel);
@@ -26,9 +29,9 @@ window.onload = () => {
     const geneticButton = $$(".genetic-algorithm-button");
     const lmButton = $$(".lore-button");
     const satButton = $$(".sat-button");
-    const expandingMenuButton = $("#expanding-menu-button");
-    const expandingMenu = $("#expanding-menu");
-    const projectArrow = $("#projects-dropdown");
+    expandingMenuButton = $("#expanding-menu-button");
+    expandingMenu = $("#expanding-menu");
+    projectArrow = $("#projects-dropdown");
     const expandingMenuProjects = $("#expanding-menu-projects");
 
     //Create an Enum of modals
@@ -124,3 +127,15 @@ function addProjectInfoButtonListener(button, projectInfo, imageArr, modal, expa
         if(expandedProjectMenu) projectArrow.dispatchEvent(new Event("click"));
     });
 }
+function resizedWindow() {
+    if(window.innerWidth>768) {
+        if (expandedMenu) {
+            expandingMenu.toggleCSSClass("hidden", true);
+            expandingMenuButton.dispatchEvent(new Event("click"));
+        }
+        if (expandedProjectMenu) projectArrow.dispatchEvent(new Event("click"));
+    } else {
+        expandingMenu.toggleCSSClass("hidden", false);
+    }
+}
+window.onresize = resizedWindow;
