@@ -29,6 +29,7 @@ window.onload = () => {
     const geneticButton = $$(".genetic-algorithm-button");
     const lmButton = $$(".lore-button");
     const satButton = $$(".sat-button");
+    const contact = $$(".contact");
     expandingMenuButton = $("#expanding-menu-button");
     expandingMenu = $("#expanding-menu");
     projectArrow = $("#projects-dropdown");
@@ -52,9 +53,11 @@ window.onload = () => {
         if (expandedProjectMenu) projectArrow.dispatchEvent(new Event("click"));
         modalFSM.setState(modals.CLOSE_CONTACT_MODAL);
     });
-    $("#contact").addEventListener("click", function () {
-        modalFSM.setState(modals.CONTACT_MODAL);
-    });
+    for(let x =0; x < contact.length;x++) {
+        contact.item(x).addEventListener("click", function () {
+            modalFSM.setState(modals.CONTACT_MODAL);
+        })
+    }
     $("#github-title").addEventListener("click", function () {
         window.location.assign('https://github.com/rpdinaroASU');
     });
@@ -127,15 +130,3 @@ function addProjectInfoButtonListener(button, projectInfo, imageArr, modal, expa
         if(expandedProjectMenu) projectArrow.dispatchEvent(new Event("click"));
     });
 }
-function resizedWindow() {
-    if(window.innerWidth>768) {
-        if (expandedMenu) {
-            expandingMenu.toggleCSSClass("hidden", true);
-            expandingMenuButton.dispatchEvent(new Event("click"));
-        }
-        if (expandedProjectMenu) projectArrow.dispatchEvent(new Event("click"));
-    } else {
-        expandingMenu.toggleCSSClass("hidden", false);
-    }
-}
-window.onresize = resizedWindow;

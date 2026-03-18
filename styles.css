@@ -118,10 +118,12 @@
    ≥768px
 ----------------------------------------- */
 @media (min-width: 768px) {
+    .expanding-animation {
+        display: none !important;
+    }
     #expanding-menu-button {
         display: none !important;
     }
-
     .menu-horizontal {
         display: flex;
     }
@@ -186,6 +188,7 @@
     background-color: var(--tertiary-dark-color);
     border-bottom-color: var(--secondary-light-color);
     border-style: solid;
+    background-image: url("images/banner-background.png");
 }
 
 #banner-center {
@@ -316,7 +319,6 @@
     padding: 10px;
     border-radius: var(--border-radius);
     max-width: 280px;
-    max-height: 280px;
     margin: 10px auto;
 }
 
@@ -567,11 +569,13 @@ body {
 
 #about-me-picture {
     max-width: 300px;
+    border-radius: var(--border-radius);
 }
 
 .about-image-container {
     max-width: 400px !important;
-    max-height: 400px !important;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Project Information */
@@ -887,6 +891,7 @@ body {
     transition: max-height .5s linear;
     max-height: 350px !important;
 }
+
 .ico{
     margin: auto auto auto auto;
     width: 60px;
