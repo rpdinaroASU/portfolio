@@ -178,32 +178,61 @@
 }
 
 /* BANNER */
+
+#banner-background {
+    position: absolute;
+    display:flex;
+    flex-direction: row;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    background-color: var(--tertiary-dark-color);
+    z-index: 0;
+}
+
+#banner-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-image: url("images/icons/pride-flags/prideflag.svg");
+
+    background-size: cover;
+    background-position: right;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+}
+
 #banner {
-    display: block;
+    position: relative;
+    display: flex;
+    flex-direction: row;
     width: 100%;
     height: 120px;
     margin: 0;
-    padding: 1vh 0;
     border-top-color: var(--tertiary-dark-color);
     background-color: var(--tertiary-dark-color);
     border-bottom-color: var(--secondary-light-color);
     border-style: solid;
-    background-image: url("images/banner-background.png");
 }
 
 #banner-center {
+    position: relative;
     display: flex;
     height: 100%;
+    width: 80%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: var(--tertiary-dark-color);
+    background-color: var(--transparent-color);
     margin: auto;
+    z-index: 1;
 }
 
 .main-title {
     font-family: ROSSTEN, serif;
-    font-size: clamp(1rem,12vw,77px);
+    font-size: clamp(1rem,11vw,77px);
     text-align: center;
     color: var(--text-color);
 }
