@@ -234,6 +234,7 @@
     font-family: ROSSTEN, serif;
     font-size: clamp(1rem,11vw,77px);
     text-align: center;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
     color: var(--text-color);
 }
 
@@ -242,6 +243,7 @@
     font-size: clamp(1rem, 6vw, 35px);
     text-align: center;
     color: var(--text-color);
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
 .title {
