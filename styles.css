@@ -51,6 +51,24 @@
 .project-horizontal {
     max-width: 120px;
 }
+.project-horizontal:hover #large-screen-projects {
+    max-height: 300px;
+    z-index: 10;
+    border: 2px solid white;
+}
+
+#large-screen-projects {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 177px;
+    left: 0;
+    width: 400px;
+    max-height: 0;
+    overflow: hidden;
+    z-index: 15;
+}
+
 .hidden-dropdown-item {
     display: block;
     background-color: var(--secondary-dark-color);
@@ -63,7 +81,7 @@
     background-color: var(--secondary-dark-color);
     border-bottom: 2px solid var(--secondary-dark-color);
     cursor: pointer;
-    margin: 5px auto 5px 50px;
+    margin: 0 auto 0 50px;
     padding-bottom: 4px;
 }
 
@@ -77,15 +95,16 @@
 .menu-icon-projects {
     max-width: 30px;
     max-height: 30px;
-    margin-right: 10px;
+    margin: auto 10px auto 0;
 }
 
 .expanding-project-container {
-    margin: auto auto auto 0;
+    margin: auto 10px auto 0;
 }
 
 #menu-container {
     width: 100%;
+    border-bottom: 2px solid white;
     background-color: var(--secondary-dark-color);
 }
 .menu {
@@ -109,9 +128,6 @@
         margin-right: 0;
     }
 
-    .dropdown-menu:hover .hidden-dropdown-item {
-        display: none;
-    }
 }
 
 /* Tablets
@@ -126,6 +142,11 @@
     }
     .menu-horizontal {
         display: flex;
+    }
+    .project {
+        width: 90%;
+        margin: 5px auto 5px 10px;
+        padding-right: 10px;
     }
 }
 
@@ -221,7 +242,7 @@
     position: relative;
     display: flex;
     height: 100%;
-    width: 80%;
+    width: 100%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -232,15 +253,17 @@
 
 .main-title {
     font-family: ROSSTEN, serif;
-    font-size: clamp(1rem,11vw,77px);
+    font-size: clamp(1rem,13vw,77px);
     text-align: center;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
     color: var(--text-color);
+    padding: 7px;
 }
 
 .secondary-title {
     font-family: ROSSTEN, serif;
     font-size: clamp(1rem, 6vw, 35px);
+    font-weight: bold;
     text-align: center;
     color: var(--text-color);
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
@@ -259,7 +282,6 @@
     justify-content: center;
     height: 3vh;
     text-align: center;
-    font-family: "Open Sans", sans-serif;
     font-weight: bold;
     color: var(--text-color);
     margin: 5px;
@@ -461,10 +483,16 @@ body {
     border-top-color: var(--secondary-light-color);
     border-style: solid;
     justify-content: center;
+    background-image: url("images/icons/pride-flags/transflag.svg");
+
+    background-size: cover;
+    background-position: left;
 }
 
 #copyright {
     color: var(--text-color);
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    font-size: 12px;
 }
 
 /* Contact Me */
@@ -913,11 +941,14 @@ body {
     display: flex;
     flex-direction: column;
     background-color: var(--secondary-dark-color);
-    width: 100vw;
     transition: max-height 1s ease-in-out;
     max-height: 0;
     overflow: hidden;
 }
+.hidden-dropdown-button {
+    width: 300px;
+}
+
 .expanding-animation {
     transition: max-height .5s linear;
     max-height: 350px !important;
