@@ -102,8 +102,9 @@ window.onload = () => {
             if (expandedProjectMenu) projectArrow.dispatchEvent(new Event("click"));
         });
     }
+    selectedModal = homePage.item(0);
+    selectedModal.classList.toggle("underline");
     for (let i = 0; i < homePage.length; i++) {
-        selectedModal = homePage.item(i);
         homePage.item(i).addEventListener("click", function () {
             selectedModal.classList.toggle("underline");
             selectedModal = homePage.item(i);
