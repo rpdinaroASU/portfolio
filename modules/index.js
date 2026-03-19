@@ -8,6 +8,9 @@ let expandedMenu = false;
 let expandingMenuButton;
 let expandingMenu;
 let projectArrow;
+let selectedModal;
+let projectButton;
+let close = true;
 
 window.onload = () => {
     const $ = (sel) => document.querySelector(sel);
@@ -30,6 +33,7 @@ window.onload = () => {
     const lmButton = $$(".lore-button");
     const satButton = $$(".sat-button");
     const contact = $$(".contact");
+    projectButton = $$(".project-horizontal");
     expandingMenuButton = $("#expanding-menu-button");
     expandingMenu = $("#expanding-menu");
     projectArrow = $("#projects-dropdown");
@@ -91,13 +95,19 @@ window.onload = () => {
     for (let i = 0; i < about.length; i++) {
         about.item(i).addEventListener("click", function () {
             modalFSM.setState(modals.ABOUT_MODAL);
-            console.log("ABOUT");
+            selectedModal.classList.toggle("underline");
+            selectedModal = about.item(i);
+            selectedModal.classList.toggle("underline")
             if (expandedMenu) expandingMenuButton.dispatchEvent(new Event("click"));
             if (expandedProjectMenu) projectArrow.dispatchEvent(new Event("click"));
         });
     }
     for (let i = 0; i < homePage.length; i++) {
+        selectedModal = homePage.item(i);
         homePage.item(i).addEventListener("click", function () {
+            selectedModal.classList.toggle("underline");
+            selectedModal = homePage.item(i);
+            selectedModal.classList.toggle("underline")
             modalFSM.setState(modals.HOME_MODAL);
             if (expandedMenu) expandingMenuButton.dispatchEvent(new Event("click"));
             if (expandedProjectMenu) projectArrow.dispatchEvent(new Event("click"));
@@ -119,10 +129,23 @@ window.onload = () => {
             dropdownHitbox.item(i).parentElement.getElementsByClassName("stage-content").item(0).classList.toggle("hidden");
         });
     }
+    const largeScreenProjects = $("#large-screen-projects");
+    largeScreenProjects.addEventListener("transitionstart", function () {
+        if(largeScreenProjects.clientHeight<5)largeScreenProjects.classList.toggle("border", true);
+    })
+    largeScreenProjects.addEventListener("transitionend", function () {
+        if(largeScreenProjects.clientHeight<5)largeScreenProjects.classList.toggle("border", false);
+    })
+
 
 }
 function addProjectInfoButtonListener(button, projectInfo, imageArr, modal, expandingMenuButton, projectArrow) {
     button.addEventListener("click", function () {
+        for(let i = 0; i < projectButton.length; i++) {
+            selectedModal.classList.toggle("underline");
+            selectedModal = projectButton.item(i);
+            selectedModal.classList.toggle("underline")
+        }
         modalFSM.setState(modal);
         const ImageSelector = new ImageFSM(imageArr, projectInfo.querySelector(".stage-image-container"));
         ImageSelector.createImageSelector();
