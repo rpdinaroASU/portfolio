@@ -9,9 +9,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 
-    <link rel="preload" as="image" href="../../resources/images/projects/Satellite.png">
-    <link rel="preload" as="image" href="../../resources/images/projects/Lore.png">
-    <link rel="preload" as="image" href="../../resources/images/projects/GeneticAlgorithm.png">
+    <link rel="preload" as="image" href="/images/projects/Satellite.png">
+    <link rel="preload" as="image" href="/images/projects/Lore.png">
+    <link rel="preload" as="image" href="/images/projects/GeneticAlgorithm.png">
 
 </head>
 <body>
@@ -235,62 +235,283 @@
 
 
             <div id = "project-information">
-                <div id = "satellite-experience" class="project-container more-information">
-                    <div class = "project-title-font project-title more-information-title dropdown-hitbox">  NASA Psyche Mission: AR/WebXR for Public Engagement—CERNN: Satellite Experience </div>
-                    <div class = "stage-container stage-zero">
-                        <div class = "project-title-font dropdown-hitbox selected">
-                            <div class = "stage-title"> Description </div>
-                            <img src="../images/icons/down-arrow.svg" alt=" ∨ " class = "stage-image">
+                <div id="satellite-experience" class="project-container more-information">
+                    <div class="project-title-font project-title more-information-title dropdown-hitbox">
+                        NASA Psyche Mission: AR/WebXR for Public Engagement—CERNN: Satellite Experience
+                    </div>
+
+                    <div class="stage-container stage-zero">
+                        <div class="project-title-font dropdown-hitbox selected">
+                            <div class="stage-title">Description</div>
+                            <img src="../images/icons/down-arrow.svg" alt=" ∨ " class="stage-image">
                         </div>
-                        <div class = "project-description stage-content hidden">
-                            <div class = "stage-image-container"></div>
-                            <div class = "stage-description">
-                                <div class = "text text-top">
-                                    This project envisions an interactive AR experience that allows users to explore the Psyche spacecraft and track the mission’s progress in real time. Through intuitive controls, users can see how long the satellite has been traveling, how far it has gone, and how much distance remains until arrival. The design emphasizes accessibility, ensuring audiences of all ages and abilities can engage with the mission through simple mobile gestures.
-                                </div>
-                                <div class = "text text">
-                                    The experience is divided into two main flows: Explore the Spacecraft and Explore the Mission. Users can interact with a glowing 3D model of the spacecraft, clicking on instruments to learn how each supports Psyche’s scientific goals—such as determining whether Psyche is a planetary core or characterizing its surface topography. In parallel, a mission timeline highlights key milestones from launch to orbit, with countdowns and scrubbable progress markers that build anticipation and emotional connection.
-                                </div>
-                                <div class = "text text-bottom">
-                                    By combining scientific detail with immersive storytelling, the design fosters curiosity and excitement about NASA’s Psyche Mission. It transforms complex data into an engaging narrative, helping audiences understand both the spacecraft’s technology and the broader scientific quest to uncover the mysteries of Psyche 16.
+                        <div class="project-description stage-content hidden">
+                            <div class="stage-image-container"></div>
+                            <div class="stage-description left-align-text">
+                                <div class="text text-top project-title-font">
+                                    <div class="project-title-font bold">
+                                        Project Overview
+                                    </div>
+                                    <p style="margin-bottom: 15px;">
+                                        This project envisions an accessible, interactive AR experience that translates complex NASA data into an engaging narrative, allowing users of all ages to explore the Psyche spacecraft and track its journey in real time.
+                                    </p>
+                                    <div class="project-paragraph-font-size">
+                                        <ul>
+                                            <li>
+                                                <div class="project-title-font bold">Interactive 3D Spacecraft</div>
+                                                <ul>
+                                                    <li>Users interact with a glowing 3D model, discovering how onboard instruments support the mission's goal of mapping and analyzing Psyche 16.</li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <div class="project-title-font bold">Dynamic Mission Timeline</div>
+                                                <ul>
+                                                    <li>A scrubbable, real-time tracking system highlights critical milestones from launch to orbit, building anticipation through countdowns and progress markers.</li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <div class="project-title-font bold">Accessible Design</div>
+                                                <ul>
+                                                    <li>Intuitive mobile gestures ensure audiences of all technical and physical abilities can seamlessly engage with the scientific content.</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class = "stage-container stage-one">
-                        <div class = "project-stage project-title-font dropdown-hitbox">
-                            <div class = "stage-title"> Requirements & Design </div>
-                            <img src="../images/icons/down-arrow.svg" alt=" ∨ " class = "stage-image">
+
+                    <div class="stage-container stage-one">
+                        <div class="project-stage project-title-font dropdown-hitbox">
+                            <div class="stage-title">Requirements &amp; Design</div>
+                            <img src="../images/icons/down-arrow.svg" alt=" ∨ " class="stage-image">
+                        </div>
+                        <div class="stage-description left-align-text">
+                            <div class="text text-top project-title-font">
+                                <div class="project-title-font bold">
+                                    Core Functional Requirements
+                                </div>
+                                <div class="project-paragraph-font-size">
+                                    <ul>
+                                        <li>
+                                            <div class="project-title-font bold">General AR/VR Experience</div>
+                                            <ul>
+                                                <li>
+                                                    <strong>Seamless Access:</strong> Web-based AR/VR launches instantly via QR code from the Psyche Launchpad without requiring app downloads or personal data.
+                                                </li>
+                                                <li>
+                                                    <strong>Accessible UX:</strong> Bite-sized, single-user educational modules designed for the general public, featuring on-demand contextual gesture instructions.
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <div class="project-title-font bold">Psyche Mission Satellite Experience</div>
+                                            <ul>
+                                                <li>
+                                                    <strong>Mission Progress Tracker:</strong> Features a real-time countdown to arrival and an explorable 3D spacecraft model tracking the journey to Psyche 16.
+                                                </li>
+                                                <li>
+                                                    <strong>Spacecraft Exploration:</strong> Interactive 3D inspection that uses visual cues (pulsing highlights) to guide users through discovering and learning about onboard instruments.
+                                                </li>
+                                                <li>
+                                                    <strong>Interactive Timeline:</strong> Navigable milestone tracker allowing users to explore critical mission events, from launch through future instrument deployments.
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class = "stage-container stage-two">
-                        <div class = "project-stage project-title-font dropdown-hitbox">
-                            <div class = "stage-title"> Sprint 1: Design and Documentation - Part 1  </div>
-                            <img src="../images/icons/down-arrow.svg" alt=" ∨ " class = "stage-image">
+
+                    <div class="stage-container stage-two">
+                        <div class="project-stage project-title-font dropdown-hitbox">
+                            <div class="stage-title">Sprint 1: Design and Documentation - Part 1</div>
+                            <img src="../images/icons/down-arrow.svg" alt=" ∨ " class="stage-image">
+                        </div>
+                        <div class="stage-description left-align-text">
+                            <div class="text text-top project-title-font">
+                                <div class="project-title-font bold">
+                                    Low-level Design &amp; Establishing Educational Goals
+                                </div>
+                                <div class="project-paragraph-font-size">
+                                    <p style="margin-bottom: 15px;">
+                                        The Psyche mission demands high informational precision, I summarized research papers and established frameworks and libraries for the project.
+                                    </p>
+                                    <ul>
+                                        <li>
+                                            <div class="project-title-font bold">Research &amp; Technical Strategy</div>
+                                            <ul>
+                                                <li>
+                                                    <strong>AR Technology Evaluation:</strong> Researched APIs, libraries, and frameworks, documenting pros/cons to drive the project's technical architecture.
+                                                </li>
+                                                <li>
+                                                    <strong>Scientific Research:</strong> Synthesized 13+ NASA Psyche research papers—covering mission objectives, geology, and satellite operations—to ensure scientific accuracy across the project.
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <div class="project-title-font bold">UX/UI &amp; System Design</div>
+                                            <ul>
+                                                <li>
+                                                    <strong>High-Fidelity Mockups:</strong> Designed accessible, user-tested UI/UX mockups for three core AR experiences (Detective, Satellite, and Lore/Astronomer).
+                                                </li>
+                                                <li>
+                                                    <strong>Use Case Architecture:</strong> Developed UML diagrams to map user interactions, logic flows, and system responsibilities.
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <div class="project-title-font bold">Technical Documentation</div>
+                                            <ul>
+                                                <li>
+                                                    <strong>Experience Design Documents (EDDs):</strong> Defined the narrative, mechanics, and user flows to establish the creative direction for the sprint.
+                                                </li>
+                                                <li>
+                                                    <strong>Requirements Extraction:</strong> Translated complex design concepts and scientific research into actionable, developer-ready requirements and info sheets.
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class = "stage-container stage-three">
-                        <div class = "project-stage project-title-font dropdown-hitbox">
-                            <div class = "stage-title"> Sprint 2: Launch Page and Homepage </div>
-                            <img src="../images/icons/down-arrow.svg" alt=" ∨ " class = "stage-image">
+
+                    <div class="stage-container stage-three">
+                        <div class="project-stage project-title-font dropdown-hitbox">
+                            <div class="stage-title">Sprint 2: Launch Page and Homepage</div>
+                            <img src="../images/icons/down-arrow.svg" alt=" ∨ " class="stage-image">
+                        </div>
+                        <div class="stage-description left-align-text">
+                            <div class="text text-top project-title-font">
+                                <div class="project-title-font bold">
+                                    Inclusive Design &amp; Accessibility
+                                </div>
+                                <div class="project-paragraph-font-size">
+                                    <p style="margin-bottom: 15px;">
+                                        Driven by the mandate to make the Psyche Satellite experience universally accessible, I designed and implemented a suite of user-controlled visual enhancements.
+                                    </p>
+                                    <ul>
+                                        <li>
+                                            <div class="project-title-font bold">High-Contrast Optimization</div>
+                                            <div>Designed custom UI themes to ensure strict legibility standards and support users with visual impairments.</div>
+                                        </li>
+                                        <li>
+                                            <div class="project-title-font bold">Dynamic Light &amp; Dark Modes</div>
+                                            <div>Integrated adaptable color schemes to reduce eye strain and accommodate diverse viewing environments.</div>
+                                        </li>
+                                        <li>
+                                            <div class="project-title-font bold">Centralized Customization Hub</div>
+                                            <div>Prototyped and developed an intuitive settings menu, empowering users to seamlessly tailor their AR experience to their needs.</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class = "stage-container stage-four">
-                        <div class = "project-stage project-title-font dropdown-hitbox">
-                            <div class = "stage-title"> Sprint 3: Components Page and Mission Timeline Page </div>
-                            <img src="../images/icons/down-arrow.svg" alt=" ∨ " class = "stage-image">
+
+                    <div class="stage-container stage-four">
+                        <div class="project-stage project-title-font dropdown-hitbox">
+                            <div class="stage-title">Sprint 3: Components Page and Mission Timeline Page</div>
+                            <img src="../images/icons/down-arrow.svg" alt=" ∨ " class="stage-image">
+                        </div>
+                        <div class="stage-description left-align-text">
+                            <div class="text text-top project-title-font">
+                                <div class="project-title-font bold">
+                                    Live Mission Tracking &amp; API Integration
+                                </div>
+                                <div class="project-paragraph-font-size">
+                                    <p style="margin-bottom: 15px;">
+                                        To bring the Psyche mission to life, I architected a data-driven experience that translates complex spacecraft telemetry into accessible, real-time mission progress on the homepage.
+                                    </p>
+                                    <ul>
+                                        <li>
+                                            <div class="project-title-font bold">JPL Horizons API Integration</div>
+                                            <div>Engineered a pipeline to extract and parse live Ephemeris data from the Horizons API, translating raw orbital telemetry into precise distance figures.</div>
+                                        </li>
+                                        <li>
+                                            <div class="project-title-font bold">Client-Side Data Architecture</div>
+                                            <div>Generated a structured, localized XML database to manage and serve satellite distance data efficiently to the frontend interface.</div>
+                                        </li>
+                                        <li>
+                                            <div class="project-title-font bold">Mission Phase Visualization</div>
+                                            <div>Developed dynamic UI components to consume the XML data, allowing users to seamlessly track the satellite's journey and explore distinct mission phases.</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class = "stage-container stage-five">
-                        <div class = "project-stage project-title-font dropdown-hitbox">
-                            <div class = "stage-title"> Sprint 4: About Page, Additional Accessibility Features, User Feedback, and Mobile Features</div>
-                            <img src="../images/icons/down-arrow.svg" alt=" ∨ " class = "stage-image">
+
+                    <div class="stage-container stage-five">
+                        <div class="project-stage project-title-font dropdown-hitbox">
+                            <div class="stage-title">Sprint 4: About Page, Additional Accessibility Features, User Feedback, and Mobile Features</div>
+                            <img src="../images/icons/down-arrow.svg" alt=" ∨ " class="stage-image">
+                        </div>
+                        <div class="stage-description left-align-text">
+                            <div class="text text-top project-title-font">
+                                <div class="project-title-font bold">
+                                    AR Accessibility &amp; 3D UI Enhancements
+                                </div>
+                                <div class="project-paragraph-font-size">
+                                    <p style="margin-bottom: 15px;">
+                                        To make the Augmented Reality experience inclusive and visually immersive, I implemented system-wide accessibility themes and refined the 3D environmental UI components.
+                                    </p>
+                                    <ul>
+                                        <li>
+                                            <div class="project-title-font bold">System-Wide Accessibility Theming</div>
+                                            <div>Engineered dynamic theming architecture to apply high-contrast, light, and color-blind accessible themes across all interactive AR pop-ups and buttons.</div>
+                                        </li>
+                                        <li>
+                                            <div class="project-title-font bold">Persistent User Preferences</div>
+                                            <div>Ensured user accessibility settings translated seamlessly across the entire application, dynamically adapting interface components to meet specific user needs.</div>
+                                        </li>
+                                        <li>
+                                            <div class="project-title-font bold">3D Environment Refinement</div>
+                                            <div>Enhanced the visual cohesion of the virtual space by upgrading the skybox floor, bridging the gap between functional UI and an immersive 3D aesthetic.</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class = "stage-container stage-six">
-                        <div class = "project-stage project-title-font dropdown-hitbox">
-                            <div class = "stage-title"> Sprint 5: Review, Finalization, and Improvement</div>
-                            <img src="../images/icons/down-arrow.svg" alt=" ∨ " class = "stage-image">
+
+                    <div class="stage-container stage-six">
+                        <div class="project-stage project-title-font dropdown-hitbox">
+                            <div class="stage-title">Sprint 5: Review, Finalization, and Improvement</div>
+                            <img src="../images/icons/down-arrow.svg" alt=" ∨ " class="stage-image">
+                        </div>
+                        <div class="stage-description left-align-text">
+                            <div class="text text-top project-title-font">
+                                <div class="project-title-font bold">
+                                    Educational UX Design &amp; Data Architecture
+                                </div>
+                                <div class="project-paragraph-font-size">
+                                    <p style="margin-bottom: 15px;">
+                                        To ensure the experience was highly educational and intuitive for users of all ages and cognitive abilities, I overhauled the content strategy, integrated multimedia elements, and optimized the backend data delivery.
+                                    </p>
+                                    <ul>
+                                        <li>
+                                            <div class="project-title-font bold">Information Architecture &amp; Content Strategy</div>
+                                            <div>Restructured complex technical data for the Mission and Instruments sections into an accessible "What, Why, and How" framework to maximize user comprehension across diverse age groups.</div>
+                                        </li>
+                                        <li>
+                                            <div class="project-title-font bold">Multimedia Integration</div>
+                                            <div>Enriched the educational phases with contextual images and videos, supporting visual learners and increasing overall user retention and engagement.</div>
+                                        </li>
+                                        <li>
+                                            <div class="project-title-font bold">Scalable Data Management</div>
+                                            <div>Re-engineered content delivery by transitioning hardcoded phase data into a structured JSON architecture, improving system scalability and maintaining consistency across the application.</div>
+                                        </li>
+                                        <li>
+                                            <div class="project-title-font bold">UX/UI Quality Assurance</div>
+                                            <div>Refined user flows and interface components to guarantee a polished, highly accessible, and confident user experience for all audiences.</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
