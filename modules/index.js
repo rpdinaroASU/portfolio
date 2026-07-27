@@ -1,7 +1,16 @@
 import {ImageFSM} from './ImageFSM.js';
 import {ModalFSM} from "./ModalFSM.js";
 
-const satelliteImageArray = ["sat-img-1.png", "sat-img-2.png", "sat-img-3.png"];
+
+const satelliteImageArray = [
+    ["stage-0/", "sat-img-1.png", "sat-img-2.png", "sat-img-3.png"],
+    ["stage-1/", "design.png", "mockup1.png", "mockup2.png", "mockup3.png", "research.png"],
+    ["stage-2/", "color-blind-mockup.jpeg", "high-contrast-mockup.jpeg", "settings-mockup.jpg"],
+    ["stage-3/", "distance-tracking.png", "horizons-api.png"],
+    ["stage-4/", "colorblind.png", "help-refactor.png", "homepage-refactor.png"],
+    ["stage-5/", "optical-before.png", "optical-after.png", "spec-before.png", "optical-after.png"]];
+
+
 let modalFSM;
 let expandedProjectMenu = false;
 let expandedMenu = false;
@@ -10,7 +19,6 @@ let expandingMenu;
 let projectArrow;
 let selectedModal;
 let projectButton;
-let close = true;
 
 window.onload = () => {
     const $ = (sel) => document.querySelector(sel);
@@ -148,8 +156,7 @@ function addProjectInfoButtonListener(button, projectInfo, imageArr, modal, expa
             selectedModal.classList.toggle("underline")
         }
         modalFSM.setState(modal);
-        const ImageSelector = new ImageFSM(imageArr, projectInfo.querySelector(".stage-image-container"));
-        ImageSelector.createImageSelector();
+        const ImageSelector = new ImageFSM(imageArr, projectInfo.querySelectorAll(".stage-image-container"));
         if(expandedMenu) expandingMenuButton.dispatchEvent(new Event("click"));
         if(expandedProjectMenu) projectArrow.dispatchEvent(new Event("click"));
     });
