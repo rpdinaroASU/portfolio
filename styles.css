@@ -22,6 +22,15 @@
     src: url("fonts/kg_love_molly/KGLoveMolly.ttf");
 }
 
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
 /* Base styles (mobile first)
    0–600px: default mobile layout
 ----------------------------------------- */
@@ -784,7 +793,6 @@ body {
 }
 
 .top-stage-image {
-    opacity: 1;
     z-index: 5 !important;
     grid-area: 1 / 1 / 2 / 2;
 }
@@ -814,17 +822,25 @@ body {
 }
 
 .image-circle-selector {
-    visibility: hidden;
     background-color: white !important;
     border-color: white !important;
     width: 0;
+    visibility: hidden;
     overflow: hidden;
 }
 
 .image-circle-transition-grow {
     visibility: visible;
-    width: 30px;
-    transition: width 5s ease-out;
+    animation: growWidth 5s ease-out forwards;
+}
+
+@keyframes growWidth {
+    from {
+        width: 0;
+    }
+    to {
+        width: 30px;
+    }
 }
 
 .left-arrow {

@@ -1,113 +1,176 @@
-import {FSMFunctions} from './FSMFunctions.js';
-
-const imageChangeInterval = 5000;
-const imagePath = "../images/";
+import { FSMFunctions } from './FSMFunctions.js';
 
 /**
- * Creates a finite state machine that cycles through a set of images.
- * Generates a scrollable container with circles that can be clicked to cycle through images.
- * Animation is done using CSS transitions and intervals to simulate a rolling carousel.
- * The image fades out in set intervals.
+ * Interval duration in milliseconds for automatically switching carousel images.
+ * @type {number}
+ */
+const IMAGE_CHANGE_INTERVAL = 5000;
+
+/**
+ * Creates and manages a finite state machine (FSM) that cycles through a set of images
+ * to form an interactive image carousel or slideshow.
+ * Generates scrollable containers with interactive selector circles and navigation arrows
+ * to control image states via CSS transitions and intervals.
  */
 export class ImageFSM {
     /**
-     * Creates a finite state machine that cycles through a set of images
-     * @param imageNameArray the array of image names
-     * @param parentNode the parent container for the scrollable container and the image
+     * Array of bottom/background image elements indexed by carousel instance.
+     * @type {HTMLImageElement[]}
      */
-    constructor(imageNameArray, parentNode) {
+    bottomImage;
+
+    /**
+     * Array of top/foreground image elements indexed by carousel instance.
+     * @type {HTMLImageElement[]}
+     */
+    topImage;
+
+    /**
+     * Array of scrollable grid container elements for navigation controls, indexed by instance.
+     * @type {HTMLDivElement[]}
+     */
+    scrollContainer;
+
+    /**
+     * Array of arrays containing selector circle DOM elements for each carousel instance.
+     * @type {HTMLDivElement[][]}
+     */
+    circles;
+
+    /**
+     * Array of active interval timers handling automated carousel sliding, indexed by instance.
+     * @type {number[]}
+     */
+    rollingInterval;
+
+    /**
+     * Array tracking the currently active image index for each carousel instance.
+     * @type {number[]}
+     */
+    imgCount;
+
+    /**
+     * Array tracking the current slide direction (`true` for right/forward, `false` for left/backward).
+     * @type {boolean[]}
+     */
+    right;
+
+    /**
+     * Array tracking whether an animation is currently executing to prevent overlapping states.
+     * @type {boolean[]}
+     */
+    isAnimating;
+
+    /**
+     * Stores configuration data or image names for each carousel instance.
+     * @type {string[][]}
+     */
+    imageNameArray;
+
+    /**
+     * Array of parent DOM elements where the carousels are mounted.
+     * @type {HTMLElement[]}
+     */
+    parentNodeList;
+
+    /**
+     * Initializes the ImageFSM class across a collection of target parent nodes.
+     * Sets up DOM structures, image stages, scroll containers, and interactive selectors for each data set.
+     *
+     * @constructor
+     * @param {string[][]} imageNameArray - A two-dimensional array where each sub-array contains configuration strings and image file names.
+     * @param {HTMLElement[]} parentNodeList - Array of parent DOM containers where each respective carousel will be rendered.
+     * @param imagePath - Base directory path for resource images used within the carousel.
+     */
+    constructor(imageNameArray, parentNodeList, imagePath) {
         this.imageNameArray = imageNameArray;
-        this.parentNode = parentNode;
-        this.parentNode.innerHTML = "";
-        this.bottomImage = this.setUpVisibleStageImages(false);
-        this.topImage = this.setUpVisibleStageImages(true);
-
-        this.parentNode.appendChild(this.bottomImage);
-        this.parentNode.appendChild(this.topImage);
-
-        this.scrollContainer = document.createElement("div");
-
-        this.scrollContainer.className = "img-scroll-container";
-        this.scrollContainer.style.gridTemplateColumns = `repeat( ${imageNameArray.length + 2}, auto)`;
-        this.parentNode.appendChild(this.scrollContainer);
-        this.imgCount = 0;
-        this.right = true;
+        this.parentNodeList = parentNodeList;
+        this.imagePath = imagePath;
+        this.bottomImage = [];
+        this.topImage = [];
+        this.scrollContainer = [];
         this.circles = [];
+        this.rollingInterval = [];
+        this.imgCount = [];
+        this.right = [];
 
+        for (let index = 0; index < imageNameArray.length; index++) {
+            this.parentNodeList[index].innerHTML = "";
+            this.bottomImage[index] = this.setUpVisibleStageImages(false, index);
+            this.topImage[index] = this.setUpVisibleStageImages(true, index);
+
+            this.parentNodeList[index].appendChild(this.bottomImage[index]);
+            this.parentNodeList[index].appendChild(this.topImage[index]);
+
+            this.scrollContainer[index] = document.createElement("div");
+
+            this.scrollContainer[index].className = "img-scroll-container";
+            this.scrollContainer[index].style.gridTemplateColumns = `repeat( ${imageNameArray.length + 2}, auto)`;
+            this.parentNodeList[index].appendChild(this.scrollContainer[index]);
+            this.imgCount[index] = 0;
+            this.right[index] = true;
+            this.circles[index] = [];
+            this.createImageSelector(imageNameArray[index]);
+        }
     }
 
     /**
-     * Helper function to calculate the modulus of two numbers within the length of FSM
-     * @param targetNumber number to be modded
-     * @returns {number} returns the modulus of targetNumber and FSM length
+     * Calculates the safe modulus value of a target number constrained within the bounds of a specific FSM instance's selector length.
+     *
+     * @param {number} targetNumber - The numerical value or index to be modulated.
+     * @param {number} index - The target carousel instance index.
+     * @returns {number} The resulting normalized index value.
      */
-    mod(targetNumber) {
-        return FSMFunctions.mod(targetNumber, this.circles.length);
+    mod(targetNumber, index) {
+        return FSMFunctions.mod(targetNumber, this.circles[index].length);
     }
 
     /**
-     * Starts the auto-scroll interval
+     * Creates the scrollable carousel control bar, attaches navigation arrows,
+     * and constructs clickable indicator circles linked to individual slides.
+     *
+     * @param {string[]} imageArrayList - The subset array containing configuration prefixes and image file names for the current carousel.
      */
-    startAutoScroll() {
-        this.stopAutoScroll();
-        // start css transition on current node
-        const currentNode = this.circles[this.mod(this.imgCount)];
-
-        currentNode.classList.toggle("image-circle-transition-grow",true);
-
-        //start rolling timer
-        this.rollingInterval = setInterval(() => {
-            this.arrowClick().then(() => {});
-        }, imageChangeInterval);
-    }
-
-    /**
-     * stops the auto-scroll interval
-     */
-    stopAutoScroll() {
-        clearInterval(this.rollingInterval);
-    }
-
-    /**
-     * Creates the scrollable carousel and adds the image selectors to it
-     */
-    createImageSelector() {
+    createImageSelector(imageArrayList) {
         const documentFragment = document.createDocumentFragment();
-        // Left arrow
-        documentFragment.appendChild(this.makeArrow(false, 1));
+        const scrollIndex = Number(imageArrayList[0].slice(-2, -1));
 
-        // Circles
-        for (let i = 0; i < this.imageNameArray.length; i++) {
-            let col = i + 2;
+        this.circles[scrollIndex] = [];
 
-            let backgroundCircle = this.makeSelectorElement(col);
+        // Append Left navigation arrow
+        documentFragment.appendChild(this.makeArrow(false, 1, scrollIndex));
+
+        // Append interactive selector indicator circles
+        for (let i = 1; i < imageArrayList.length; i++) {
+            const col = i + 2;
+
+            const backgroundCircle = this.makeSelectorElement(col);
             backgroundCircle.addEventListener("click", () => {
-                this.imgCount = i-1;
-                this.startAutoScroll();
-                this.arrowClick().then(() => {});
+                this.imgCount[scrollIndex] = this.mod(i-2, scrollIndex);
+                this.startAutoScroll(scrollIndex);
+                this.arrowClick(scrollIndex).catch(() => {});
             });
 
             documentFragment.appendChild(backgroundCircle);
 
-            let selector = this.makeSelectorElement(col);
+            const selector = this.makeSelectorElement(col);
             selector.classList.add("image-circle-selector");
-            this.circles.push(selector);
+            this.circles[scrollIndex].push(selector);
             documentFragment.appendChild(selector);
         }
 
+        // Append Right navigation arrow
+        documentFragment.appendChild(this.makeArrow(true, imageArrayList.length + 2, scrollIndex));
+        this.scrollContainer[scrollIndex].appendChild(documentFragment);
 
-        // Right arrow
-        documentFragment.appendChild(this.makeArrow(true, this.imageNameArray.length + 2));
-
-        this.scrollContainer.appendChild(documentFragment);
-
-        this.startAutoScroll();
+        this.startAutoScroll(scrollIndex);
     }
 
     /**
-     * Creates a circle that indicates the selected images
-     * @param column
-     * @returns {HTMLDivElement}
+     * Instantiates an individual selector circle DOM element positioned within the CSS grid layout.
+     *
+     * @param {number} column - The grid column index where the selector circle should be placed.
+     * @returns {HTMLDivElement} The constructed selector grid item element.
      */
     makeSelectorElement(column) {
         const circle = document.createElement("div");
@@ -117,67 +180,131 @@ export class ImageFSM {
     }
 
     /**
-     * Creates the left or right arrow that cycles through the images
-     * @param isRight true if the arrow should point right, false otherwise
-     * @param gridColumn the column the arrow should be placed in
-     * @returns {HTMLImageElement} the created arrow
+     * Constructs a directional navigation arrow image element for changing carousel slides.
+     *
+     * @param {boolean} isRight - Flag indicating if the arrow points forward (`true`) or backward (`false`).
+     * @param {number} gridColumn - The CSS grid column position for the arrow element.
+     * @param {number} index - The index reference of the active carousel instance.
+     * @returns {HTMLImageElement} The fully configured arrow image DOM element.
      */
-    makeArrow(isRight, gridColumn) {
+    makeArrow(isRight, gridColumn, index) {
         const arrow = document.createElement("img");
-        arrow.src = `${imagePath}/icons/down-arrow.svg`;
+        arrow.src = `../images/icons/down-arrow.svg`;
         arrow.alt = isRight ? " > " : " < ";
         arrow.className = isRight ? "right-arrow" : "left-arrow";
         arrow.style.gridArea = `1 / ${gridColumn} / 2 / ${gridColumn + 1}`;
         arrow.addEventListener("click", () => {
-            this.right = isRight;
-            this.startAutoScroll();
-            this.arrowClick().then(() => {});
+            this.right[index] = isRight;
+            this.startAutoScroll(index);
+            this.arrowClick(index).catch(() => {});
         });
         return arrow;
-    };
+    }
 
     /**
-     * Creates top or bottom visible images
-     * @param isTopImage true if an element should be the top image, false otherwise
-     * @returns {HTMLImageElement} the top or bottom visible image
+     * Initializes and configures the foreground (top) or background (bottom) stage image elements.
+     *
+     * @param {boolean} isTopImage - Flag indicating whether the element acts as the top layer (`true`) or bottom layer (`false`).
+     * @param {number} index - The index reference of the active carousel instance.
+     * @returns {HTMLImageElement} The created image element with assigned classes and initial source path.
      */
-    setUpVisibleStageImages(isTopImage) {
-        let node = document.createElement("img");
-        node.src = imagePath + "project-resources/" + this.imageNameArray[0];
+    setUpVisibleStageImages(isTopImage, index) {
+        const node = document.createElement("img");
+        node.src = this.imagePath + this.imageNameArray[index][0] + this.imageNameArray[index][1];
         node.alt = "Example Image";
-        node.classList.toggle("stage-description-image",true);
+        node.classList.toggle("stage-description-image", true);
         node.classList.toggle(isTopImage ? "top-stage-image" : "bottom-stage-image", true);
-        node.style.opacity = isTopImage ? "1" : "0";
 
         return node;
     }
 
+    /**
+     * Initializes or resets the automated sliding interval timer for a specific carousel instance,
+     * while visually activating the corresponding active indicator circle.
+     *
+     * @param {number} index - The index reference of the target carousel instance.
+     */
+    startAutoScroll(index) {
+        this.stopAutoScroll(index);
+
+        // Apply visual CSS transition grow effect to the active indicator node
+        const currentNode = this.circles[index][this.mod(this.imgCount[index], index)];
+        if (currentNode) {
+            currentNode.classList.toggle("image-circle-transition-grow", true);
+        }
+
+        // Start recurring interval timer for automated scrolling
+        this.rollingInterval[index] = setInterval(() => {
+            this.arrowClick(index).catch(() => {});
+        }, IMAGE_CHANGE_INTERVAL);
+    }
 
     /**
-     * updates the image count and starts the auto-scroll interval
+     * Clears and stops the active automated sliding interval timer for a specified carousel instance.
+     *
+     * @param {number} index - The index reference of the target carousel instance.
      */
-    async arrowClick() {
-        this.circles.forEach(node => {
-            node.classList.toggle("image-circle-transition-grow", false);
-        });
+    stopAutoScroll(index) {
+        if (this.rollingInterval[index]) {
+            clearInterval(this.rollingInterval[index]);
+            this.rollingInterval[index] = 0;
+        }
+    }
 
-        this.imgCount = this.mod(this.imgCount + (this.right ? 1 : -1));
+    /**
+     * Asynchronously handles slide transitions triggered by user interactions or interval ticks.
+     * Updates internal image indexes, manages fade-out animations, swaps image asset paths safely,
+     * and updates active indicator elements.
+     *
+     * @param {number} index - The index reference of the target carousel instance.
+     * @returns {Promise<void>} A promise that resolves when the slide transition animation sequence completes.
+     */
+    async arrowClick(index) {
+        // Prevent overlapping animations from corrupting state synchronization
+        if (this.isAnimating && this.isAnimating[index]) return;
+        if (!this.isAnimating) this.isAnimating = [];
+        this.isAnimating[index] = true;
 
-        this.bottomImage.src = imagePath + "project-resources/" + this.imageNameArray[this.imgCount];
+        // Reset visual state across all active indicator circles for this instance
+        if (this.circles[index]) {
+            this.circles[index].forEach(node => {
+                node.classList.toggle("image-circle-transition-grow", false);
+            });
+        }
 
-        // Start fade
-        this.topImage.classList.toggle("image-fade-out",true);
-        const currentNode = this.circles[this.mod(this.imgCount)];
-        currentNode.classList.toggle("image-circle-transition-grow",true);
+        // Compute the next target image index based on the navigation direction flag
+        this.imgCount[index] = this.mod(this.imgCount[index] + (this.right[index] ? 1 : -1), index);
 
-        // Wait for CSS transition to finish
+        // Update the background image source resource
+        this.bottomImage[index].src = this.imagePath + this.imageNameArray[index][0] + this.imageNameArray[index][this.imgCount[index] + 1];
+
+        // Trigger the foreground image fade-out transition
+        this.topImage[index].classList.toggle("image-fade-out", true);
+        const currentNode = this.circles[index][this.mod(this.imgCount[index], index)];
+        if (currentNode) {
+            currentNode.classList.toggle("image-circle-transition-grow", true);
+        }
+
+        // Safely wait for the CSS fade-out transition or animation sequence to finish
         await new Promise(resolve => {
-            this.topImage.addEventListener("animationend", resolve, { once: true });
+            const handleAnimationEnd = (e) => {
+                if (e.target === this.topImage[index]) {
+                    this.topImage[index].removeEventListener("animationend", handleAnimationEnd);
+                    resolve();
+                }
+            };
+            this.topImage[index].addEventListener("animationend", handleAnimationEnd);
+
+            // Safety timeout fallback in case the animationend event fails to trigger
+            setTimeout(resolve, 1000);
         });
 
-        // Swap image AFTER fade completes
-        this.topImage.src = this.bottomImage.src;
-        // Reset for next cycle
-        this.topImage.classList.toggle("image-fade-out", false);
+        // Swap the image source properties after the fade transition completes
+        this.topImage[index].src = this.bottomImage[index].src;
+
+        // Reset state classes for the next animation cycle
+        this.topImage[index].classList.toggle("image-fade-out", false);
+
+        this.isAnimating[index] = false;
     }
 }
