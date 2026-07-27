@@ -1,6 +1,7 @@
 import {ImageFSM} from './ImageFSM.js';
 import {ModalFSM} from "./ModalFSM.js";
 
+const IMAGE_PATH_SAT_EXP = "../images/project-resources/sat-experience/";
 
 const satelliteImageArray = [
     ["stage-0/", "sat-img-1.png", "sat-img-2.png", "sat-img-3.png"],

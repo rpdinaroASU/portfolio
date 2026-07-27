@@ -7,12 +7,6 @@ import { FSMFunctions } from './FSMFunctions.js';
 const IMAGE_CHANGE_INTERVAL = 5000;
 
 /**
- * Base directory path for resource images used within the carousel.
- * @type {string}
- */
-const IMAGE_PATH = "../images/project-resources/sat-experience/";
-
-/**
  * Creates and manages a finite state machine (FSM) that cycles through a set of images
  * to form an interactive image carousel or slideshow.
  * Generates scrollable containers with interactive selector circles and navigation arrows
@@ -86,10 +80,12 @@ export class ImageFSM {
      * @constructor
      * @param {string[][]} imageNameArray - A two-dimensional array where each sub-array contains configuration strings and image file names.
      * @param {HTMLElement[]} parentNodeList - Array of parent DOM containers where each respective carousel will be rendered.
+     * @param imagePath - Base directory path for resource images used within the carousel.
      */
-    constructor(imageNameArray, parentNodeList) {
+    constructor(imageNameArray, parentNodeList, imagePath) {
         this.imageNameArray = imageNameArray;
         this.parentNodeList = parentNodeList;
+        this.imagePath = imagePath;
         this.bottomImage = [];
         this.topImage = [];
         this.scrollContainer = [];
@@ -214,7 +210,7 @@ export class ImageFSM {
      */
     setUpVisibleStageImages(isTopImage, index) {
         const node = document.createElement("img");
-        node.src = IMAGE_PATH + this.imageNameArray[index][0] + this.imageNameArray[index][1];
+        node.src = this.imagePath + this.imageNameArray[index][0] + this.imageNameArray[index][1];
         node.alt = "Example Image";
         node.classList.toggle("stage-description-image", true);
         node.classList.toggle(isTopImage ? "top-stage-image" : "bottom-stage-image", true);
@@ -280,7 +276,7 @@ export class ImageFSM {
         this.imgCount[index] = this.mod(this.imgCount[index] + (this.right[index] ? 1 : -1), index);
 
         // Update the background image source resource
-        this.bottomImage[index].src = IMAGE_PATH + this.imageNameArray[index][0] + this.imageNameArray[index][this.imgCount[index] + 1];
+        this.bottomImage[index].src = this.imagePath + this.imageNameArray[index][0] + this.imageNameArray[index][this.imgCount[index] + 1];
 
         // Trigger the foreground image fade-out transition
         this.topImage[index].classList.toggle("image-fade-out", true);
