@@ -8,7 +8,7 @@ import { ImageFSM } from './ImageFSM.js';
 import { ModalFSM } from "./ModalFSM.js";
 
 /** Base directory path for satellite experience project resources. */
-const IMAGE_PATH_SAT_EXP = "../images/project-resources/sat-experience/";
+const IMAGE_PATH_SAT_EXP = "../images/projects/project-resources/sat-experience/";
 
 /**
  * Hierarchical array defining stages and their associated image assets
