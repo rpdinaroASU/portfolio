@@ -4,7 +4,7 @@ import { FSMFunctions } from './FSMFunctions.js';
  * Interval duration in milliseconds for automatically switching carousel images.
  * @type {number}
  */
-const IMAGE_CHANGE_INTERVAL = 5000;
+const IMAGE_CHANGE_INTERVAL = 7000;
 
 /**
  * Creates and manages a finite state machine (FSM) that cycles through a set of images
@@ -69,7 +69,7 @@ export class ImageFSM {
 
     /**
      * Array of parent DOM elements where the carousels are mounted.
-     * @type {HTMLElement[]}
+     * @type {NodeListOf<HTMLElement>}
      */
     parentNodeList;
 
@@ -79,7 +79,7 @@ export class ImageFSM {
      *
      * @constructor
      * @param {string[][]} imageNameArray - A two-dimensional array where each sub-array contains configuration strings and image file names.
-     * @param {HTMLElement[]} parentNodeList - Array of parent DOM containers where each respective carousel will be rendered.
+     * @param {NodeListOf<HTMLElement>} parentNodeList - Array of parent DOM containers where each respective carousel will be rendered.
      * @param imagePath - Base directory path for resource images used within the carousel.
      */
     constructor(imageNameArray, parentNodeList, imagePath) {

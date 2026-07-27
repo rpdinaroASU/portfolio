@@ -779,8 +779,6 @@ body {
     border: var(--border-width) solid var(--tertiary-light-color);
     border-radius: var(--border-radius);
     max-width: 95% !important;
-    min-width: 95% !important;
-    width: 95% !important;
     min-height: 95% !important;
     max-height: 95% !important;
     height: 95% !important;
@@ -795,6 +793,8 @@ body {
 .top-stage-image {
     z-index: 5 !important;
     grid-area: 1 / 1 / 2 / 2;
+    width: auto;
+    height: auto;
 }
 
 .bottom-stage-image {
@@ -831,7 +831,7 @@ body {
 
 .image-circle-transition-grow {
     visibility: visible;
-    animation: growWidth 5s ease-out forwards;
+    animation: growWidth 6.75s ease-out forwards;
 }
 
 @keyframes growWidth {
@@ -858,7 +858,7 @@ body {
 }
 
 .fade-out {
-    animation: fade-out 1s ease-in;
+    animation: fade-out 2s linear;
     opacity: 0;
 }
 
