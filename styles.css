@@ -22,6 +22,15 @@
     src: url("fonts/kg_love_molly/KGLoveMolly.ttf");
 }
 
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
 /* Base styles (mobile first)
    0–600px: default mobile layout
 ----------------------------------------- */
@@ -784,7 +793,6 @@ body {
 }
 
 .top-stage-image {
-    opacity: 1;
     z-index: 5 !important;
     grid-area: 1 / 1 / 2 / 2;
 }

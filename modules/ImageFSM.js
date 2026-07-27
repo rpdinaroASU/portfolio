@@ -27,6 +27,7 @@ export class ImageFSM {
         this.circles = []
         this.rollingInterval = [];
         this.imgCount = [];
+        this.right = [];
 
         for (let index = 0; index < imageNameArray.length; index++) {
             this.parentNodeList[index].innerHTML = "";
@@ -42,7 +43,7 @@ export class ImageFSM {
             this.scrollContainer[index].style.gridTemplateColumns = `repeat( ${imageNameArray.length + 2}, auto)`;
             this.parentNodeList[index].appendChild(this.scrollContainer[index]);
             this.imgCount[index] = 0;
-            this.right = true;
+            this.right[index] = true;
             this.circles[index] = [];
             this.createImageSelector(imageNameArray[index]);
         }
@@ -144,7 +145,7 @@ export class ImageFSM {
         arrow.className = isRight ? "right-arrow" : "left-arrow";
         arrow.style.gridArea = `1 / ${gridColumn} / 2 / ${gridColumn + 1}`;
         arrow.addEventListener("click", () => {
-            this.right = isRight;
+            this.right[index] = isRight;
             this.startAutoScroll(index);
             this.arrowClick(index).then(() => {});
         });
@@ -163,7 +164,6 @@ export class ImageFSM {
         node.alt = "Example Image";
         node.classList.toggle("stage-description-image",true);
         node.classList.toggle(isTopImage ? "top-stage-image" : "bottom-stage-image", true);
-        node.style.opacity = isTopImage ? "1" : "0";
 
         return node;
     }
@@ -177,7 +177,7 @@ export class ImageFSM {
             node.classList.toggle("image-circle-transition-grow", false);
         });
 
-        this.imgCount[index] = this.mod(this.imgCount[index] + (this.right ? 1 : -1),index);
+        this.imgCount[index] = this.mod(this.imgCount[index] + (this.right[index] ? 1 : -1),index);
 
         this.bottomImage[index].src = imagePath + this.imageNameArray[index][0] + this.imageNameArray[index][this.imgCount[index]+1];
 
