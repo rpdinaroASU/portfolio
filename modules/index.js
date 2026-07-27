@@ -15,23 +15,66 @@ const IMAGE_PATH_SAT_EXP = "../images/projects/project-resources/sat-experience/
  * for the satellite experience project.
  */
 const satelliteImageArray = [
-    ["stage-0/", "sat-img-1.png", "sat-img-2.png", "sat-img-3.png"],
-    ["stage-1/", "design.png", "mockup1.png", "mockup2.png", "mockup3.png", "research.png"],
-    ["stage-2/", "color-blind-mockup.jpeg", "high-contrast-mockup.jpeg", "settings-mockup.jpg"],
-    ["stage-3/", "distance-tracking.png", "horizons-api.png"],
-    ["stage-4/", "colorblind.png", "help-refactor.png", "homepage-refactor.png"],
-    ["stage-5/", "optical-before.png", "optical-after.png", "spec-before.png", "optical-after.png"]
+    ["stage-0/",
+        "sat-img-1.png",
+        "sat-img-2.png",
+        "sat-img-3.png"],
+    ["stage-1/",
+        "design.png",
+        "mockup1.png",
+        "mockup2.png",
+        "mockup3.png",
+        "research.png"],
+    ["stage-2/",
+        "color-blind-mockup.jpeg",
+        "high-contrast-mockup.jpeg",
+        "settings-mockup.jpg"],
+    ["stage-3/",
+        "distance-tracking.png",
+        "horizons-api.png"],
+    ["stage-4/",
+        "colorblind.png",
+        "help-refactor.png",
+        "homepage-refactor.png"],
+    ["stage-5/",
+        "optical-before.png",
+        "optical-after.png",
+        "spec-before.png",
+        "optical-after.png"]
 ];
 const satelliteCaptionArray = [
     ["stage-0/",
         "Delivered Main page: Includes mission countdown, distance traveled, and navigation controls",
         "Delivered Mission page: Includes mission details and a scrubbable timeline",
-        "Delivered Instrument page: Includes instrument details and allows the User to explore the spacecraft Psyche" ],
-    ["stage-1/", "design.png", "mockup1.png", "mockup2.png", "mockup3.png", "research.png"],
-    ["stage-2/", "color-blind-mockup.jpeg", "high-contrast-mockup.jpeg", "settings-mockup.jpg"],
-    ["stage-3/", "distance-tracking.png", "horizons-api.png"],
-    ["stage-4/", "colorblind.png", "help-refactor.png", "homepage-refactor.png"],
-    ["stage-5/", "optical-before.png", "optical-after.png", "spec-before.png", "optical-after.png"]
+        "Delivered Instruments page: Includes instrument details and allows users to explore the Psyche spacecraft"
+    ],
+    ["stage-1/",
+        "Initial design document used to refine sponsor requirements",
+        "Proposed Mission page, presented to sponsor",
+        "Proposed Instruments page, presented to sponsor",
+        "Proposed Timeline page, presented to sponsor",
+        "Background research conducted to better understand and structure the scientific data"
+    ],
+    ["stage-2/",
+        "Colorblind mode mockup",
+        "High contrast mode mockup",
+        "Settings page mockup"
+    ],
+    ["stage-3/",
+        "Prototype NASA Horizon API integration",
+        "Backend API integration architecture"
+    ],
+    ["stage-4/",
+        "Interactive prototype of Colorblind mode",
+        "Finalized Help screen interface",
+        "Mission page and API integration finalized"
+    ],
+    ["stage-5/",
+        "Optical Communication: Original technical copy",
+        "Optical Communication: Revised plain-language copy",
+        "Spectrometer: Original technical copy",
+        "Spectrometer: Revised plain-language copy"
+    ]
 ];
 
 /** Finite State Machine instance managing active modals and view transitions. */

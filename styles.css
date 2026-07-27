@@ -1011,11 +1011,13 @@ Parent container for all below
     line-height: 0;
 }
 
-/* 2. Wrappers */
-.bottom-slide-wrapper {
-    position: relative;
-    display: block;
-    width: 100%; /* Changed back to 100% so the image can center inside it */
+/* 2. Wrappers - Upgraded to CSS Grid */
+.bottom-slide-wrapper,
+.top-slide-wrapper {
+    display: grid;
+    /* Row 1 gets remaining space (1fr), Row 2 perfectly fits the caption (auto) */
+    grid-template-rows: 1fr auto;
+    width: 100%;
     height: 100%;
 }
 
@@ -1023,48 +1025,47 @@ Parent container for all below
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%; /* Changed back to 100% */
-    height: 100%;
     z-index: 2;
-    background-color: black !important;
 }
 
 /* 3. Images */
 .stage-description-image {
     display: block;
 
-    /* THE FIX: Instead of a forced 100% size, we use max-bounds.
-       This shrinks the HTML element to perfectly match the aspect ratio of the image. */
+    /* Let the image scale naturally inside the 1fr grid cell */
     max-width: 100% !important;
-    max-height: calc(100% - 44px) !important;
+    max-height: 100% !important;
     width: auto !important;
     height: auto !important;
 
-    /* Centers the tightly-wrapped image box horizontally */
-    margin: 0 auto;
+    /* CRITICAL: Prevents the image from forcing the grid cell to expand */
+    min-height: 0 !important;
 
-    border: 2px solid white;
-    border-radius: var(--border-radius);
+    /* Centers the image horizontally, and pushes it flush against the top of the caption */
+    justify-self: center;
+    align-self: end;
+
+    /* Tight border wrapped around the image */
+    border: var(--border-width) solid white;
     box-sizing: border-box;
+    border-radius: var(--border-radius);
 }
 
 /* 4. Captions */
 .image-caption {
-    position: absolute;
-    bottom: 0;
-    left: 0;
+    /* REMOVED position: absolute and bottom: 0. It now flows naturally in the grid! */
+    position: relative;
     width: 100%;
     box-sizing: border-box;
     z-index: 3;
 
-    /* Restore text size */
     font-size: 1rem;
     line-height: 1.5;
-
     background: rgba(0, 0, 0, 0.6);
     color: #fff;
     padding: 10px;
 }
+
 
 /* 5. Scroll Controls */
 .img-scroll-container {
