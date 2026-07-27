@@ -822,17 +822,25 @@ body {
 }
 
 .image-circle-selector {
-    visibility: hidden;
     background-color: white !important;
     border-color: white !important;
     width: 0;
+    visibility: hidden;
     overflow: hidden;
 }
 
 .image-circle-transition-grow {
     visibility: visible;
-    width: 30px;
-    transition: width 5s ease-out;
+    animation: growWidth 5s ease-out forwards;
+}
+
+@keyframes growWidth {
+    from {
+        width: 0;
+    }
+    to {
+        width: 30px;
+    }
 }
 
 .left-arrow {
