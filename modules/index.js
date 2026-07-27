@@ -22,6 +22,17 @@ const satelliteImageArray = [
     ["stage-4/", "colorblind.png", "help-refactor.png", "homepage-refactor.png"],
     ["stage-5/", "optical-before.png", "optical-after.png", "spec-before.png", "optical-after.png"]
 ];
+const satelliteCaptionArray = [
+    ["stage-0/",
+        "Delivered Main page: Includes mission countdown, distance traveled, and navigation controls",
+        "Delivered Mission page: Includes mission details and a scrubbable timeline",
+        "Delivered Instrument page: Includes instrument details and allows the User to explore the spacecraft Psyche" ],
+    ["stage-1/", "design.png", "mockup1.png", "mockup2.png", "mockup3.png", "research.png"],
+    ["stage-2/", "color-blind-mockup.jpeg", "high-contrast-mockup.jpeg", "settings-mockup.jpg"],
+    ["stage-3/", "distance-tracking.png", "horizons-api.png"],
+    ["stage-4/", "colorblind.png", "help-refactor.png", "homepage-refactor.png"],
+    ["stage-5/", "optical-before.png", "optical-after.png", "spec-before.png", "optical-after.png"]
+];
 
 /** Finite State Machine instance managing active modals and view transitions. */
 let modalFSM;
@@ -188,15 +199,15 @@ window.onload = () => {
 
     // Bind project information buttons to their respective handlers
     for (let i = 0; i < satButton.length; i++) {
-        addProjectInfoButtonListener(satButton.item(i), satelliteExperience, satelliteImageArray, modals.SATELLITE_MODAL, expandingMenuButton, projectArrow, IMAGE_PATH_SAT_EXP);
+        addProjectInfoButtonListener(satButton.item(i), satelliteExperience, satelliteImageArray, satelliteCaptionArray, modals.SATELLITE_MODAL, expandingMenuButton, projectArrow, IMAGE_PATH_SAT_EXP, );
     }
 
     for (let i = 0; i < lmButton.length; i++) {
-        addProjectInfoButtonListener(lmButton.item(i), loreMythologyExperience, satelliteImageArray, modals.LORE_MYTHOLOGY_MODAL, expandingMenuButton, projectArrow, IMAGE_PATH_SAT_EXP);
+        addProjectInfoButtonListener(lmButton.item(i), loreMythologyExperience, satelliteImageArray, satelliteCaptionArray, modals.LORE_MYTHOLOGY_MODAL, expandingMenuButton, projectArrow, IMAGE_PATH_SAT_EXP);
     }
 
     for (let i = 0; i < geneticButton.length; i++) {
-        addProjectInfoButtonListener(geneticButton.item(i), geneticAlgorithm, satelliteImageArray, modals.GENETIC_ALGORITHM_MODAL, expandingMenuButton, projectArrow, IMAGE_PATH_SAT_EXP);
+        addProjectInfoButtonListener(geneticButton.item(i), geneticAlgorithm, satelliteImageArray, satelliteCaptionArray, modals.GENETIC_ALGORITHM_MODAL, expandingMenuButton, projectArrow, IMAGE_PATH_SAT_EXP);
     }
 
     // Accordion dropdown hitboxes for project stages
@@ -235,7 +246,7 @@ window.onload = () => {
  * @param {HTMLElement} projectArrow - The project submenu toggle indicator element.
  * @param {string} imagePath - The root directory path for the project's images.
  */
-function addProjectInfoButtonListener(button, projectInfo, imageArr, modal, expandingMenuButton, projectArrow, imagePath) {
+function addProjectInfoButtonListener(button, projectInfo, imageArr, captionArr, modal, expandingMenuButton, projectArrow, imagePath) {
     button.addEventListener("click", () => {
         for (let i = 0; i < projectButton.length; i++) {
             selectedModal.classList.toggle("underline");
@@ -244,7 +255,7 @@ function addProjectInfoButtonListener(button, projectInfo, imageArr, modal, expa
         }
 
         modalFSM.setState(modal);
-        new ImageFSM(imageArr, projectInfo.querySelectorAll(".stage-image-container"), imagePath);
+        new ImageFSM(imageArr, captionArr, projectInfo.querySelectorAll(".stage-image-container"), imagePath);
 
         if (expandedMenu) expandingMenuButton.dispatchEvent(new Event("click"));
         if (expandedProjectMenu) projectArrow.dispatchEvent(new Event("click"));
