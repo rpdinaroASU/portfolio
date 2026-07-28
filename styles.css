@@ -966,6 +966,10 @@ body {
     text-align: left !important;
 }
 
+.spacer {
+    margin: 20px;
+}
+
 /**
 Parent container for all below
  */
@@ -976,7 +980,6 @@ Parent container for all below
     flex-direction: column  !important;
     border: var(--border-width) solid white;
     border-radius: var(--border-radius);
-    background-color: var(--tertiary-dark-color) !important;
     min-width: 600px !important;
     max-width: 600px !important;
     min-height: 610px !important;
@@ -1009,6 +1012,8 @@ Parent container for all below
     /* Kills invisible whitespace gaps */
     font-size: 0;
     line-height: 0;
+
+    background: rgba(0, 0, 0, 0.6);
 }
 
 /* 2. Wrappers - Upgraded to CSS Grid */

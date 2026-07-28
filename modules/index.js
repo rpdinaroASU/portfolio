@@ -4,78 +4,11 @@
  * @author Emily Dinaro
  */
 
-import { ImageFSM } from './ImageFSM.js';
-import { ModalFSM } from "./ModalFSM.js";
+import {ImageFSM} from './ImageFSM.js';
+import {ModalFSM} from "./ModalFSM.js";
 
 /** Base directory path for satellite experience project resources. */
 const IMAGE_PATH_SAT_EXP = "../images/projects/project-resources/sat-experience/";
-
-/**
- * Hierarchical array defining stages and their associated image assets
- * for the satellite experience project.
- */
-const satelliteImageArray = [
-    ["stage-0/",
-        "sat-img-1.png",
-        "sat-img-2.png",
-        "sat-img-3.png"],
-    ["stage-1/",
-        "design.png",
-        "mockup1.png",
-        "mockup2.png",
-        "mockup3.png",
-        "research.png"],
-    ["stage-2/",
-        "color-blind-mockup.jpeg",
-        "high-contrast-mockup.jpeg",
-        "settings-mockup.jpg"],
-    ["stage-3/",
-        "distance-tracking.png",
-        "horizons-api.png"],
-    ["stage-4/",
-        "colorblind.png",
-        "help-refactor.png",
-        "homepage-refactor.png"],
-    ["stage-5/",
-        "optical-before.png",
-        "optical-after.png",
-        "spec-before.png",
-        "optical-after.png"]
-];
-const satelliteCaptionArray = [
-    ["stage-0/",
-        "Delivered Main page: Includes mission countdown, distance traveled, and navigation controls",
-        "Delivered Mission page: Includes mission details and a scrubbable timeline",
-        "Delivered Instruments page: Includes instrument details and allows users to explore the Psyche spacecraft"
-    ],
-    ["stage-1/",
-        "Initial design document used to refine sponsor requirements",
-        "Proposed Mission page, presented to sponsor",
-        "Proposed Instruments page, presented to sponsor",
-        "Proposed Timeline page, presented to sponsor",
-        "Background research conducted to better understand and structure the scientific data"
-    ],
-    ["stage-2/",
-        "Colorblind mode mockup",
-        "High contrast mode mockup",
-        "Settings page mockup"
-    ],
-    ["stage-3/",
-        "Prototype NASA Horizon API integration",
-        "Backend API integration architecture"
-    ],
-    ["stage-4/",
-        "Interactive prototype of Colorblind mode",
-        "Finalized Help screen interface",
-        "Mission page and API integration finalized"
-    ],
-    ["stage-5/",
-        "Optical Communication: Original technical copy",
-        "Optical Communication: Revised plain-language copy",
-        "Spectrometer: Original technical copy",
-        "Spectrometer: Revised plain-language copy"
-    ]
-];
 
 /** Finite State Machine instance managing active modals and view transitions. */
 let modalFSM;
@@ -102,10 +35,23 @@ let selectedModal;
 let projectButton;
 
 /**
+ * Fetches and parses the satellite XML data.
+ * @param {string} xmlUrl - The path to your XML file (e.g., './data.xml')
+ * @returns {Promise<{satelliteImageArray: string[][], satelliteCaptionArray: string[][]}>}
+ */
+
+/**
  * Initializes all core event listeners, DOM elements, and FSM controllers
  * once the window content has fully loaded.
  */
 window.onload = () => {
+    const filePath = "../xml/satellite-experience/project-page.xml";
+    const containerId = "stages-wrapper"; // The ID of your HTML container
+
+    projectBuilder(filePath).then(html => {
+        document.getElementById(containerId).innerHTML = html;
+    });
+
     const $ = (sel) => document.querySelector(sel);
     const $$ = (sel) => document.querySelectorAll(sel);
 
@@ -125,8 +71,8 @@ window.onload = () => {
     /* Interactive Elements & Buttons */
     const about = $$(".about");
     const dropdownHitbox = $$(".dropdown-hitbox");
-    const geneticButton = $$(".genetic-algorithm-button");
-    const lmButton = $$(".lore-button");
+    //const geneticButton = $$(".genetic-algorithm-button");
+    //const lmButton = $$(".lore-button");
     const satButton = $$(".sat-button");
     const contact = $$(".contact");
     projectButton = $$(".project-horizontal");
@@ -240,11 +186,19 @@ window.onload = () => {
         });
     }
 
-    // Bind project information buttons to their respective handlers
-    for (let i = 0; i < satButton.length; i++) {
-        addProjectInfoButtonListener(satButton.item(i), satelliteExperience, satelliteImageArray, satelliteCaptionArray, modals.SATELLITE_MODAL, expandingMenuButton, projectArrow, IMAGE_PATH_SAT_EXP, );
-    }
+    loadSatelliteData('../xml/satellite-experience/image-caption-array.xml')
+        .then(({ satelliteImageArray, satelliteCaptionArray }) => {
+            // Bind project information buttons to their respective handlers
+            for (let i = 0; i < satButton.length; i++) {
+                addProjectInfoButtonListener(satButton.item(i), satelliteExperience, satelliteImageArray, satelliteCaptionArray, modals.SATELLITE_MODAL, expandingMenuButton, projectArrow, IMAGE_PATH_SAT_EXP, );
+            }
+        })
+        .catch(error => {
+            console.error("Error loading XML data:", error);
+        });
 
+    
+    /*
     for (let i = 0; i < lmButton.length; i++) {
         addProjectInfoButtonListener(lmButton.item(i), loreMythologyExperience, satelliteImageArray, satelliteCaptionArray, modals.LORE_MYTHOLOGY_MODAL, expandingMenuButton, projectArrow, IMAGE_PATH_SAT_EXP);
     }
@@ -252,6 +206,8 @@ window.onload = () => {
     for (let i = 0; i < geneticButton.length; i++) {
         addProjectInfoButtonListener(geneticButton.item(i), geneticAlgorithm, satelliteImageArray, satelliteCaptionArray, modals.GENETIC_ALGORITHM_MODAL, expandingMenuButton, projectArrow, IMAGE_PATH_SAT_EXP);
     }
+    */
+
 
     // Accordion dropdown hitboxes for project stages
     for (let i = 0; i < dropdownHitbox.length; i++) {
@@ -275,6 +231,51 @@ window.onload = () => {
             largeScreenProjects.classList.toggle("border", false);
         }
     });
+
+    async function loadSatelliteData(xmlUrl) {
+        // 1. Fetch the XML file
+        const response = await fetch(xmlUrl);
+        const xmlText = await response.text();
+
+        // 2. Parse the text into an XML Document Object
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(xmlText, "application/xml");
+
+        // 3. Initialize the two main arrays
+        const satelliteImageArray = [];
+        const satelliteCaptionArray = [];
+
+        // 4. Iterate through every <stage> in the XML
+        const stages = xmlDoc.querySelectorAll("stage");
+
+        stages.forEach(stage => {
+            // Extract the path attribute (e.g., "stage-0/")
+            const path = stage.getAttribute("path");
+
+            // Start our sub-arrays with the path as the first element
+            const imageSubArray = [path];
+            const captionSubArray = [path];
+
+            // 5. Iterate through every <slide> within this stage
+            const slides = stage.querySelectorAll("slide");
+
+            slides.forEach(slide => {
+                // Extract the text content from the inner tags
+                const imageText = slide.querySelector("image").textContent;
+                const captionText = slide.querySelector("caption").textContent;
+
+                // Push the values to their respective sub-arrays
+                imageSubArray.push(imageText);
+                captionSubArray.push(captionText);
+            });
+
+            // 6. Push the completed sub-arrays into the main arrays
+            satelliteImageArray.push(imageSubArray);
+            satelliteCaptionArray.push(captionSubArray);
+        });
+
+        return { satelliteImageArray, satelliteCaptionArray };
+    }
 };
 
 /**
@@ -284,6 +285,7 @@ window.onload = () => {
  * @param {HTMLElement} button - The button element triggering the modal view.
  * @param {HTMLElement} projectInfo - The container element holding the project's details and stages.
  * @param {string[][]} imageArr - The array of image paths structured by stages.
+ * @param captionArr
  * @param {HTMLElement|string} modal - The target modal identifier from the modals enum.
  * @param {HTMLElement} expandingMenuButton - The main menu expansion toggle button.
  * @param {HTMLElement} projectArrow - The project submenu toggle indicator element.
@@ -303,4 +305,84 @@ function addProjectInfoButtonListener(button, projectInfo, imageArr, captionArr,
         if (expandedMenu) expandingMenuButton.dispatchEvent(new Event("click"));
         if (expandedProjectMenu) projectArrow.dispatchEvent(new Event("click"));
     });
+}
+
+
+async function projectBuilder(filePath) {
+    try {
+        // Fetch the XML file from the provided path
+        const response = await fetch(filePath);
+        if (!response.ok) throw new Error("Failed to load image XML.");
+
+        // Extract the XML text
+        const xmlString = await response.text();
+
+        // Parse the XML string into an XML Document
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(xmlString, "text/xml");
+
+        // Get all stage elements
+        const stages = xmlDoc.querySelectorAll("stage");
+        let htmlOutput = "";
+
+        // Loop through each stage and build the HTML
+        stages.forEach((stage, index) => {
+            if (stage.getAttribute("skip") === "true") {
+                // Exit this iteration early, but 'index' will still increment for the next one
+                return;
+            }
+            const stageTitle = stage.querySelector("title")?.textContent || "";
+            const sectionTitle = stage.querySelector("section > title")?.textContent || "";
+
+            // Handle optional description
+            const descriptionNode = stage.querySelector("section > description");
+            let descriptionHtml = "";
+            if (descriptionNode) {
+                descriptionHtml = `
+                                    <p style="margin-bottom: 15px;">
+                                        ${descriptionNode.textContent.trim()}
+                                    </p>`;
+            }
+
+            // Build list items
+            const items = stage.querySelectorAll("item");
+            let itemsHtml = "";
+            items.forEach(item => {
+                const name = item.querySelector("name")?.textContent || "";
+                const detail = item.querySelector("detail")?.textContent || "";
+
+                itemsHtml += `
+                                        
+                                            <div class="project-title-font bold">${name}</div>
+                                            <ul style="margin:2px"><li>${detail}</li></ul>`;
+            });
+            itemsHtml += `<div class="spacer"></div>`
+
+            // Construct the full stage HTML
+            htmlOutput += `
+                    <div class="stage-container">
+                        <div class="project-stage project-title-font dropdown-hitbox">
+                            <div class="stage-title">${stageTitle}</div>
+                            <img src="../images/icons/down-arrow.svg" alt=" ∨ " class="stage-image">
+                        </div>
+                        <div class="stage-image-container stage-${index}"></div>
+                        <div class="stage-description left-align-text">
+                            <div class="text text-top project-title-font">
+                                <div class="project-title-font bold">
+                                    ${sectionTitle}
+                                </div>
+                                <div class="project-paragraph-font-size">${descriptionHtml}
+                                    ${itemsHtml}
+                                </div>
+                            </div>
+                        </div>
+                    </div>`;
+        });
+
+        return htmlOutput;
+
+    } catch (error) {
+        console.error("Error loading or parsing XML:", error);
+        return `<div class="error">Unable to load project timeline.</div>`;
+    }
 }

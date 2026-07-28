@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project id="satellite-experience">
+    <title>NASA Psyche Mission: AR/WebXR for Public Engagement—CERNN: Satellite Experience</title>
+
+    <stages>
+        <!-- Stage: Description -->
+        <stage>
+            <title>Description</title>
+            <section>
+                <title>Project Overview</title>
+                <description>This project envisions an accessible, interactive AR experience that translates complex NASA data into an engaging narrative, allowing users of all ages to explore the Psyche spacecraft and track its journey in real time.</description>
+                <items>
+                    <item>
+                        <name>Interactive 3D Spacecraft</name>
+                        <detail>Users interact with a glowing 3D model, discovering how onboard instruments support the mission's goal of mapping and analyzing Psyche 16.</detail>
+                    </item>
+                    <item>
+                        <name>Dynamic Mission Timeline</name>
+                        <detail>A scrubbable, real-time tracking system highlights critical milestones from launch to orbit, building anticipation through countdowns and progress markers.</detail>
+                    </item>
+                    <item>
+                        <name>Accessible Design</name>
+                        <detail>Intuitive mobile gestures ensure audiences of all technical and physical abilities can seamlessly engage with the scientific content.</detail>
+                    </item>
+                </items>
+            </section>
+        </stage>
+
+        <!-- Stage: Requirements & Design -->
+        <stage>
+            <title>Requirements &amp; Design</title>
+            <section>
+                <title>Core Functional Requirements</title>
+                <items>
+                    <item>
+                        <name>Seamless Access</name>
+                        <detail>Web-based AR/VR launches instantly via QR code from the Psyche Launchpad without requiring app downloads or personal data.</detail>
+                    </item>
+                    <item>
+                        <name>Accessible UX</name>
+                        <detail>Bite-sized, single-user educational modules designed for the public, featuring on-demand contextual gesture instructions.</detail>
+                    </item>
+                    <item>
+                        <name>Mission Progress Tracker</name>
+                        <detail>Features a real-time countdown to arrival and an explorable 3D spacecraft model tracking the journey to Psyche 16.</detail>
+                    </item>
+                    <item>
+                        <name>Spacecraft Exploration</name>
+                        <detail>Interactive 3D inspection that uses visual cues (pulsing highlights) to guide users through discovering and learning about onboard instruments.</detail>
+                    </item>
+                    <item>
+                        <name>Interactive Timeline</name>
+                        <detail>Navigable milestone tracker allowing users to explore critical mission events, from launch through future instrument deployments.</detail>
+                    </item>
+                </items>
+            </section>
+        </stage>
+
+        <!-- Stage: Sprint 1 -->
+        <stage>
+            <title>Sprint 1: Design and Documentation - Part 1</title>
+            <section>
+                <title>Low-level Design &amp; Establishing Educational Goals</title>
+                <description>The Psyche mission demands high informational precision, I summarized research papers and established frameworks and libraries for the project.</description>
+                <items>
+                    <item>
+                        <name>AR Technology Evaluation</name>
+                        <detail>Researched APIs, libraries, and frameworks, documenting pros/cons to drive the project's technical architecture.</detail>
+                    </item>
+                    <item>
+                        <name>Scientific Research</name>
+                        <detail>Synthesized 13+ NASA Psyche research papers—covering mission objectives, geology, and satellite operations—to ensure scientific accuracy across the project.</detail>
+                    </item>
+                    <item>
+                        <name>High-Fidelity Mockups</name>
+                        <detail>Designed accessible, user-tested UI/UX mockups for three core AR experiences (Detective, Satellite, and Lore/Astronomer).</detail>
+                    </item>
+                    <item>
+                        <name>Use Case Architecture</name>
+                        <detail>Developed UML diagrams to map user interactions, logic flows, and system responsibilities.</detail>
+                    </item>
+                    <item>
+                        <name>Experience Design Documents (EDDs)</name>
+                        <detail>Defined the narrative, mechanics, and user flows to establish the creative direction for the sprint.</detail>
+                    </item>
+                    <item>
+                        <name>Requirements Extraction</name>
+                        <detail>Translated complex design concepts and scientific research into actionable, developer-ready requirements and info sheets.</detail>
+                    </item>
+                </items>
+            </section>
+        </stage>
+
+        <!-- Stage: Sprint 2 -->
+        <stage>
+            <title>Sprint 2: Launch Page and Homepage</title>
+            <section>
+                <title>Inclusive Design &amp; Accessibility</title>
+                <description>Driven by the mandate to make the Psyche Satellite experience universally accessible, I designed and implemented a suite of user-controlled visual enhancements.</description>
+                <items>
+                    <item>
+                        <name>High-Contrast Optimization</name>
+                        <detail>Designed custom UI themes to ensure strict legibility standards and support users with visual impairments.</detail>
+                    </item>
+                    <item>
+                        <name>Dynamic Light &amp; Dark Modes</name>
+                        <detail>Integrated adaptable color schemes to reduce eye strain and accommodate diverse viewing environments.</detail>
+                    </item>
+                    <item>
+                        <name>Centralized Customization Hub</name>
+                        <detail>Prototyped and developed an intuitive settings menu, empowering users to seamlessly tailor their AR experience to their needs.</detail>
+                    </item>
+                </items>
+            </section>
+        </stage>
+
+        <!-- Stage: Sprint 3 -->
+        <stage>
+            <title>Sprint 3: Components Page and Mission Timeline Page</title>
+            <section>
+                <title>Live Mission Tracking &amp; API Integration</title>
+                <description>To bring the Psyche mission to life, I architected a data-driven experience that translates complex spacecraft telemetry into accessible, real-time mission progress on the homepage.</description>
+                <items>
+                    <item>
+                        <name>JPL Horizons API Integration</name>
+                        <detail>Engineered a pipeline to extract and parse live Ephemeris data from the Horizons API, translating raw orbital telemetry into precise distance figures.</detail>
+                    </item>
+                    <item>
+                        <name>Client-Side Data Architecture</name>
+                        <detail>Generated a structured, localized XML database to manage and serve satellite distance data efficiently to the frontend interface.</detail>
+                    </item>
+                    <item>
+                        <name>Mission Phase Visualization</name>
+                        <detail>Developed dynamic UI components to consume the XML data, allowing users to seamlessly track the satellite's journey and explore distinct mission phases.</detail>
+                    </item>
+                </items>
+            </section>
+        </stage>
+
+        <!-- Stage: Sprint 4 -->
+        <stage>
+            <title>Sprint 4: About Page, Additional Accessibility Features, User Feedback, and Mobile Features</title>
+            <section>
+                <title>AR Accessibility &amp; 3D UI Enhancements</title>
+                <description>To make the Augmented Reality experience inclusive and visually immersive, I implemented system-wide accessibility themes and refined the 3D environmental UI components.</description>
+                <items>
+                    <item>
+                        <name>System-Wide Accessibility Theming</name>
+                        <detail>Engineered dynamic theming architecture to apply high-contrast, light, and color-blind accessible themes across all interactive AR pop-ups and buttons.</detail>
+                    </item>
+                    <item>
+                        <name>Persistent User Preferences</name>
+                        <detail>Ensured user accessibility settings translated seamlessly across the entire application, dynamically adapting interface components to meet specific user needs.</detail>
+                    </item>
+                    <item>
+                        <name>3D Environment Refinement</name>
+                        <detail>Enhanced the visual cohesion of the virtual space by upgrading the Skybox floor, bridging the gap between functional UI and an immersive 3D aesthetic.</detail>
+                    </item>
+                </items>
+            </section>
+        </stage>
+
+        <!-- Stage: Sprint 5 -->
+        <stage>
+            <title>Sprint 5: Review, Finalization, and Improvement</title>
+            <section>
+                <title>Educational UX Design &amp; Data Architecture</title>
+                <description>To ensure the experience was highly educational and intuitive for users of all ages and cognitive abilities, I overhauled the content strategy, integrated multimedia elements, and optimized the backend data delivery.</description>
+                <items>
+                    <item>
+                        <name>Information Architecture &amp; Content Strategy</name>
+                        <detail>Restructured complex technical data for the Mission and Instruments sections into an accessible "What, Why, and How" framework to maximize user comprehension across diverse age groups.</detail>
+                    </item>
+                    <item>
+                        <name>Multimedia Integration</name>
+                        <detail>Enriched the educational phases with contextual images and videos, supporting visual learners and increasing overall user retention and engagement.</detail>
+                    </item>
+                    <item>
+                        <name>Scalable Data Management</name>
+                        <detail>Re-engineered content delivery by transitioning hardcoded phase data into a structured JSON architecture, improving system scalability and maintaining consistency across the application.</detail>
+                    </item>
+                    <item>
+                        <name>UX/UI Quality Assurance</name>
+                        <detail>Refined user flows and interface components to guarantee a polished, highly accessible, and confident user experience for all audiences.</detail>
+                    </item>
+                </items>
+            </section>
+        </stage>
+    </stages>
+</project>

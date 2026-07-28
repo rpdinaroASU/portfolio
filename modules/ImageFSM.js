@@ -30,6 +30,10 @@ export class ImageFSM {
                 console.warn(`ImageFSM: Missing parent node for carousel index ${index}. Skipping.`);
                 continue;
             }
+            if (!imageNameArray[index] || !imageNameArray[index][0]) {
+                this.parentNodeList[index].parentNode.removeChild(this.parentNodeList[index]);
+                continue;
+            }
 
             this.parentNodeList[index].innerHTML = "";
             this.caption[index] = [];
@@ -81,7 +85,7 @@ export class ImageFSM {
             this.imgCount[index] = 0;
             this.right[index] = true;
             this.circles[index] = [];
-            this.createImageSelector(imageNameArray[index]);
+            this.createImageSelector(imageNameArray[index], index);
         }
     }
 
@@ -89,9 +93,11 @@ export class ImageFSM {
         return FSMFunctions.mod(targetNumber, this.circles[index].length);
     }
 
-    createImageSelector(imageArrayList) {
+    createImageSelector(imageArrayList, scrollIndex) {
+        if (!imageArrayList || typeof imageArrayList[0] !== 'string') {
+            return;
+        }
         const documentFragment = document.createDocumentFragment();
-        const scrollIndex = Number(imageArrayList[0].slice(-2, -1));
 
         this.circles[scrollIndex] = [];
         documentFragment.appendChild(this.makeArrow(false, 1, scrollIndex));

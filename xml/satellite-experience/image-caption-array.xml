@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Satellite Experience">
+    <stage path="stage-0/">
+        <slide>
+            <image>sat-img-1.png</image>
+            <caption>Delivered Main page: Includes mission countdown, distance traveled, and navigation controls</caption>
+        </slide>
+        <slide>
+            <image>sat-img-2.png</image>
+            <caption>Delivered Mission page: Includes mission details and a scrubbable timeline</caption>
+        </slide>
+        <slide>
+            <image>sat-img-3.png</image>
+            <caption>Delivered Instruments page: Includes instrument details and allows users to explore the Psyche spacecraft</caption>
+        </slide>
+    </stage>
+
+    <stage skip="true"> </stage>
+
+    <stage path="stage-1/">
+        <slide>
+            <image>design.png</image>
+            <caption>Initial design document used to refine sponsor requirements</caption>
+        </slide>
+        <slide>
+            <image>mockup1.png</image>
+            <caption>Proposed Mission page, presented to sponsor</caption>
+        </slide>
+        <slide>
+            <image>mockup2.png</image>
+            <caption>Proposed Instruments page, presented to sponsor</caption>
+        </slide>
+        <slide>
+            <image>mockup3.png</image>
+            <caption>Proposed Timeline page, presented to sponsor</caption>
+        </slide>
+        <slide>
+            <image>research.png</image>
+            <caption>Background research conducted to better understand and structure the scientific data</caption>
+        </slide>
+    </stage>
+
+    <stage path="stage-2/">
+        <slide>
+            <image>color-blind-mockup.jpeg</image>
+            <caption>Colorblind mode mockup</caption>
+        </slide>
+        <slide>
+            <image>high-contrast-mockup.jpeg</image>
+            <caption>High contrast mode mockup</caption>
+        </slide>
+        <slide>
+            <image>settings-mockup.jpg</image>
+            <caption>Settings page mockup</caption>
+        </slide>
+    </stage>
+
+    <stage path="stage-3/">
+        <slide>
+            <image>distance-tracking.png</image>
+            <caption>Prototype NASA Horizon API integration</caption>
+        </slide>
+        <slide>
+            <image>horizons-api.png</image>
+            <caption>Backend API integration architecture</caption>
+        </slide>
+    </stage>
+
+    <stage path="stage-4/">
+        <slide>
+            <image>colorblind.png</image>
+            <caption>Interactive prototype of Colorblind mode</caption>
+        </slide>
+        <slide>
+            <image>help-refactor.png</image>
+            <caption>Finalized Help screen interface</caption>
+        </slide>
+        <slide>
+            <image>homepage-refactor.png</image>
+            <caption>Mission page and API integration finalized</caption>
+        </slide>
+    </stage>
+
+    <stage path="stage-5/">
+        <slide>
+            <image>optical-before.png</image>
+            <caption>Optical Communication: Original technical copy</caption>
+        </slide>
+        <slide>
+            <image>optical-after.png</image>
+            <caption>Optical Communication: Revised plain-language copy</caption>
+        </slide>
+        <slide>
+            <image>spec-before.png</image>
+            <caption>Spectrometer: Original technical copy</caption>
+        </slide>
+        <slide>
+            <image>optical-after.png</image>
+            <caption>Spectrometer: Revised plain-language copy</caption>
+        </slide>
+    </stage>
+</project>
