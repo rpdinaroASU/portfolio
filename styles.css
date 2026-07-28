@@ -987,6 +987,7 @@ Parent container for all below
     overflow: hidden !important;
     padding-bottom: 34px;
     aspect-ratio: 1 / 1;
+    background-color:  rgba(0,0,0,.2) !important;
 
     grid-area: 2 / 1 / 3 / 2;
     margin-top: 5px;
@@ -999,13 +1000,12 @@ Parent container for all below
     position: relative;
     display: block;
 
-    max-width: 575px !important;
-    max-height: 575px !important;
-    min-width: 575px !important;
+    max-width: 600px !important;
+    min-width: 600px !important;
     min-height: 575px !important;
+    max-height: 575px !important;
 
-    margin: 10px 10px 0 10px;
-    border: var(--border-width) solid var(--tertiary-light-color);
+    border-bottom: var(--border-width) solid var(--tertiary-light-color);
     border-radius: var(--border-radius);
     overflow: hidden; /* Ensures nothing spills outside the rounded borders */
 
@@ -1013,7 +1013,11 @@ Parent container for all below
     font-size: 0;
     line-height: 0;
 
-    background: rgba(0, 0, 0, 0.6);
+    background-color:  rgba(0,0,0,.2) !important;
+}
+.slide-wrapper {
+    margin-top: 15px;
+    padding-bottom: 10px;
 }
 
 /* 2. Wrappers - Upgraded to CSS Grid */
@@ -1024,6 +1028,7 @@ Parent container for all below
     grid-template-rows: 1fr auto;
     width: 100%;
     height: 100%;
+    background-color:  rgba(0,0,0,.2) !important;
 }
 
 .top-slide-wrapper {
@@ -1066,9 +1071,10 @@ Parent container for all below
 
     font-size: 1rem;
     line-height: 1.5;
-    background: rgba(0, 0, 0, 0.6);
     color: #fff;
-    padding: 10px;
+    padding: 10px 0 25px 0;
+
+    background-color: rgba(0,0,0,.2) !important;
 }
 
 

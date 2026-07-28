@@ -312,7 +312,6 @@ async function projectBuilder(filePath) {
     try {
         // Fetch the XML file from the provided path
         const response = await fetch(filePath);
-        if (!response.ok) throw new Error("Failed to load image XML.");
 
         // Extract the XML text
         const xmlString = await response.text();

@@ -1,6 +1,5 @@
 import { FSMFunctions } from './FSMFunctions.js';
 
-// --- Configuration Constants (Replaces Magic Numbers) ---
 
 const TIME_BETWEEN_PICTURES_MS = 7000;
 const FADE_ANIMATION_TIMEOUT_MS = 1000;
