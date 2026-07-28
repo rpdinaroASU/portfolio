@@ -1,330 +1,379 @@
 import { FSMFunctions } from './FSMFunctions.js';
 
-/**
- * Constant defining the time in milliseconds between automatic image transitions.
- * @type {number}
- */
-const IMAGE_CHANGE_INTERVAL = 7000;
+// --- Configuration Constants (Replaces Magic Numbers) ---
+
+const TIME_BETWEEN_PICTURES_MS = 7000;
+const FADE_ANIMATION_TIMEOUT_MS = 1000;
+
+// Grid layout and array positioning offsets
+const LEFT_ARROW_GRID_COLUMN = 1;
+const GRID_COLUMN_START_OFFSET = 2;
+const INDEX_OFFSET_FOR_DOT_CLICKS = 2;
+
+// Array positions based on the expected input data structure
+const FOLDER_PREFIX_POSITION = 0;
+const FIRST_PICTURE_POSITION = 1;
+
+// Layer identifiers for the cross-fade effect
+const BOTTOM_LAYER_ID = 0;
+const TOP_LAYER_ID = 1;
+const TOTAL_IMAGE_LAYERS = 2;
 
 /**
- * Class representing a Finite State Machine for managing image carousels.
- * This class handles the initialization, DOM construction, auto-scrolling,
- * and cross-fade animations for multiple carousels simultaneously.
+ * Manages multiple image sliders on a single page.
+ * Handles creating the layout, navigation dots, and smooth fading animations between pictures.
  */
 export class ImageFSM {
-    // Array properties storing the state and DOM elements for each carousel index.
-    bottomImage = [];
-    topImage = [];
-    scrollContainer = [];
-    circles = [];
-    rollingInterval = [];
-    imgCount = [];
-    right = [];
-    isAnimating = [];
-    imageNameArray = [];
-    parentNodeList = [];
-    captionArr = [];
-    caption = [];
-    bottomWrapper = [];
-    topWrapper = [];
+    // Arrays storing the visual elements and state for each separate slider on the page
+    bottomPictures = [];
+    topPictures = [];
+    navigationDotAreas = [];
+    navigationDots = [];
+    automaticScrollTimers = [];
+    currentPictureNumbers = [];
+    isMovingForward = [];
+    isCurrentlyFading = [];
+
+    // Data provided when starting the slider
+    imageFileNames = [];
+    imageTextDescriptions = [];
+    htmlDisplayAreas = [];
+    folderPath = "";
+
+    // Wrapper boxes used for the fading effect
+    textDescriptionLayers = [];
+    bottomPictureBoxes = [];
+    topPictureBoxes = [];
 
     /**
-     * Creates an instance of ImageFSM.
+     * Sets up the image sliders inside the provided HTML sections.
      *
-     * @param {string[][]} imageNameArray - A 2D array where each sub-array contains a base prefix at index 0 followed by image suffixes for a specific carousel.
-     * @param {string[][]} captionArr - A 2D array where each sub-array contains captions corresponding to the images.
-     * @param {HTMLElement[]} parentNodeList - An array of DOM elements where each carousel will be mounted.
-     * @param {string} imagePath - The base directory path where images are located.
+     * @param {string[][]} imageFileNames - List of image names (first item is the shared prefix, rest are unique suffixes).
+     * @param {string[][]} imageTextDescriptions - List of text descriptions matching the pictures.
+     * @param {HTMLElement[]} htmlDisplayAreas - The HTML sections where the sliders will be built.
+     * @param {string} folderPath - The folder location where the pictures are stored.
      */
-    constructor(imageNameArray, captionArr, parentNodeList, imagePath) {
-        this.imageNameArray = imageNameArray;
-        this.parentNodeList = parentNodeList;
-        this.imagePath = imagePath;
-        this.captionArr = captionArr;
+    constructor(imageFileNames, imageTextDescriptions, htmlDisplayAreas, folderPath) {
+        this.imageFileNames = imageFileNames;
+        this.imageTextDescriptions = imageTextDescriptions;
+        this.htmlDisplayAreas = htmlDisplayAreas;
+        this.folderPath = folderPath;
 
-        for (let index = 0; index < imageNameArray.length; index++) {
-            if (!this.parentNodeList[index]) {
-                console.warn(`ImageFSM: Missing parent node for carousel index ${index}. Skipping.`);
+        for (let sliderId = 0; sliderId < imageFileNames.length; sliderId++) {
+            const currentDisplayArea = this.htmlDisplayAreas[sliderId];
+            const currentPictureGroup = this.imageFileNames[sliderId];
+
+            // Safety check to ensure the HTML area and pictures exist before building
+            if (!currentDisplayArea) {
+                console.warn(`ImageSlider: Missing HTML area for slider number ${sliderId}. Skipping.`);
                 continue;
             }
-            if (!imageNameArray[index] || !imageNameArray[index][0]) {
-                this.parentNodeList[index].parentNode.removeChild(this.parentNodeList[index]);
+            if (!currentPictureGroup || !currentPictureGroup[FOLDER_PREFIX_POSITION]) {
+                currentDisplayArea.parentNode.removeChild(currentDisplayArea);
                 continue;
             }
 
-            this.parentNodeList[index].innerHTML = "";
-            this.caption[index] = [];
+            // Clear out any old content inside the HTML area
+            currentDisplayArea.innerHTML = "";
+            this.textDescriptionLayers[sliderId] = [];
 
-            // 1. Create the dedicated inner container for the images/captions
-            const carouselParent = document.createElement("div");
-            carouselParent.className = "carousel-parent-container";
+            // 1. Create the main box that holds the pictures and text
+            const mainSliderBox = document.createElement("div");
+            mainSliderBox.className = "carousel-parent-container";
 
-            // 2. Create the wrappers for top and bottom layers (used for crossfading)
-            this.bottomWrapper[index] = document.createElement("div");
-            this.bottomWrapper[index].className = "slide-wrapper bottom-slide-wrapper";
+            // 2. Create the hidden bottom box and visible top box for the fading effect
+            this.bottomPictureBoxes[sliderId] = document.createElement("div");
+            this.bottomPictureBoxes[sliderId].className = "slide-wrapper bottom-slide-wrapper";
 
-            this.topWrapper[index] = document.createElement("div");
-            this.topWrapper[index].className = "slide-wrapper top-slide-wrapper";
+            this.topPictureBoxes[sliderId] = document.createElement("div");
+            this.topPictureBoxes[sliderId].className = "slide-wrapper top-slide-wrapper";
 
-            // 3. Initialize Captions (0 for bottom layer, 1 for top layer)
-            for (let i = 0; i < 2; i++) {
-                this.caption[index][i] = document.createElement("div");
-                this.caption[index][i].className = "image-caption";
-                if (this.captionArr && this.captionArr[index]) {
-                    // Default to the first caption (index 1 in the subarray)
-                    this.caption[index][i].innerText = this.captionArr[index][1] || "";
+            // 3. Create the text description elements for both layers
+            for (let layerId = 0; layerId < TOTAL_IMAGE_LAYERS; layerId++) {
+                const textElement = document.createElement("div");
+                textElement.className = "image-caption";
+
+                if (this.imageTextDescriptions && this.imageTextDescriptions[sliderId]) {
+                    textElement.innerText = this.imageTextDescriptions[sliderId][FIRST_PICTURE_POSITION] || "";
                 }
+
+                this.textDescriptionLayers[sliderId][layerId] = textElement;
             }
 
-            // 4. Setup Images
-            this.bottomImage[index] = this.setUpVisibleStageImages(false, index);
-            this.topImage[index] = this.setUpVisibleStageImages(true, index);
+            // 4. Create the actual image elements
+            this.bottomPictures[sliderId] = this.createPictureElement(false, sliderId);
+            this.topPictures[sliderId] = this.createPictureElement(true, sliderId);
 
-            // 5. Assemble the DOM (Image + Caption inside Wrapper)
-            this.bottomWrapper[index].appendChild(this.bottomImage[index]);
-            this.bottomWrapper[index].appendChild(this.caption[index][0]);
+            // 5. Put the pictures and text inside their respective boxes
+            this.bottomPictureBoxes[sliderId].appendChild(this.bottomPictures[sliderId]);
+            this.bottomPictureBoxes[sliderId].appendChild(this.textDescriptionLayers[sliderId][BOTTOM_LAYER_ID]);
 
-            this.topWrapper[index].appendChild(this.topImage[index]);
-            this.topWrapper[index].appendChild(this.caption[index][1]);
+            this.topPictureBoxes[sliderId].appendChild(this.topPictures[sliderId]);
+            this.topPictureBoxes[sliderId].appendChild(this.textDescriptionLayers[sliderId][TOP_LAYER_ID]);
 
-            // 6. Append Wrappers to the inner carouselParent
-            carouselParent.appendChild(this.bottomWrapper[index]);
-            carouselParent.appendChild(this.topWrapper[index]);
+            // 6. Put the layer boxes into the main slider box
+            mainSliderBox.appendChild(this.bottomPictureBoxes[sliderId]);
+            mainSliderBox.appendChild(this.topPictureBoxes[sliderId]);
 
-            // 7. Append the fully assembled carousel to the main DOM node
-            this.parentNodeList[index].appendChild(carouselParent);
+            // 7. Add the finished slider box to the webpage
+            currentDisplayArea.appendChild(mainSliderBox);
 
-            // 8. Setup Controls (Sibling to carouselParent, appended directly to parentNodeList)
-            this.scrollContainer[index] = document.createElement("div");
-            this.scrollContainer[index].className = "img-scroll-container";
-            this.scrollContainer[index].style.gridTemplateColumns = `repeat(${imageNameArray.length + 2}, auto)`;
-            this.parentNodeList[index].appendChild(this.scrollContainer[index]);
+            // 8. Create the area that will hold the clickable navigation dots and arrows
+            this.navigationDotAreas[sliderId] = document.createElement("div");
+            this.navigationDotAreas[sliderId].className = "img-scroll-container";
 
-            // Initialize state variables for this specific carousel instance
-            this.imgCount[index] = 0;
-            this.right[index] = true; // Determines direction of auto-scroll
-            this.circles[index] = [];
+            const totalGridColumns = currentPictureGroup.length + GRID_COLUMN_START_OFFSET;
+            this.navigationDotAreas[sliderId].style.gridTemplateColumns = `repeat(${totalGridColumns}, auto)`;
 
-            // Build the pagination circles and arrows
-            this.createImageSelector(imageNameArray[index], index);
+            currentDisplayArea.appendChild(this.navigationDotAreas[sliderId]);
+
+            // Set up the starting status for this slider
+            this.currentPictureNumbers[sliderId] = 0;
+            this.isMovingForward[sliderId] = true;
+            this.navigationDots[sliderId] = [];
+
+            // Build the clickable buttons
+            this.createNavigationButtons(currentPictureGroup, sliderId);
         }
     }
 
     /**
-     * Calculates the modulo to wrap around image indices safely.
+     * Prevents the picture number from going outside the available number of pictures.
+     * If it goes past the end, it loops back to the start (and vice versa).
      *
-     * @param {number} targetNumber - The index to calculate the modulo for.
-     * @param {number} index - The carousel index used to find the length of the circles array.
-     * @returns {number} The wrapped index ensuring it stays within array bounds.
+     * @param {number} targetPictureNumber - The requested picture number.
+     * @param {number} sliderId - Which slider is being checked.
+     * @returns {number} A valid picture number within the allowed range.
      */
-    mod(targetNumber, index) {
-        return FSMFunctions.mod(targetNumber, this.circles[index].length);
+    keepNumberWithinBounds(targetPictureNumber, sliderId) {
+        const totalPictures = this.navigationDots[sliderId].length;
+        return FSMFunctions.mod(targetPictureNumber, totalPictures);
     }
 
     /**
-     * Constructs the pagination navigation (circles) and directional arrows for a carousel.
+     * Creates the clickable dots and the left/right arrows for the user.
      *
-     * @param {string[]} imageArrayList - The array of image suffixes for this carousel.
-     * @param {number} scrollIndex - The index of the current carousel being processed.
+     * @param {string[]} pictureSuffixes - The list of image name endings.
+     * @param {number} sliderId - Which slider is being built.
      */
-    createImageSelector(imageArrayList, scrollIndex) {
-        if (!imageArrayList || typeof imageArrayList[0] !== 'string') {
-            return;
-        }
-        const documentFragment = document.createDocumentFragment();
+    createNavigationButtons(pictureSuffixes, sliderId) {
+        if (!pictureSuffixes || typeof pictureSuffixes[FOLDER_PREFIX_POSITION] !== 'string') return;
 
-        this.circles[scrollIndex] = [];
+        const htmlMemoryBank = document.createDocumentFragment();
+        this.navigationDots[sliderId] = [];
 
-        // Add left arrow
-        documentFragment.appendChild(this.makeArrow(false, 1, scrollIndex));
+        // Add the Left Arrow
+        htmlMemoryBank.appendChild(this.createArrowButton(false, LEFT_ARROW_GRID_COLUMN, sliderId));
 
-        // Create pagination circles (starting from 1 because index 0 is the image prefix)
-        for (let i = 1; i < imageArrayList.length; i++) {
-            const col = i + 2;
+        // Create the navigation dots (ignoring the first array item since it's just the shared folder prefix)
+        for (let listPosition = FIRST_PICTURE_POSITION; listPosition < pictureSuffixes.length; listPosition++) {
+            const gridColumn = listPosition + GRID_COLUMN_START_OFFSET;
 
-            // Clickable background area for the circle
-            const backgroundCircle = this.makeSelectorElement(col);
-            backgroundCircle.addEventListener("click", () => {
-                this.imgCount[scrollIndex] = this.mod(i - 2, scrollIndex);
-                this.startAutoScroll(scrollIndex); // Reset the timer on manual interaction
-                this.arrowClick(scrollIndex).catch(() => {});
+            // An invisible, wider circle that makes it easier to click on touch screens
+            const invisibleClickArea = this.createVisualDot(gridColumn);
+            invisibleClickArea.addEventListener("click", () => {
+                const requestedPicture = listPosition - INDEX_OFFSET_FOR_DOT_CLICKS;
+                this.currentPictureNumbers[sliderId] = this.keepNumberWithinBounds(requestedPicture, sliderId);
+
+                this.startAutomaticTimer(sliderId);
+                this.changeToNextPicture(sliderId).catch(() => {});
             });
 
-            documentFragment.appendChild(backgroundCircle);
+            htmlMemoryBank.appendChild(invisibleClickArea);
 
-            // Visual indicator circle
-            const selector = this.makeSelectorElement(col);
-            selector.classList.add("image-circle-selector");
-            this.circles[scrollIndex].push(selector);
-            documentFragment.appendChild(selector);
+            // The visible dot that the user actually sees
+            const visibleDot = this.createVisualDot(gridColumn);
+            visibleDot.classList.add("image-circle-selector");
+            this.navigationDots[sliderId].push(visibleDot);
+
+            htmlMemoryBank.appendChild(visibleDot);
         }
 
-        // Add right arrow
-        documentFragment.appendChild(this.makeArrow(true, imageArrayList.length + 2, scrollIndex));
-        this.scrollContainer[scrollIndex].appendChild(documentFragment);
+        // Add the Right Arrow at the very end
+        const rightArrowGridColumn = pictureSuffixes.length + GRID_COLUMN_START_OFFSET;
+        htmlMemoryBank.appendChild(this.createArrowButton(true, rightArrowGridColumn, sliderId));
 
-        // Begin automatic cycling
-        this.startAutoScroll(scrollIndex);
+        this.navigationDotAreas[sliderId].appendChild(htmlMemoryBank);
+        this.startAutomaticTimer(sliderId);
     }
 
     /**
-     * Helper to create a grid-aligned pagination circle element.
+     * Creates a simple circular div used for the navigation dots.
      *
-     * @param {number} column - The CSS grid column position for the element.
-     * @returns {HTMLDivElement} The constructed div element.
+     * @param {number} columnLocation - Where it sits in the CSS grid.
+     * @returns {HTMLDivElement} The circular element.
      */
-    makeSelectorElement(column) {
-        const circle = document.createElement("div");
-        circle.className = "image-circle";
-        circle.style.gridArea = `1 / ${column} / 2 / ${column + 1}`;
-        return circle;
+    createVisualDot(columnLocation) {
+        const dot = document.createElement("div");
+        dot.className = "image-circle";
+        dot.style.gridArea = `1 / ${columnLocation} / 2 / ${columnLocation + 1}`;
+        return dot;
     }
 
     /**
-     * Helper to create left or right navigation arrows.
+     * Creates a clickable arrow button to move left or right.
      *
-     * @param {boolean} isRight - True if right arrow, false if left arrow.
-     * @param {number} gridColumn - The CSS grid column position.
-     * @param {number} index - The carousel index.
-     * @returns {HTMLImageElement} The constructed arrow image element.
+     * @param {boolean} movesForward - True if it's the right arrow, false if left.
+     * @param {number} columnLocation - Where it sits in the CSS grid.
+     * @param {number} sliderId - Which slider it belongs to.
+     * @returns {HTMLImageElement} The arrow image button.
      */
-    makeArrow(isRight, gridColumn, index) {
+    createArrowButton(movesForward, columnLocation, sliderId) {
         const arrow = document.createElement("img");
         arrow.src = `../images/icons/down-arrow.svg`;
-        arrow.alt = isRight ? " > " : " < ";
-        arrow.className = isRight ? "right-arrow" : "left-arrow";
-        arrow.style.gridArea = `1 / ${gridColumn} / 2 / ${gridColumn + 1}`;
+        arrow.alt = movesForward ? "Next Image" : "Previous Image";
+        arrow.className = movesForward ? "right-arrow" : "left-arrow";
+        arrow.style.gridArea = `1 / ${columnLocation} / 2 / ${columnLocation + 1}`;
 
         arrow.addEventListener("click", () => {
-            this.right[index] = isRight;
-            this.startAutoScroll(index); // Reset the timer on manual interaction
-            this.arrowClick(index).catch(() => {});
+            this.isMovingForward[sliderId] = movesForward;
+            this.startAutomaticTimer(sliderId);
+            this.changeToNextPicture(sliderId).catch(() => {});
         });
 
         return arrow;
     }
 
     /**
-     * Initializes the stage images used in the carousel.
+     * Sets up an image element to be used in the slider.
      *
-     * @param {boolean} isTopImage - Indicates if this is the top layer (true) or bottom layer (false).
-     * @param {number} index - The carousel index.
-     * @returns {HTMLImageElement} The constructed image node.
+     * @param {boolean} isTopLayer - True if this picture sits on top, false if on bottom.
+     * @param {number} sliderId - Which slider is being built.
+     * @returns {HTMLImageElement} The configured picture element.
      */
-    setUpVisibleStageImages(isTopImage, index) {
-        const node = document.createElement("img");
-        // Construct source combining base path + image prefix + first image suffix
-        node.src = this.imagePath + this.imageNameArray[index][0] + this.imageNameArray[index][1];
-        node.alt = "Carousel Image";
-        node.classList.toggle("stage-description-image", true);
-        node.classList.toggle(isTopImage ? "top-stage-image" : "bottom-stage-image", true);
-        return node;
+    createPictureElement(isTopLayer, sliderId) {
+        const picture = document.createElement("img");
+
+        const sharedPrefix = this.imageFileNames[sliderId][FOLDER_PREFIX_POSITION];
+        const firstImageSuffix = this.imageFileNames[sliderId][FIRST_PICTURE_POSITION];
+
+        picture.src = `${this.folderPath}${sharedPrefix}${firstImageSuffix}`;
+        picture.alt = "Carousel Content";
+        picture.classList.toggle("stage-description-image", true);
+        picture.classList.toggle(isTopLayer ? "top-stage-image" : "bottom-stage-image", true);
+
+        return picture;
     }
 
     /**
-     * Updates the caption text for a specific layer.
+     * Updates the text displayed on top of the picture.
      *
-     * @param {number} index - The carousel index.
-     * @param {boolean} isTop - Specifies which layer's caption to update (true = top, false = bottom).
-     * @param {number} captionNumber - The index of the caption string in captionArr.
+     * @param {number} sliderId - Which slider is being updated.
+     * @param {boolean} isTopLayer - True to change the top box's text, false for the bottom box.
+     * @param {number} textListPosition - Which text to pull from the list.
      */
-    setCaption(index, isTop, captionNumber) {
-        let pos = isTop ? 1 : 0;
-        if (this.captionArr && this.captionArr[index]) {
-            this.caption[index][pos].innerText = this.captionArr[index][captionNumber] || "";
+    updateTextDescription(sliderId, isTopLayer, textListPosition) {
+        const targetLayerId = isTopLayer ? TOP_LAYER_ID : BOTTOM_LAYER_ID;
+
+        if (this.imageTextDescriptions && this.imageTextDescriptions[sliderId]) {
+            this.textDescriptionLayers[sliderId][targetLayerId].innerText =
+                this.imageTextDescriptions[sliderId][textListPosition] || "";
         }
     }
 
     /**
-     * Starts or restarts the automatic image scrolling interval.
+     * Starts the timer that automatically changes the picture after a few seconds.
      *
-     * @param {number} index - The carousel index.
+     * @param {number} sliderId - Which slider to start.
      */
-    startAutoScroll(index) {
-        this.stopAutoScroll(index);
+    startAutomaticTimer(sliderId) {
+        this.stopAutomaticTimer(sliderId);
 
-        // Highlight the active pagination circle
-        const currentNode = this.circles[index][this.mod(this.imgCount[index], index)];
-        if (currentNode) {
-            currentNode.classList.toggle("image-circle-transition-grow", true);
+        // Make the current dot look active/larger
+        const activeDotNumber = this.keepNumberWithinBounds(this.currentPictureNumbers[sliderId], sliderId);
+        const activeDotElement = this.navigationDots[sliderId][activeDotNumber];
+
+        if (activeDotElement) {
+            activeDotElement.classList.toggle("image-circle-transition-grow", true);
         }
 
-        // Set repeating interval
-        this.rollingInterval[index] = setInterval(() => {
-            this.arrowClick(index).catch(() => {});
-        }, IMAGE_CHANGE_INTERVAL);
+        this.automaticScrollTimers[sliderId] = setInterval(() => {
+            this.changeToNextPicture(sliderId).catch(() => {});
+        }, TIME_BETWEEN_PICTURES_MS);
     }
 
     /**
-     * Clears the automatic image scrolling interval.
+     * Stops the automatic timer.
      *
-     * @param {number} index - The carousel index.
+     * @param {number} sliderId - Which slider to stop.
      */
-    stopAutoScroll(index) {
-        if (this.rollingInterval[index]) {
-            clearInterval(this.rollingInterval[index]);
-            this.rollingInterval[index] = 0;
+    stopAutomaticTimer(sliderId) {
+        if (this.automaticScrollTimers[sliderId]) {
+            clearInterval(this.automaticScrollTimers[sliderId]);
+            this.automaticScrollTimers[sliderId] = 0;
         }
     }
 
     /**
-     * Handles the crossfade logic between images when advancing to the next/previous slide.
-     * This orchestrates changing the bottom layer, fading out the top layer, and then synchronizing them.
+     * Smoothly fades out the current picture to reveal the new one underneath,
+     * then resets the layers so it can happen again.
      *
-     * @param {number} index - The carousel index.
-     * @returns {Promise<void>} Resolves when the cross-fade animation is complete.
+     * @param {number} sliderId - Which slider is changing pictures.
+     * @returns {Promise<void>} Resolves when the fading visual effect finishes.
      */
-    async arrowClick(index) {
-        // Prevent concurrent animations on the same carousel
-        if (this.isAnimating && this.isAnimating[index]) return;
-        if (!this.isAnimating) this.isAnimating = [];
-        this.isAnimating[index] = true;
+    async changeToNextPicture(sliderId) {
+        // Stop the user from clicking repeatedly and breaking the animation
+        if (this.isCurrentlyFading && this.isCurrentlyFading[sliderId]) return;
+        if (!this.isCurrentlyFading) this.isCurrentlyFading = [];
+        this.isCurrentlyFading[sliderId] = true;
 
-        // Remove active state from all pagination circles
-        if (this.circles[index]) {
-            this.circles[index].forEach(node => {
-                node.classList.toggle("image-circle-transition-grow", false);
+        // Remove the active styling from all dots
+        if (this.navigationDots[sliderId]) {
+            this.navigationDots[sliderId].forEach(dotElement => {
+                dotElement.classList.toggle("image-circle-transition-grow", false);
             });
         }
 
-        // Calculate the next image index based on direction
-        this.imgCount[index] = this.mod(this.imgCount[index] + (this.right[index] ? 1 : -1), index);
+        // Figure out what the next picture number should be (+1 or -1)
+        const directionModifier = this.isMovingForward[sliderId] ? 1 : -1;
+        this.currentPictureNumbers[sliderId] = this.keepNumberWithinBounds(
+            this.currentPictureNumbers[sliderId] + directionModifier,
+            sliderId
+        );
 
-        // 1. Prepare bottom layer: Load the incoming image & caption
-        this.bottomImage[index].src = this.imagePath + this.imageNameArray[index][0] + this.imageNameArray[index][this.imgCount[index] + 1];
-        this.setCaption(index, false, this.imgCount[index] + 1);
+        const nextPictureTarget = this.currentPictureNumbers[sliderId] + FIRST_PICTURE_POSITION;
+        const sharedPrefix = this.imageFileNames[sliderId][FOLDER_PREFIX_POSITION];
+        const nextPictureSuffix = this.imageFileNames[sliderId][nextPictureTarget];
 
-        // 2. Animate out the top layer to reveal the new bottom layer
-        this.topImage[index].classList.toggle("image-fade-out", true);
-        this.caption[index][1].classList.toggle("image-fade-out", true);
+        // 1. Load the new picture and text onto the hidden bottom box
+        this.bottomPictures[sliderId].src = `${this.folderPath}${sharedPrefix}${nextPictureSuffix}`;
+        this.updateTextDescription(sliderId, false, nextPictureTarget);
 
-        // Highlight the new active pagination circle
-        const currentNode = this.circles[index][this.mod(this.imgCount[index], index)];
-        if (currentNode) {
-            currentNode.classList.toggle("image-circle-transition-grow", true);
+        // 2. Trigger a CSS effect to fade out the top box (revealing the bottom box)
+        this.topPictures[sliderId].classList.toggle("image-fade-out", true);
+        this.textDescriptionLayers[sliderId][TOP_LAYER_ID].classList.toggle("image-fade-out", true);
+
+        // 3. Highlight the new dot
+        const newActiveDotNumber = this.keepNumberWithinBounds(this.currentPictureNumbers[sliderId], sliderId);
+        const newActiveDotElement = this.navigationDots[sliderId][newActiveDotNumber];
+
+        if (newActiveDotElement) {
+            newActiveDotElement.classList.toggle("image-circle-transition-grow", true);
         }
 
-        // 3. Wait for the CSS fade-out animation to finish (with a 1s failsafe)
+        // 4. Wait for the CSS fading animation to finish
         await new Promise(resolve => {
-            const handleAnimationEnd = (e) => {
-                if (e.target === this.topImage[index]) {
-                    this.topImage[index].removeEventListener("animationend", handleAnimationEnd);
+            const onAnimationFinish = (event) => {
+                if (event.target === this.topPictures[sliderId]) {
+                    this.topPictures[sliderId].removeEventListener("animationend", onAnimationFinish);
                     resolve();
                 }
             };
-            this.topImage[index].addEventListener("animationend", handleAnimationEnd);
-            setTimeout(resolve, 1000); // Failsafe timeout
+            this.topPictures[sliderId].addEventListener("animationend", onAnimationFinish);
+
+            // Backup timer just in case the browser fails to report the animation finishing
+            setTimeout(resolve, FADE_ANIMATION_TIMEOUT_MS);
         });
 
-        // 4. Synchronize top layer: Set it to the new image/caption to act as the base for the next transition
-        this.topImage[index].src = this.bottomImage[index].src;
-        this.setCaption(index, true, this.imgCount[index] + 1);
+        // 5. Cleanup: Make the top box instantly match the bottom box so it acts as our new base
+        this.topPictures[sliderId].src = this.bottomPictures[sliderId].src;
+        this.updateTextDescription(sliderId, true, nextPictureTarget);
 
-        // 5. Reset fade-out classes to make the top layer fully opaque again
-        this.topImage[index].classList.toggle("image-fade-out", false);
-        this.caption[index][1].classList.toggle("image-fade-out", false);
+        // 6. Turn off the fade-out effect classes so the top layer is visible and opaque again
+        this.topPictures[sliderId].classList.toggle("image-fade-out", false);
+        this.textDescriptionLayers[sliderId][TOP_LAYER_ID].classList.toggle("image-fade-out", false);
 
-        // Unlock animation state
-        this.isAnimating[index] = false;
+        // Allow clicking again now that the animation is completely done
+        this.isCurrentlyFading[sliderId] = false;
     }
 }
