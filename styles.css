@@ -865,7 +865,6 @@ body {
     border-width: 2px;
     border-style: solid;
     background-color: var(--tertiary-dark-color) !important;
-    cursor: pointer;
 }
 #projects-dropdown:hover .hitbox-projects {
     display: block;
@@ -980,8 +979,7 @@ Parent container for all below
     flex-direction: column  !important;
     border: var(--border-width) solid white;
     border-radius: var(--border-radius);
-    min-width: 600px !important;
-    max-width: 600px !important;
+    max-width: 95% !important;
     min-height: 610px !important;
     max-height: 610px !important;
     overflow: hidden !important;
@@ -1001,7 +999,6 @@ Parent container for all below
     display: block;
 
     max-width: 600px !important;
-    min-width: 600px !important;
     min-height: 575px !important;
     max-height: 575px !important;
 
@@ -1014,10 +1011,11 @@ Parent container for all below
     line-height: 0;
 
     background-color:  rgba(0,0,0,.2) !important;
-}
-.slide-wrapper {
-    margin-top: 15px;
-    padding-bottom: 10px;
+
+    min-width: 95%;
+    width: 95%;
+    margin-left: auto !important;
+    margin-right: auto !important;
 }
 
 /* 2. Wrappers - Upgraded to CSS Grid */
@@ -1036,6 +1034,12 @@ Parent container for all below
     top: 0;
     left: 0;
     z-index: 2;
+}
+
+.slide-wrapper {
+    margin-top: 15px;
+    padding-bottom: 10px;
+
 }
 
 /* 3. Images */
