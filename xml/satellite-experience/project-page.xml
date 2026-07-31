@@ -31,6 +31,9 @@
             <title>Requirements &amp; Design</title>
             <section>
                 <title>Core Functional Requirements</title>
+                <description>
+                    Requirements elicit from sponsor for the Psyche mission education project
+                </description>
                 <items>
                     <item>
                         <name>Seamless Access</name>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project id="lore-and-mythology-experience">
+    <title>NASA Psyche Mission: AR/WebXR for Public Engagement—CERNN: Lore and Mythology Experience</title>
+
+    <stages>
+        <!-- Stage: Description -->
+        <stage>
+            <title>Project Overview</title>
+
+            <section>
+                <title>Project Overview</title>
+                <description>The project outlines an interactive Augmented Reality (AR) experience designed to educate the general public about NASA’s Psyche mission by blending real-world astronomical discovery with its namesake Greek mythology.</description>
+            </section>
+
+            <section>
+                <title>Core Themes &amp; Mythological Connections</title>
+                <items>
+                    <item>
+                        <name>The Asteroid (Psyche 16)</name>
+                        <detail>Likened to a chrysalis in Greek myth, the asteroid represents a planetary "soul" whose failure to become a full planet mirrors the goddess Psyche falling into a deep sleep.</detail>
+                    </item>
+                    <item>
+                        <name>The Spacecraft</name>
+                        <detail>The spacecraft's butterfly-like solar panels symbolize the "breath of life," framing its scientific mission as a way to grant the asteroid immortality.</detail>
+                    </item>
+                </items>
+            </section>
+
+            <section>
+                <title>The AR Experience Flow</title>
+                <items>
+                    <item>
+                        <name>Part 1: Historical Discovery &amp; Mythos</name>
+                        <detail>Users play as an 1852 astronomer using an interactive AR telescope to discover the asteroid before viewing rotatable 3D videos that explain its mythological connections.</detail>
+                    </item>
+                    <item>
+                        <name>Part 2: Modern Launch &amp; Exploration</name>
+                        <detail>Users watch the 2023 spacecraft launch and travel through space while an animated winged overlay connects the modern scientific journey to the goddess's myth.</detail>
+                    </item>
+                </items>
+            </section>
+
+            <section>
+                <title>Development Challenges &amp; Accessibility</title>
+                <items>
+                    <item>
+                        <name>Obstacles</name>
+                        <detail>The primary challenge is designing and building the complex 3D AR models required for the historical telescope, the mythological figures, and the rocket launch.</detail>
+                    </item>
+                    <item>
+                        <name>Accessibility</name>
+                        <detail>The highly inclusive app will feature intuitive gesture controls, written text, full audio descriptions, and a dedicated audio-only mode for visually impaired users.</detail>
+                    </item>
+                </items>
+            </section>
+        </stage>
+
+        <!-- Stage: Requirements & Design -->
+        <stage>
+            <title>Requirements &amp; Design</title>
+
+            <section>
+                <title>Core Functional Requirements</title>
+            </section>
+
+            <section>
+                <title>Requirements Refinement</title>
+                <item>
+                    <detail>The mythological experience is structured into two primary sections: The Asteroid Mythos Phase and The Spacecraft Mythos Phase.</detail>
+                </item>
+            </section>
+            <section>
+                <title>The Asteroid Mythos Phase</title>
+                <items>
+                    <item>
+                        <detail>The Asteroid Mythos Phase gamifies the historical discovery by having users search for the asteroid within a timed Skybox using a virtual telescope.</detail>
+                    </item>
+                    <item>
+                        <detail>A lore section follows that uses glowing, constellation-style vector images to connect the asteroid's nature to a chrysalis and the sleeping goddess Psyche.</detail>
+                    </item>
+                </items>
+            </section>
+            <section>
+                <title>The Spacecraft Mythos Phase</title>
+                <items>
+                    <item>
+                        <detail>The Spacecraft Mythos Phase covers the modern mission by displaying the spacecraft's launch and an arrival timer.</detail>
+                    </item>
+                    <item>
+                        <detail>Butterfly vector graphics to symbolize the "Breath of Life" and framing the scientific documentation as a way for the goddess to achieve immortality.</detail>
+                    </item>
+                </items>
+            </section>
+            <section>
+                <title>UI/UX Mockup Development</title>
+                <item>
+                    <detail>Designed and delivered comprehensive UI mockups for the launch interface, settings menu, interactive dialog boxes, and help screens to establish the visual language and user flow.</detail>
+                </item>
+            </section>
+        </stage>
+
+        <!-- Stage: Sprint 1 -->
+
+        <!-- Stage: Sprint 2 -->
+
+        <!-- Stage: Sprint 3 -->
+
+        <!-- Stage: Sprint 4 -->
+
+        <!-- Stage: Sprint 5 -->
+
+    </stages>
+</project>

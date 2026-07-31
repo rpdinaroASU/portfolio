@@ -49,7 +49,7 @@ export class ImageFSM {
      *
      * @param {string[][]} imageFileNames - List of image names (first item is the shared prefix, rest are unique suffixes).
      * @param {string[][]} imageTextDescriptions - List of text descriptions matching the pictures.
-     * @param {HTMLElement[]} htmlDisplayAreas - The HTML sections where the sliders will be built.
+     * @param {NodeListOf<HTMLElement>} htmlDisplayAreas - The HTML sections where the sliders will be built.
      * @param {string} folderPath - The folder location where the pictures are stored.
      */
     constructor(imageFileNames, imageTextDescriptions, htmlDisplayAreas, folderPath) {

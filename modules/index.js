@@ -9,6 +9,7 @@ import {ModalFSM} from "./ModalFSM.js";
 
 /** Base directory path for satellite experience project resources. */
 const IMAGE_PATH_SAT_EXP = "../images/projects/project-resources/sat-experience/";
+const IMAGE_PATH_LORE_EXP = "../images/projects/project-resources/lore-and-mythology/";
 
 /** Finite State Machine instance managing active modals and view transitions. */
 let modalFSM;
@@ -45,11 +46,17 @@ let projectButton;
  * once the window content has fully loaded.
  */
 window.onload = () => {
-    const filePath = "../xml/satellite-experience/project-page.xml";
-    const containerId = "stages-wrapper"; // The ID of your HTML container
+    const satelliteFilePath = "../xml/satellite-experience/project-page.xml";
+    const loreFilePath = "../xml/lore-and-mythology/project-page.xml";
+    const containerIdSat = "stages-wrapper-sat-exp";
+    const containerIdLore = "stages-wrapper-lore-and-mythology-exp";
+    //const containerIdGenetic = "stages-wrapper-genetic-algorithm-exp";
 
-    projectBuilder(filePath).then(html => {
-        document.getElementById(containerId).innerHTML = html;
+    projectBuilder(satelliteFilePath).then(html => {
+        document.getElementById(containerIdSat).innerHTML = html;
+    });
+    projectBuilder(loreFilePath).then(html => {
+        document.getElementById(containerIdLore).innerHTML = html;
     });
 
     const $ = (sel) => document.querySelector(sel);
@@ -72,7 +79,7 @@ window.onload = () => {
     const about = $$(".about");
     const dropdownHitbox = $$(".dropdown-hitbox");
     //const geneticButton = $$(".genetic-algorithm-button");
-    //const lmButton = $$(".lore-button");
+    const lmButton = $$(".lore-button");
     const satButton = $$(".sat-button");
     const contact = $$(".contact");
     projectButton = $$(".project-horizontal");
@@ -187,10 +194,21 @@ window.onload = () => {
     }
 
     loadSatelliteData('../xml/satellite-experience/image-caption-array.xml')
-        .then(({ satelliteImageArray, satelliteCaptionArray }) => {
+        .then(({ imageArray, captionArray }) => {
             // Bind project information buttons to their respective handlers
             for (let i = 0; i < satButton.length; i++) {
-                addProjectInfoButtonListener(satButton.item(i), satelliteExperience, satelliteImageArray, satelliteCaptionArray, modals.SATELLITE_MODAL, expandingMenuButton, projectArrow, IMAGE_PATH_SAT_EXP, );
+                addProjectInfoButtonListener(satButton.item(i), satelliteExperience, imageArray, captionArray, modals.SATELLITE_MODAL, expandingMenuButton, projectArrow, IMAGE_PATH_SAT_EXP);
+            }
+        })
+        .catch(error => {
+            console.error("Error loading XML data:", error);
+        });
+
+    loadSatelliteData('../xml/lore-and-mythology/image-caption-array.xml')
+        .then(({ imageArray, captionArray }) => {
+            // Bind project information buttons to their respective handlers
+            for (let i = 0; i < lmButton.length; i++) {
+                addProjectInfoButtonListener(lmButton.item(i), loreMythologyExperience, imageArray, captionArray, modals.LORE_MYTHOLOGY_MODAL, expandingMenuButton, projectArrow, IMAGE_PATH_LORE_EXP);
             }
         })
         .catch(error => {
@@ -199,9 +217,6 @@ window.onload = () => {
 
     
     /*
-    for (let i = 0; i < lmButton.length; i++) {
-        addProjectInfoButtonListener(lmButton.item(i), loreMythologyExperience, satelliteImageArray, satelliteCaptionArray, modals.LORE_MYTHOLOGY_MODAL, expandingMenuButton, projectArrow, IMAGE_PATH_SAT_EXP);
-    }
 
     for (let i = 0; i < geneticButton.length; i++) {
         addProjectInfoButtonListener(geneticButton.item(i), geneticAlgorithm, satelliteImageArray, satelliteCaptionArray, modals.GENETIC_ALGORITHM_MODAL, expandingMenuButton, projectArrow, IMAGE_PATH_SAT_EXP);
@@ -242,8 +257,8 @@ window.onload = () => {
         const xmlDoc = parser.parseFromString(xmlText, "application/xml");
 
         // 3. Initialize the two main arrays
-        const satelliteImageArray = [];
-        const satelliteCaptionArray = [];
+        const imageArray = [];
+        const captionArray = [];
 
         // 4. Iterate through every <stage> in the XML
         const stages = xmlDoc.querySelectorAll("stage");
@@ -270,11 +285,11 @@ window.onload = () => {
             });
 
             // 6. Push the completed sub-arrays into the main arrays
-            satelliteImageArray.push(imageSubArray);
-            satelliteCaptionArray.push(captionSubArray);
+            imageArray.push(imageSubArray);
+            captionArray.push(captionSubArray);
         });
 
-        return { satelliteImageArray, satelliteCaptionArray };
+        return { imageArray, captionArray };
     }
 };
 
@@ -312,13 +327,18 @@ async function projectBuilder(filePath) {
     try {
         // Fetch the XML file from the provided path
         const response = await fetch(filePath);
-
-        // Extract the XML text
         const xmlString = await response.text();
 
         // Parse the XML string into an XML Document
         const parser = new DOMParser();
         const xmlDoc = parser.parseFromString(xmlString, "text/xml");
+
+        // Catch silent XML parsing errors (like missing a root <data> tag)
+        const parseError = xmlDoc.querySelector("parsererror");
+        if (parseError) {
+            console.error("XML Parsing Error:", parseError.textContent);
+            return `<div class="error">XML Format Error. Check console for details.</div>`;
+        }
 
         // Get all stage elements
         const stages = xmlDoc.querySelectorAll("stage");
@@ -327,55 +347,70 @@ async function projectBuilder(filePath) {
         // Loop through each stage and build the HTML
         stages.forEach((stage, index) => {
             if (stage.getAttribute("skip") === "true") {
-                // Exit this iteration early, but 'index' will still increment for the next one
                 return;
             }
-            const stageTitle = stage.querySelector("title")?.textContent || "";
-            const sectionTitle = stage.querySelector("section > title")?.textContent || "";
 
-            // Handle optional description
-            const descriptionNode = stage.querySelector("section > description");
-            let descriptionHtml = "";
-            if (descriptionNode) {
-                descriptionHtml = `
-                                    <p style="margin-bottom: 15px;">
-                                        ${descriptionNode.textContent.trim()}
-                                    </p>`;
-            }
+            // Safely get the Stage Title (looks only at direct children so it doesn't accidentally grab a section title)
+            const stageTitleNode = Array.from(stage.children).find(child => child.tagName === "title");
+            const stageTitle = stageTitleNode ? stageTitleNode.textContent : "";
 
-            // Build list items
-            const items = stage.querySelectorAll("item");
-            let itemsHtml = "";
-            items.forEach(item => {
-                const name = item.querySelector("name")?.textContent || "";
-                const detail = item.querySelector("detail")?.textContent || "";
+            // Loop through all sections inside this specific stage
+            const sections = stage.querySelectorAll("section");
+            let allSectionsHtml = "";
 
-                itemsHtml += `
-                                        
-                                            <div class="project-title-font bold">${name}</div>
-                                            <ul style="margin:2px"><li>${detail}</li></ul>`;
+            sections.forEach(section => {
+                const sectionTitle = section.querySelector("title")?.textContent || "";
+
+                // Handle optional description
+                const descriptionNode = section.querySelector("description");
+                let descriptionHtml = "";
+                if (descriptionNode) {
+                    descriptionHtml = `
+                        <p style="margin-bottom: 0;">
+                            ${descriptionNode.textContent.trim()}
+                        </p>`;
+                }
+
+                // Build list items for this specific section
+                const items = section.querySelectorAll("item");
+                let itemsHtml = "";
+                items.forEach(item => {
+                    const name = item.querySelector("name")?.textContent || "";
+                    const detail = item.querySelector("detail")?.textContent || "";
+
+                    itemsHtml += `
+                        <div class="project-title-font bold">${name}</div>
+                        <ul style="margin:2px"><li>${detail}</li></ul>`;
+                });
+
+                // Append this section's HTML to the running list of sections for this stage
+                allSectionsHtml += `
+                    <div class="project-title-font bold">
+                        ${sectionTitle}
+                    </div>
+                    <div class="project-paragraph-font-size">
+                        ${descriptionHtml}
+                        ${itemsHtml}
+                    </div>
+                `;
             });
-            itemsHtml += `<div class="spacer"></div>`
 
             // Construct the full stage HTML
             htmlOutput += `
-                    <div class="stage-container">
-                        <div class="project-stage project-title-font dropdown-hitbox">
-                            <div class="stage-title">${stageTitle}</div>
-                            <img src="../images/icons/down-arrow.svg" alt=" ∨ " class="stage-image">
+                <div class="stage-container">
+                    <div class="project-stage project-title-font dropdown-hitbox">
+                        <div class="stage-title">${stageTitle}</div>
+                        <img src="../images/icons/down-arrow.svg" alt=" ∨ " class="stage-image">
+                    </div>
+                    <div class="stage-image-container stage-${index}"></div>
+                    <div class="stage-description left-align-text">
+                        <div class="text text-top project-title-font">
+                            ${allSectionsHtml}
+                            <div class = "spacer"></div>
                         </div>
-                        <div class="stage-image-container stage-${index}"></div>
-                        <div class="stage-description left-align-text">
-                            <div class="text text-top project-title-font">
-                                <div class="project-title-font bold">
-                                    ${sectionTitle}
-                                </div>
-                                <div class="project-paragraph-font-size">${descriptionHtml}
-                                    ${itemsHtml}
-                                </div>
-                            </div>
-                        </div>
-                    </div>`;
+                    </div>
+                    
+                </div>`;
         });
 
         return htmlOutput;

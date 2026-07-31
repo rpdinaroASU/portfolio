@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Satellite Experience">
+
+    <stage path="stage-0/">
+        <slide>
+            <image>opening.png</image>
+            <caption>The experience begins in the 1852 Naples Observatory, inviting users to discover the Psyche asteroid through an interactive, period-accurate telescope.</caption>
+        </slide>
+        <slide>
+            <image>past_metaphor.png</image>
+            <caption>The Chrysalis: Exploring the mythological parallels between the asteroid's dormant state as a planetesimal core and the chrysalis from Greek lore.</caption>
+        </slide>
+        <slide>
+            <image>transitional_phase.png</image>
+            <caption>Bridging eras by transitioning from historical astronomical observation to the modern-day launch of the 2023 Psyche spacecraft.</caption>
+        </slide>
+        <slide>
+            <image>present_metaphor.png</image>
+            <caption>The Butterfly: Highlighting the spacecraft's design, where its expansive solar panels symbolize butterfly wings representing the Psyche, "breath of life."</caption>
+        </slide>
+        <slide>
+            <image>future_metaphore.png</image>
+            <caption>The Mythos: Uniting the scientific mission with the narrative of the Goddess Psyche, framing the exploration of the asteroid as the realization of her immortality.</caption>
+        </slide>
+    </stage>
+
+    <stage skip="true"> </stage>
+
+    <stage path="stage-2/">
+        <slide>
+            <image>launch_page_mockup.jpeg</image>
+            <caption>Proposed UI design for the initial launch page, establishing the thematic tone and narrative context of the experience.</caption>
+        </slide>
+        <slide>
+            <image>telescope_experience.png</image>
+            <caption>UI mockup of the Asteroid Mythos Phase, showcasing the gamified AR telescope interactions designed for discovering Psyche-16.</caption>
+        </slide>
+        <slide>
+            <image>transitional_mockup.png</image>
+            <caption>UI mockup of the transitional phase, bridging the historical discovery phase and the modern spacecraft mission.</caption>
+        </slide>
+        <slide>
+            <image>settings_mockups.png</image>
+            <caption>Settings menu mockup highlighting customizable accessibility controls to ensure inclusive engagement for all users.</caption>
+        </slide>
+        <slide>
+            <image>dialog_box_mockup.png</image>
+            <caption>UI design mockup of the interactive dialog components used to seamlessly deliver mythological lore and scientific data.</caption>
+        </slide>
+
+    </stage>
+
+    <stage skip="true"> </stage>
+
+    <stage skip="true"> </stage>
+
+    <stage skip="true"> </stage>
+
+    <stage skip="true"> </stage>
+</project>
