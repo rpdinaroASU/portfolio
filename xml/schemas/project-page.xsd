@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+    <!-- Root Element -->
+    <xs:element name="project">
+        <xs:complexType>
+            <xs:sequence>
+                <!-- The name of the project -->
+                <xs:element name="title" type="xs:string" />
+
+                <!-- A sprint or notable independent section of the project -->
+
+                <xs:element name="stages">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <!-- A project can have one or more stages -->
+                            <xs:element name="stage" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+
+                                        <!-- A stage has a title and optional description -->
+
+                                        <xs:element name="title" type="xs:string" />
+                                        <!-- Description is optional (minOccurs="0") -->
+
+                                        <xs:element name="section-description">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="title" type="xs:string" />
+                                                    <xs:element name="description" type="xs:string" minOccurs="0" />
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+
+                                        <!-- A stage can have one or more sections -->
+                                        <xs:element name="section" maxOccurs="unbounded" minOccurs="0" >
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="title" type="xs:string" />
+                                                    <xs:element name="items">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <!-- If <items> exists, it must contain at least one <item> -->
+                                                                <xs:element name="item" maxOccurs="unbounded">
+                                                                    <xs:complexType>
+                                                                        <xs:sequence>
+                                                                            <xs:element name="subsection-title" type="xs:string" minOccurs="0"/>
+                                                                            <xs:element name="detail" type="xs:string" />
+                                                                        </xs:sequence>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

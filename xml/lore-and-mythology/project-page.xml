@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project id="lore-and-mythology-experience">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../schemas/project-page.xsd">
+
     <title>NASA Psyche Mission: AR/WebXR for Public Engagement—CERNN: Lore and Mythology Experience</title>
 
     <stages>
@@ -7,20 +8,20 @@
         <stage>
             <title>Project Overview</title>
 
-            <section>
+            <section-description>
                 <title>Project Overview</title>
                 <description>The project outlines an interactive Augmented Reality (AR) experience designed to educate the general public about NASA’s Psyche mission by blending real-world astronomical discovery with its namesake Greek mythology.</description>
-            </section>
+            </section-description>
 
             <section>
                 <title>Core Themes &amp; Mythological Connections</title>
                 <items>
                     <item>
-                        <name>The Asteroid (Psyche 16)</name>
+                        <subsection-title>The Asteroid (Psyche 16)</subsection-title>
                         <detail>Likened to a chrysalis in Greek myth, the asteroid represents a planetary "soul" whose failure to become a full planet mirrors the goddess Psyche falling into a deep sleep.</detail>
                     </item>
                     <item>
-                        <name>The Spacecraft</name>
+                        <subsection-title>The Spacecraft</subsection-title>
                         <detail>The spacecraft's butterfly-like solar panels symbolize the "breath of life," framing its scientific mission as a way to grant the asteroid immortality.</detail>
                     </item>
                 </items>
@@ -30,11 +31,11 @@
                 <title>The AR Experience Flow</title>
                 <items>
                     <item>
-                        <name>Part 1: Historical Discovery &amp; Mythos</name>
+                        <subsection-title>Part 1: Historical Discovery &amp; Mythos</subsection-title>
                         <detail>Users play as an 1852 astronomer using an interactive AR telescope to discover the asteroid before viewing rotatable 3D videos that explain its mythological connections.</detail>
                     </item>
                     <item>
-                        <name>Part 2: Modern Launch &amp; Exploration</name>
+                        <subsection-title>Part 2: Modern Launch &amp; Exploration</subsection-title>
                         <detail>Users watch the 2023 spacecraft launch and travel through space while an animated winged overlay connects the modern scientific journey to the goddess's myth.</detail>
                     </item>
                 </items>
@@ -44,11 +45,11 @@
                 <title>Development Challenges &amp; Accessibility</title>
                 <items>
                     <item>
-                        <name>Obstacles</name>
+                        <subsection-title>Obstacles</subsection-title>
                         <detail>The primary challenge is designing and building the complex 3D AR models required for the historical telescope, the mythological figures, and the rocket launch.</detail>
                     </item>
                     <item>
-                        <name>Accessibility</name>
+                        <subsection-title>Accessibility</subsection-title>
                         <detail>The highly inclusive app will feature intuitive gesture controls, written text, full audio descriptions, and a dedicated audio-only mode for visually impaired users.</detail>
                     </item>
                 </items>
@@ -59,18 +60,13 @@
         <stage>
             <title>Requirements &amp; Design</title>
 
-            <section>
+            <section-description>
                 <title>Core Functional Requirements</title>
-            </section>
+                <description>Refined Sponsor requirements to the creation of a two-phase, gamified mythological experience about the Psyche asteroid and spacecraft that integrates interactive discovery mechanics, lore-driven vector graphics, and comprehensive UI/UX designs.</description>
+            </section-description>
 
             <section>
-                <title>Requirements Refinement</title>
-                <item>
-                    <detail>The mythological experience is structured into two primary sections: The Asteroid Mythos Phase and The Spacecraft Mythos Phase.</detail>
-                </item>
-            </section>
-            <section>
-                <title>The Asteroid Mythos Phase</title>
+                <title>The Asteroid Mythos Phase (AMP)</title>
                 <items>
                     <item>
                         <detail>The Asteroid Mythos Phase gamifies the historical discovery by having users search for the asteroid within a timed Skybox using a virtual telescope.</detail>
@@ -81,7 +77,7 @@
                 </items>
             </section>
             <section>
-                <title>The Spacecraft Mythos Phase</title>
+                <title>The Spacecraft Mythos Phase (SMP)</title>
                 <items>
                     <item>
                         <detail>The Spacecraft Mythos Phase covers the modern mission by displaying the spacecraft's launch and an arrival timer.</detail>
@@ -93,9 +89,11 @@
             </section>
             <section>
                 <title>UI/UX Mockup Development</title>
-                <item>
-                    <detail>Designed and delivered comprehensive UI mockups for the launch interface, settings menu, interactive dialog boxes, and help screens to establish the visual language and user flow.</detail>
-                </item>
+                <items>
+                    <item>
+                        <detail>Designed and delivered comprehensive UI mockups for the launch interface, settings menu, interactive dialog boxes, and help screens to establish the visual language and user flow.</detail>
+                    </item>
+                </items>
             </section>
         </stage>
 

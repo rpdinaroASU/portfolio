@@ -6,10 +6,20 @@
 
 import {ImageFSM} from './ImageFSM.js';
 import {ModalFSM} from "./ModalFSM.js";
+import {XMLInterpreter} from "./XMLInterpreter.js";
 
 /** Base directory path for satellite experience project resources. */
 const IMAGE_PATH_SAT_EXP = "../images/projects/project-resources/sat-experience/";
 const IMAGE_PATH_LORE_EXP = "../images/projects/project-resources/lore-and-mythology/";
+
+const SATELLITE_EXP_PROJECT_PAGE_XML = "satellite-experience";
+const SATELLITE_EXP_PROJECT_PAGE_WRAPPER = "stages-wrapper-sat-exp";
+const LORE_EXP_PROJECT_PAGE_XML = "lore-and-mythology";
+const LORE_EXP_PROJECT_PAGE_WRAPPER = "stages-wrapper-lore-and-mythology-exp";
+const PROJECT_PAGE_XML_FILEPATH =
+    [SATELLITE_EXP_PROJECT_PAGE_XML,SATELLITE_EXP_PROJECT_PAGE_WRAPPER,
+        LORE_EXP_PROJECT_PAGE_XML,LORE_EXP_PROJECT_PAGE_WRAPPER];
+
 
 /** Finite State Machine instance managing active modals and view transitions. */
 let modalFSM;
@@ -46,19 +56,14 @@ let projectButton;
  * once the window content has fully loaded.
  */
 window.onload = () => {
-    const satelliteFilePath = "../xml/satellite-experience/project-page.xml";
-    const loreFilePath = "../xml/lore-and-mythology/project-page.xml";
-    const containerIdSat = "stages-wrapper-sat-exp";
-    const containerIdLore = "stages-wrapper-lore-and-mythology-exp";
-    //const containerIdGenetic = "stages-wrapper-genetic-algorithm-exp";
+    const interpreter = new XMLInterpreter();
 
-    projectBuilder(satelliteFilePath).then(html => {
-        document.getElementById(containerIdSat).innerHTML = html;
-    });
-    projectBuilder(loreFilePath).then(html => {
-        document.getElementById(containerIdLore).innerHTML = html;
-    });
-
+    for( let i = 0; i <PROJECT_PAGE_XML_FILEPATH.length; i=i+2 ) {
+        interpreter.interpretProjectPageXML(PROJECT_PAGE_XML_FILEPATH[i]).then(htmlOutput => {
+            const stageWrapper = document.getElementById(PROJECT_PAGE_XML_FILEPATH[i+1]);
+            stageWrapper.innerHTML = htmlOutput;
+        })
+    }
     const $ = (sel) => document.querySelector(sel);
     const $$ = (sel) => document.querySelectorAll(sel);
 
@@ -323,100 +328,3 @@ function addProjectInfoButtonListener(button, projectInfo, imageArr, captionArr,
 }
 
 
-async function projectBuilder(filePath) {
-    try {
-        // Fetch the XML file from the provided path
-        const response = await fetch(filePath);
-        const xmlString = await response.text();
-
-        // Parse the XML string into an XML Document
-        const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(xmlString, "text/xml");
-
-        // Catch silent XML parsing errors (like missing a root <data> tag)
-        const parseError = xmlDoc.querySelector("parsererror");
-        if (parseError) {
-            console.error("XML Parsing Error:", parseError.textContent);
-            return `<div class="error">XML Format Error. Check console for details.</div>`;
-        }
-
-        // Get all stage elements
-        const stages = xmlDoc.querySelectorAll("stage");
-        let htmlOutput = "";
-
-        // Loop through each stage and build the HTML
-        stages.forEach((stage, index) => {
-            if (stage.getAttribute("skip") === "true") {
-                return;
-            }
-
-            // Safely get the Stage Title (looks only at direct children so it doesn't accidentally grab a section title)
-            const stageTitleNode = Array.from(stage.children).find(child => child.tagName === "title");
-            const stageTitle = stageTitleNode ? stageTitleNode.textContent : "";
-
-            // Loop through all sections inside this specific stage
-            const sections = stage.querySelectorAll("section");
-            let allSectionsHtml = "";
-
-            sections.forEach(section => {
-                const sectionTitle = section.querySelector("title")?.textContent || "";
-
-                // Handle optional description
-                const descriptionNode = section.querySelector("description");
-                let descriptionHtml = "";
-                if (descriptionNode) {
-                    descriptionHtml = `
-                        <p style="margin-bottom: 0;">
-                            ${descriptionNode.textContent.trim()}
-                        </p>`;
-                }
-
-                // Build list items for this specific section
-                const items = section.querySelectorAll("item");
-                let itemsHtml = "";
-                items.forEach(item => {
-                    const name = item.querySelector("name")?.textContent || "";
-                    const detail = item.querySelector("detail")?.textContent || "";
-
-                    itemsHtml += `
-                        <div class="project-title-font bold">${name}</div>
-                        <ul style="margin:2px"><li>${detail}</li></ul>`;
-                });
-
-                // Append this section's HTML to the running list of sections for this stage
-                allSectionsHtml += `
-                    <div class="project-title-font bold">
-                        ${sectionTitle}
-                    </div>
-                    <div class="project-paragraph-font-size">
-                        ${descriptionHtml}
-                        ${itemsHtml}
-                    </div>
-                `;
-            });
-
-            // Construct the full stage HTML
-            htmlOutput += `
-                <div class="stage-container">
-                    <div class="project-stage project-title-font dropdown-hitbox">
-                        <div class="stage-title">${stageTitle}</div>
-                        <img src="../images/icons/down-arrow.svg" alt=" ∨ " class="stage-image">
-                    </div>
-                    <div class="stage-image-container stage-${index}"></div>
-                    <div class="stage-description left-align-text">
-                        <div class="text text-top project-title-font">
-                            ${allSectionsHtml}
-                            <div class = "spacer"></div>
-                        </div>
-                    </div>
-                    
-                </div>`;
-        });
-
-        return htmlOutput;
-
-    } catch (error) {
-        console.error("Error loading or parsing XML:", error);
-        return `<div class="error">Unable to load project timeline.</div>`;
-    }
-}
