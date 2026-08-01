@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+    <!-- Root element: project -->
+    <xs:element name="project">
+        <xs:complexType>
+            <xs:sequence>
+
+                <!-- A project contains one or more stages -->
+                <xs:element name="stage" minOccurs="1" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+
+                            <!-- A stage can have zero or more slides (0 for skipped/empty stages) -->
+                            <xs:element name="slide" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <!-- A slide contains an image and a caption -->
+                                        <xs:element name="image" type="xs:string" minOccurs="1" maxOccurs="1"/>
+                                        <xs:element name="caption" type="xs:string" minOccurs="1" maxOccurs="1"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+
+                        </xs:sequence>
+
+                        <!-- Optional attributes for stage -->
+                        <xs:attribute name="path" type="xs:string" use="optional"/>
+                        <xs:attribute name="skip" type="xs:boolean" use="optional"/>
+                    </xs:complexType>
+                </xs:element>
+
+            </xs:sequence>
+
+            <!-- Required attribute for project -->
+            <xs:attribute name="name" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
