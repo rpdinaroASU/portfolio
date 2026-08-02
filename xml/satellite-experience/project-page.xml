@@ -135,32 +135,45 @@
 
         <!-- Stage: Sprint 2 -->
         <stage>
-            <title>Sprint 2: Launch Page and Homepage</title>
+            <title>WebAR Prototyping, 3D Rendering &amp; Accessibility Integration</title>
+
             <section-description>
-                <title>Inclusive Design &amp; Accessibility</title>
-                <description>Driven by the mandate to make the Psyche Satellite experience universally accessible, I designed and implemented a suite of user-controlled visual enhancements.</description>
+                <title>Sprint Objectives &amp; Execution</title>
+                <description>Engineered an interactive 3D frontend architecture and foundational WebAR prototypes, prioritizing inclusive design through comprehensive accessibility settings, mobile-responsive controls, and robust user onboarding.</description>
             </section-description>
+
             <section>
-                <title>High-Contrast Optimization</title>
+                <title>3D Environment &amp; Interactive Rendering</title>
                 <items>
                     <item>
-                        <detail>Designed custom UI themes to ensure strict legibility standards and support users with visual impairments.</detail>
+                        <detail>Engineered an immersive 3D homepage featuring a dynamically lit skybox and a polygon-optimized Psyche satellite model to ensure high graphical fidelity alongside rapid browser load times.</detail>
+                    </item>
+                    <item>
+                        <detail>Implemented mobile-responsive camera mechanics, enabling seamless swipe-to-rotate and pinch-to-zoom gesture controls for intuitive environmental exploration across all devices.</detail>
                     </item>
                 </items>
             </section>
+
             <section>
-                <title>Dynamic Light &amp; Dark Modes</title>
+                <title>Accessibility &amp; Inclusive UX Design</title>
                 <items>
                     <item>
-                        <detail>Integrated adaptable color schemes to reduce eye strain and accommodate diverse viewing environments.</detail>
+                        <detail>Designed and developed a globally accessible configuration matrix, integrating critical visual accessibility modes including dynamic dark/light themes, high-contrast, and color-blind settings.</detail>
+                    </item>
+                    <item>
+                        <detail>Programmed intelligent user onboarding mechanics, constructing a comprehensive help interface that automatically triggers after extended periods of user inactivity to explain interaction gestures.</detail>
                     </item>
                 </items>
             </section>
+
             <section>
-                <title>Centralized Customization Hub</title>
+                <title>Frontend Architecture &amp; AR Research</title>
                 <items>
                     <item>
-                        <detail>Prototyped and developed an intuitive settings menu, empowering users to seamlessly tailor their AR experience to their needs.</detail>
+                        <detail>Architected the core frontend application flow by linking the primary launch, settings, and main engagement pages, enhancing the user journey with scroll-triggered fade animations and polished loading screens.</detail>
+                    </item>
+                    <item>
+                        <detail>Spearheaded early-stage Augmented Reality (AR) research by constructing foundational WebAR prototypes using AR.js and drafting comprehensive activity diagrams to dictate complex application state flows.</detail>
                     </item>
                 </items>
             </section>
