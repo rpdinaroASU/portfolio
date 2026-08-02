@@ -227,32 +227,45 @@
 
         <!-- Stage: Sprint 4 -->
         <stage>
-            <title>Sprint 4: About Page, Additional Accessibility Features, User Feedback, and Mobile Features</title>
+            <title>Accessibility Integration, Data Visualization &amp; Mobile Polish</title>
+
             <section-description>
-                <title>AR Accessibility &amp; 3D UI Enhancements</title>
-                <description>To make the 3D experience inclusive and visually immersive, I implemented system-wide accessibility themes and refined the 3D environmental UI components.</description>
+                <title>Sprint Objectives &amp; Execution</title>
+                <description>Engineered global accessibility themes, optimized mobile responsiveness, and refined dynamic data visualizations to deliver a polished, inclusive, and rigorously user-tested interactive experience.</description>
             </section-description>
+
             <section>
-                <title>System-Wide Accessibility Theming</title>
+                <title>Accessibility &amp; Interface Refinement</title>
                 <items>
                     <item>
-                        <detail>Engineered dynamic theming architecture to apply high-contrast, light, and color-blind accessible themes across all interactive AR pop-ups and buttons.</detail>
+                        <detail>Implemented comprehensive visual accessibility configurations, successfully propagating high-contrast, color-blind, and light-mode themes across all global UI components and modals.</detail>
+                    </item>
+                    <item>
+                        <detail>Refined core user interface mechanics by programming automated onboarding tutorials, intuitive click-away modal dismissal logic, and cohesive 3D skybox environments.</detail>
                     </item>
                 </items>
             </section>
+
             <section>
-                <title>Persistent User Preferences</title>
+                <title>Dynamic Data Visualization &amp; Narrative Content</title>
                 <items>
                     <item>
-                        <detail>Ensured user accessibility settings translated seamlessly across the entire application, dynamically adapting interface components to meet specific user needs.</detail>
+                        <detail>Engineered dynamic telemetry UI components to accurately render real-time mission metrics, effectively splitting and displaying distance-traveled and time-to-arrival data on the main interface.</detail>
+                    </item>
+                    <item>
+                        <detail>Developed enriched narrative modules featuring integrated launch videos, contextual phase imagery, and a seamlessly integrated About page housing team biographies and project citations.</detail>
                     </item>
                 </items>
             </section>
+
             <section>
-                <title>3D Environment Refinement</title>
+                <title>Mobile Optimization &amp; Beta Testing</title>
                 <items>
                     <item>
-                        <detail>Enhanced the visual cohesion of the virtual space by upgrading the Skybox floor, bridging the gap between functional UI and an immersive 3D aesthetic.</detail>
+                        <detail>Optimized application responsiveness for mobile and tablet devices by overhauling navigation layouts, implementing swipe gestures for instrument popups, and rectifying viewport-specific timer rendering bugs.</detail>
+                    </item>
+                    <item>
+                        <detail>Executed formal beta testing protocols and user feedback loops to drive iterative product improvements, resulting in upgraded 3D satellite models and refined, user-friendly ambient audio profiles.</detail>
                     </item>
                 </items>
             </section>
