@@ -234,51 +234,45 @@
 
         <!-- Stage Sprint 9: Asset Refinement, Audio Integration & Quality Assurance-->
         <stage>
-            <title>Asset Refinement, Audio Integration &amp; Quality Assurance</title>
+            <title>Performance Optimization, UX Refinement &amp; Cross-Platform Stability</title>
 
             <section-description>
                 <title>Sprint Objectives &amp; Execution</title>
-                <description>Engineered historically accurate 3D assets, integrated immersive audio systems, and executed rigorous cross-platform mobile testing to polish the interactive experience for final delivery.</description>
+                <description>Optimized 3D rendering performance, engineered streamlined interactive navigation systems, and resolved critical OS-specific compatibility issues to deliver a highly performant and stable user experience.</description>
             </section-description>
 
             <section>
-                <title>3D Modeling &amp; Visual Fidelity</title>
+                <title>3D Asset &amp; Rendering Optimization</title>
                 <items>
                     <item>
-                        <detail>Developed and textured a historically accurate 3D telescope model based on Annibale’s specifications, seamlessly integrating the asset into the primary search and discovery phases.</detail>
+                        <detail>Optimized environmental rendering performance by reducing 3D mesh polygon counts, decreasing particle system density in starfields, and dynamically managing asset visibility to ensure smooth execution on all hardware.</detail>
                     </item>
                     <item>
-                        <detail>Programmed environmental visual enhancements within the 3D asteroid belt by introducing varied mesh sizing, detailed texturing, and dynamic depth-of-field scope blurring.</detail>
+                        <detail>Engineered responsive 3D environmental scaling to ensure critical interactive assets, such as the primary asteroid target, remained consistently visible and proportional across varying screen dimensions.</detail>
                     </item>
                 </items>
             </section>
 
             <section>
-                <title>Audio Integration &amp; UX/UI Polish</title>
+                <title>User Experience (UX) &amp; Interface Refinement</title>
                 <items>
                     <item>
-                        <detail>Implemented a comprehensive audio landscape, embedding thematic background music and interactive UI sound effects across the AMP and SMP narrative phases to heighten user immersion.</detail>
+                        <detail>Designed and implemented advanced user navigation features, including dynamic chapter progress tracking, an automated targeting mechanic, explicit phase titling, and cinematic fade transitions to enhance narrative flow.</detail>
                     </item>
                     <item>
-                        <detail>Calibrated application pacing and narrative flow by removing redundant phase delays, optimizing reading timers, and resolving complex layout alignment issues for textual overlays.</detail>
-                    </item>
-                    <item>
-                        <detail>Designed and implemented polished user interface updates, including dynamic fading countdown timers, a localized telescope tracking mechanic, and a climactic finale sequence.</detail>
+                        <detail>Streamlined the application lifecycle by optimizing routing logic to bypass redundant loading screens and refining global UI layouts to ensure narrative content remained centered and legible across all devices.</detail>
                     </item>
                 </items>
             </section>
 
             <section>
-                <title>Accessibility, Testing &amp; Bug Resolution</title>
+                <title>Cross-Platform Compatibility &amp; System Stability</title>
                 <items>
                     <item>
-                        <detail>Executed extensive cross-platform compatibility testing across multiple mobile devices to identify and triage hardware-specific rendering anomalies.</detail>
+                        <detail>Resolved critical Linux-specific rendering anomalies by standardizing OS-compatible typography and correcting complex spatial alignment issues across multiple narrative phases to guarantee visual parity.</detail>
                     </item>
                     <item>
-                        <detail>Conducted a formal Accessibility Evaluation to ensure the experience met sponsor compliance standards and delivered an inclusive interface for all users.</detail>
-                    </item>
-                    <item>
-                        <detail>Resolved residual UI rendering bugs, including redundant onboarding popups and team biography assets, ensuring a stable and professional final build.</detail>
+                        <detail>Debugged and stabilized core application logic, eliminating mission timer console errors and refining global modal behaviors to ensure settings and contextual help overlays functioned reliably during active dialogs.</detail>
                     </item>
                 </items>
             </section>
