@@ -181,32 +181,45 @@
 
         <!-- Stage: Sprint 3 -->
         <stage>
-            <title>Sprint 3: Components Page and Mission Timeline Page</title>
+            <title>Data Integration, Interactive Systems &amp; Audio Implementation</title>
+
             <section-description>
-                <title>Live Mission Tracking &amp; API Integration</title>
-                <description>To bring the Psyche mission to life, I architected a data-driven experience that translates complex spacecraft telemetry into accessible, real-time mission progress on the homepage.</description>
+                <title>Sprint Objectives &amp; Execution</title>
+                <description>Engineered real-time data pipelines for telemetry tracking, implemented modular interactive user interfaces, and integrated comprehensive audio and accessibility systems to enhance the mission exploration experience.</description>
             </section-description>
+
             <section>
-                <title>JPL Horizons API Integration</title>
+                <title>Live Data Integration &amp; API Processing</title>
                 <items>
                     <item>
-                        <detail>Engineered a pipeline to extract and parse live Ephemeris data from the Horizons API, translating raw orbital telemetry into precise distance figures.</detail>
+                        <detail>Developed a robust data pipeline to parse the NASA Horizons API, translating complex ephemeris telemetry into a structured XML database for optimized client-side mission tracking.</detail>
+                    </item>
+                    <item>
+                        <detail>Engineered dynamic frontend rendering mechanics to visualize real-time spacecraft distance and trajectory data directly from the newly generated XML datasets.</detail>
                     </item>
                 </items>
             </section>
+
             <section>
-                <title>Client-Side Data Architecture</title>
+                <title>Interactive UI &amp; Component Architecture</title>
                 <items>
                     <item>
-                        <detail>Generated a structured, localized XML database to manage and serve satellite distance data efficiently to the frontend interface.</detail>
+                        <detail>Designed and implemented an interactive instrument discovery system, utilizing a decoupled JSON data structure to dynamically populate detailed informational modals for all five core satellite instruments.</detail>
+                    </item>
+                    <item>
+                        <detail>Constructed a visual mission timeline interface featuring custom graphics and localized scientific research, supported by refactored, modularized JavaScript architectures to ensure codebase scalability.</detail>
                     </item>
                 </items>
             </section>
+
             <section>
-                <title>Mission Phase Visualization</title>
+                <title>Audio Engineering &amp; Accessibility Configurations</title>
                 <items>
                     <item>
-                        <detail>Developed dynamic UI components to consume the XML data, allowing users to seamlessly track the satellite's journey and explore distinct mission phases.</detail>
+                        <detail>Integrated a responsive audio ecosystem featuring immersive ambient soundscapes and low-latency interactive sound effects (SFX) triggered across critical application state transitions.</detail>
+                    </item>
+                    <item>
+                        <detail>Programmed persistent state management utilizing local storage to retain user preferences across sessions, explicitly supporting volume controls and newly implemented accessibility settings like colorblind mode.</detail>
                     </item>
                 </items>
             </section>
