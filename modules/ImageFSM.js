@@ -238,9 +238,14 @@ export class ImageFSM {
      *
      * @param {boolean} isTopLayer - True if this picture sits on top, false if on bottom.
      * @param {number} sliderId - Which slider is being built.
-     * @returns {HTMLImageElement} The configured picture element.
+     * @returns {HTMLDivElement} The configured picture element.
      */
     createPictureElement(isTopLayer, sliderId) {
+        // 1. Create the wrapper div
+        const wrapper = document.createElement("div");
+        wrapper.classList.add("stage-image-wrapper");
+
+        // 2. Create and configure the image (your original code)
         const picture = document.createElement("img");
 
         const sharedPrefix = this.imageFileNames[sliderId][FOLDER_PREFIX_POSITION];
@@ -251,7 +256,11 @@ export class ImageFSM {
         picture.classList.toggle("stage-description-image", true);
         picture.classList.toggle(isTopLayer ? "top-stage-image" : "bottom-stage-image", true);
 
-        return picture;
+        // 3. Put the image inside the wrapper
+        wrapper.appendChild(picture);
+
+        // 4. Return the wrapper so it gets placed in the DOM
+        return wrapper;
     }
 
     /**
@@ -335,10 +344,14 @@ export class ImageFSM {
         const nextPictureSuffix = this.imageFileNames[sliderId][nextPictureTarget];
 
         // 1. Load the new picture and text onto the hidden bottom box
-        this.bottomPictures[sliderId].src = `${this.folderPath}${sharedPrefix}${nextPictureSuffix}`;
+        // UPDATED: Grab the actual <img> tag sitting inside the bottom wrapper
+        const bottomImg = this.bottomPictures[sliderId].querySelector("img");
+        bottomImg.src = `${this.folderPath}${sharedPrefix}${nextPictureSuffix}`;
+
         this.updateTextDescription(sliderId, false, nextPictureTarget);
 
         // 2. Trigger a CSS effect to fade out the top box (revealing the bottom box)
+        // Note: Fading the wrapper itself works perfectly to hide everything inside it
         this.topPictures[sliderId].classList.toggle("image-fade-out", true);
         this.textDescriptionLayers[sliderId][TOP_LAYER_ID].classList.toggle("image-fade-out", true);
 
@@ -365,7 +378,10 @@ export class ImageFSM {
         });
 
         // 5. Cleanup: Make the top box instantly match the bottom box so it acts as our new base
-        this.topPictures[sliderId].src = this.bottomPictures[sliderId].src;
+        // UPDATED: Grab the actual <img> tag sitting inside the top wrapper
+        const topImg = this.topPictures[sliderId].querySelector("img");
+        topImg.src = bottomImg.src;
+
         this.updateTextDescription(sliderId, true, nextPictureTarget);
 
         // 6. Turn off the fade-out effect classes so the top layer is visible and opaque again
