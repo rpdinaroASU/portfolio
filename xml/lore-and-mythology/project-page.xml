@@ -186,7 +186,7 @@
             </section>
         </stage>
 
-        <!-- Stage Sprint 8: -->
+        <!-- Stage Sprint 8: Interactive Environment & UI Execution-->
         <stage>
             <title>Interactive Environment &amp; UI Execution</title>
 
@@ -382,7 +382,51 @@
             </section>
         </stage>
 
-        <!-- Stage Sprint 12: -->
+        <!-- Stage Sprint 12: Quality Assurance, Mobile Optimization & Public Release Finalization-->
+        <stage>
+            <title>Quality Assurance, Mobile Optimization &amp; Public Release Finalization</title>
+
+            <section-description>
+                <title>Sprint Objectives &amp; Execution</title>
+                <description>Executed rigorous quality assurance protocols, engineered mobile-responsive interface updates, and resolved critical application logic bugs to finalize the interactive experience for public deployment.</description>
+            </section-description>
+
+            <section>
+                <title>Quality Assurance &amp; User Acceptance Testing</title>
+                <items>
+                    <item>
+                        <detail>Executed comprehensive quality plan protocols, validating system integrity through rigorous testing of edge-case scenarios, session duration limits, interactive mechanics, and narrative accuracy.</detail>
+                    </item>
+                    <item>
+                        <detail>Facilitated formal beta testing sessions to capture and synthesize end-user feedback, systematically evaluating mission relatability and overall user satisfaction.</detail>
+                    </item>
+                </items>
+            </section>
+
+            <section>
+                <title>Mobile Optimization &amp; Interface Refinement</title>
+                <items>
+                    <item>
+                        <detail>Engineered mobile-responsive interface enhancements by dynamically scaling core interaction buttons and typography to guarantee an intuitive experience across diverse screen dimensions.</detail>
+                    </item>
+                    <item>
+                        <detail>Rectified transient UI rendering glitches during context state transitions, eliminating unauthorized visual artifacts to maintain a cohesive, professional graphical presentation.</detail>
+                    </item>
+                </items>
+            </section>
+
+            <section>
+                <title>System Finalization &amp; Critical Bug Resolution</title>
+                <items>
+                    <item>
+                        <detail>Resolved high-priority application logic faults, implementing robust event debouncing on navigation buttons to prevent program crashes and restoring disabled modal functionality.</detail>
+                    </item>
+                    <item>
+                        <detail>Finalized user onboarding mechanics and global configuration settings, strategically disabling background tracking interactions during cinematic phases and calibrating help prompt timers for optimal pacing.</detail>
+                    </item>
+                </items>
+            </section>
+        </stage>
 
     </stages>
 </project>
