@@ -273,40 +273,79 @@
 
         <!-- Stage: Sprint 5 -->
         <stage>
-            <title>Sprint 5: Review, Finalization, and Improvement</title>
+            <title>Content Architecture, UX Refinement &amp; Quality Assurance</title>
+
             <section-description>
-                <title>Educational UX Design &amp; Data Architecture</title>
-                <description>To ensure the experience was highly educational and intuitive for users of all ages and cognitive abilities, I overhauled the content strategy, integrated multimedia elements, and optimized the backend data delivery.</description>
+                <title>Sprint Objectives &amp; Execution</title>
+                <description>Engineered JSON-driven content architectures, refined interactive UI components with dynamic animations, and executed comprehensive cross-device quality assurance testing to finalize the application for public deployment.</description>
             </section-description>
+
             <section>
-                <title>Information Architecture &amp; Content Strategy</title>
+                <title>Content Architecture &amp; Data Management</title>
                 <items>
                     <item>
-                        <detail>Restructured complex technical data for the Mission and Instruments sections into an accessible "What, Why, and How" framework to maximize user comprehension across diverse age groups.</detail>
+                        <detail>Architected a scalable data management system by migrating mission phase content into decoupled JSON structures, streamlining information retrieval and content maintainability.</detail>
+                    </item>
+                    <item>
+                        <detail>Enhanced the application's educational value by integrating rich multimedia assets and restructuring technical information into accessible, comprehensive summaries tailored for diverse user demographics.</detail>
                     </item>
                 </items>
             </section>
+
             <section>
-                <title>Multimedia Integration</title>
+                <title>UX/UI Refinement &amp; Interactive Mechanics</title>
                 <items>
                     <item>
-                        <detail>Enriched the educational phases with contextual images and videos, supporting visual learners and increasing overall user retention and engagement.</detail>
+                        <detail>Engineered dynamic 3D camera mechanics to automatically animate and zoom toward specific spacecraft instruments upon user selection, significantly elevating spatial engagement.</detail>
+                    </item>
+                    <item>
+                        <detail>Refined overarching interface cohesion by standardizing media aspect ratios, implementing responsive design protocols for the Index page, and introducing intuitive visual state-changes for interacted UI elements.</detail>
                     </item>
                 </items>
             </section>
+
             <section>
-                <title>Scalable Data Management</title>
+                <title>Quality Assurance &amp; Project Finalization</title>
                 <items>
                     <item>
-                        <detail>Re-engineered content delivery by transitioning hardcoded phase data into a structured JSON architecture, improving system scalability and maintaining consistency across the application.</detail>
+                        <detail>Executed rigorous cross-device compatibility testing targeting iOS and iPadOS environments, systematically resolving platform-specific rendering anomalies to guarantee universal stability.</detail>
+                    </item>
+                    <item>
+                        <detail>Facilitated formal end-user beta testing to validate UX design decisions and finalized stakeholder deliverables by integrating comprehensive project attribution and developer biographies.</detail>
                     </item>
                 </items>
             </section>
+        </stage>
+
+        <!--Stage: Sprint 6 -->
+        <stage>
+            <title>System Review, UI Polish &amp; Final Refinement</title>
+
+            <section-description>
+                <title>Sprint Objectives &amp; Execution</title>
+                <description>Executed comprehensive system reviews and implemented targeted UI/UX refinements to elevate overall application consistency, accessibility, and navigation flow.</description>
+            </section-description>
+
             <section>
-                <title>UX/UI Quality Assurance</title>
+                <title>Quality Assurance &amp; Application Review</title>
                 <items>
                     <item>
-                        <detail>Refined user flows and interface components to guarantee a polished, highly accessible, and confident user experience for all audiences.</detail>
+                        <detail>Conducted rigorous end-to-end application reviews to identify rendering bugs, gather structural reflections, and establish a documented baseline for future architectural improvements.</detail>
+                    </item>
+                </items>
+            </section>
+
+            <section>
+                <title>User Interface (UI) &amp; Navigation Polish</title>
+                <items>
+                    <item>
+                        <detail>Refined interactive settings components by expanding hit areas for configuration controls, significantly improving touch accessibility and overall user experience.</detail>
+                    </item>
+                    <item>
+                        <detail>Standardized global application interfaces by integrating cohesive footer layouts across primary pages, correcting typographical errors, and unifying component styling across all mission exploration modules.</detail>
+                    </item>
+                    <item>
+                        <detail>Restructured administrative pages to enhance user flow, finalizing project citations and implementing intuitive, globally accessible return-navigation mechanics.</detail>
                     </item>
                 </items>
             </section>
