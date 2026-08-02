@@ -97,11 +97,11 @@
             </section>
         </stage>
 
-        <!-- Stage Sprint 6: System Architecture &amp; Frontend Implementation -->
+        <!-- Stage Sprint 1: System Architecture &amp; Frontend Implementation -->
         <stage>
-            <title>System Architecture &amp; Frontend Implementation</title>
+            <title>Sprint 1: System Architecture &amp; Frontend Implementation</title>
             <section-description>
-                <title>Sprint Objectives &amp; Execution</title>
+                <title>System Architecture &amp; Frontend Implementation</title>
                 <description>Architected system flows and engineered the foundational frontend elements for the second phase of the gamified lore experience, translating comprehensive UI/UX mockups into interactive user features.</description>
             </section-description>
 
@@ -142,12 +142,12 @@
             </section>
         </stage>
 
-        <!-- Stage Sprint 7: Implementation & Asset Development -->
+        <!-- Stage Sprint 2: Implementation &amp; Asset Development -->
         <stage>
-            <title>Implementation &amp; Asset Development</title>
+            <title>Sprint 2: Implementation &amp; Asset Development</title>
 
             <section-description>
-                <title>Sprint Objectives &amp; Execution</title>
+                <title>Implementation &amp; Asset Development</title>
                 <description>Executed the development of the Asteroid Mythos Phase (AMP) by engineering an interactive mobile-compatible telescope search mechanic, designing realistic 3D and 2D environmental assets, and implementing responsive UI/UX control popups to seamlessly guide the user's lore experience.</description>
             </section-description>
 
@@ -186,12 +186,12 @@
             </section>
         </stage>
 
-        <!-- Stage Sprint 8: Interactive Environment & UI Execution-->
+        <!-- Stage Sprint 3: Interactive Environment &amp; UI Execution-->
         <stage>
-            <title>Interactive Environment &amp; UI Execution</title>
+            <title>Sprint 3: Interactive Environment &amp; UI Execution</title>
 
             <section-description>
-                <title>Sprint Objectives &amp; Execution</title>
+                <title>Interactive Environment &amp; UI Execution</title>
                 <description>Engineered immersive 3D space environments and implemented dynamic, responsive user interfaces to facilitate engaging, self-paced interactive storytelling across all major devices and browsers.</description>
             </section-description>
 
@@ -232,12 +232,12 @@
             </section>
         </stage>
 
-        <!-- Stage Sprint 9: Asset Refinement, Audio Integration & Quality Assurance-->
+        <!-- Stage Sprint 4: Asset Refinement, Audio Integration &amp; Quality Assurance-->
         <stage>
-            <title>Historical Asset Integration &amp; System Optimization</title>
+            <title>Sprint 4: Asset Refinement, Audio Integration &amp; Quality Assurance</title>
 
             <section-description>
-                <title>Sprint Objectives &amp; Execution</title>
+                <title>Asset Refinement, Audio Integration &amp; Quality Assurance</title>
                 <description>Engineered historically accurate 3D visual assets, integrated immersive audio systems, and executed rigorous cross-platform testing protocols to optimize the interactive narrative experience for final delivery.</description>
             </section-description>
 
@@ -278,12 +278,12 @@
             </section>
         </stage>
 
-        <!-- Stage Sprint 10: Performance Optimization, Asset Refinement & Quality Assurance-->
+        <!-- Stage Sprint 5: Performance Optimization, Asset Refinement &amp; Quality Assurance-->
         <stage>
-            <title>Performance Optimization, Asset Refinement &amp; Quality Assurance</title>
+            <title>Sprint 5: Performance Optimization, Asset Refinement &amp; Quality Assurance</title>
 
             <section-description>
-                <title>Sprint Objectives &amp; Execution</title>
+                <title>Performance Optimization, Asset Refinement &amp; Quality Assurance</title>
                 <description>Engineered high-performance 3D assets, integrated immersive audio systems, and executed comprehensive cross-platform optimizations to finalize a historically accurate, highly responsive interactive narrative.</description>
             </section-description>
 
@@ -330,12 +330,12 @@
             </section>
         </stage>
 
-        <!-- Stage Sprint 11: Architecture Refactoring, Documentation & Final Polish-->
+        <!-- Stage Sprint 6: Architecture Refactoring, Documentation &amp; Final Polish-->
         <stage>
-            <title>Architecture Refactoring, Documentation &amp; Final Polish</title>
+            <title>Sprint 6: Architecture Refactoring, Documentation &amp; Final Polish</title>
 
             <section-description>
-                <title>Sprint Objectives &amp; Execution</title>
+                <title>Architecture Refactoring, Documentation &amp; Final Polish</title>
                 <description>Refactored core application architecture for enhanced maintainability, authored comprehensive technical documentation for sponsor handoff, and executed global UX/UI bug fixes to ensure cross-platform stability.</description>
             </section-description>
 
@@ -376,12 +376,12 @@
             </section>
         </stage>
 
-        <!-- Stage Sprint 12: Quality Assurance, Mobile Optimization & Public Release Finalization-->
+        <!-- Stage Sprint 7: Quality Assurance, Mobile Optimization &amp; Public Release Finalization-->
         <stage>
-            <title>Quality Assurance, Mobile Optimization &amp; Public Release Finalization</title>
+            <title>Sprint 7: Quality Assurance, Mobile Optimization &amp; Public Release Finalization</title>
 
             <section-description>
-                <title>Sprint Objectives &amp; Execution</title>
+                <title>Quality Assurance, Mobile Optimization &amp; Public Release Finalization</title>
                 <description>Executed rigorous quality assurance protocols, engineered mobile-responsive interface updates, and resolved critical application logic bugs to finalize the interactive experience for public deployment.</description>
             </section-description>
 
