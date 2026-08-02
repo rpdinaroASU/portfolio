@@ -97,15 +97,149 @@
             </section>
         </stage>
 
-        <!-- Stage: Sprint 1 -->
+        <!-- Stage Sprint 6: System Architecture &amp; Frontend Implementation -->
 
-        <!-- Stage: Sprint 2 -->
+        <stage>
+            <title>System Architecture &amp; Frontend Implementation</title>
+            <section-description>
+                <title>Sprint Objectives &amp; Execution</title>
+                <description>Architected system flows and engineered the foundational frontend elements for the second phase of the gamified lore experience, translating comprehensive UI/UX mockups into interactive user features.</description>
+            </section-description>
 
-        <!-- Stage: Sprint 3 -->
+            <section>
+                <title>System Architecture &amp; Flow Design</title>
+                <items>
+                    <item>
+                        <detail>Architected a detailed, low-level user experience flow derived from high-level requirements to accurately map the narrative progression of the asteroid lore.</detail>
+                    </item>
+                    <item>
+                        <detail>Developed comprehensive UML Activity Diagrams to visualize the application architecture and strictly guide the frontend engineering lifecycle.</detail>
+                    </item>
+                </items>
+            </section>
 
-        <!-- Stage: Sprint 4 -->
+            <section>
+                <title>UI/UX Design &amp; Asset Prototyping</title>
+                <items>
+                    <item>
+                        <detail>Designed high-fidelity mockups for the core application screens, including the main dashboard and launch page, establishing the visual aesthetic of the Psyche lore experience.</detail>
+                    </item>
+                    <item>
+                        <detail>Created standardized interface assets, including thematic papyrus scroll graphics, help screens, and settings menus, utilizing component-driven design patterns to maximize asset reusability.</detail>
+                    </item>
+                </items>
+            </section>
 
-        <!-- Stage: Sprint 5 -->
+            <section>
+                <title>Frontend Engineering &amp; Core Mechanics</title>
+                <items>
+                    <item>
+                        <detail>Implemented responsive frontend views for the primary experience pages, seamlessly translating conceptual UI designs into functional web components.</detail>
+                    </item>
+                    <item>
+                        <detail>Engineered the foundational logic and interactive scope for the core "finding feature" mechanic on the main page to actively drive user discovery and engagement.</detail>
+                    </item>
+                </items>
+            </section>
+        </stage>
+
+        <!-- Stage Sprint 7: Implementation & Asset Development -->
+        <stage>
+            <title>Implementation &amp; Asset Development</title>
+
+            <section-description>
+                <title>Sprint Objectives &amp; Execution</title>
+                <description>Executed the development of the Asteroid Mythos Phase (AMP) by engineering an interactive mobile-compatible telescope search mechanic, designing realistic 3D and 2D environmental assets, and implementing responsive UI/UX control popups to seamlessly guide the user's lore experience.</description>
+            </section-description>
+
+            <section>
+                <title>Interactive Discovery Mechanics</title>
+                <items>
+                    <item>
+                        <detail>Engineered a mobile-compatible search mechanic that dynamically randomizes the asteroid's location, keeping it hidden from view until successfully aligned within the interactive telescope.</detail>
+                    </item>
+                    <item>
+                        <detail>Programmed fluid star-moving animations and automated state transitions that trigger immediately upon the user's discovery of the meteorite.</detail>
+                    </item>
+                </items>
+            </section>
+            <section>
+                <title>Environmental &amp; Mythological Asset Design</title>
+                <items>
+                    <item>
+                        <detail>Enhanced the graphical fidelity of the main page by integrating a realistic 3D asteroid model alongside a rich, multi-layered 2D environment featuring a Naples observatory, grassy terrain, and foreground telescope.</detail>
+                    </item>
+                    <item>
+                        <detail>Created and integrated thematic vector graphics—including constellations, a chrysalis, a butterfly, and the sleeping goddess Psyche—to visually communicate the asteroid's historical and mythological connections.</detail>
+                    </item>
+                </items>
+            </section>
+            <section>
+                <title>UI/UX &amp; Control Systems</title>
+                <items>
+                    <item>
+                        <detail>Developed comprehensive user control features, including responsive settings interfaces and an inactivity-triggered help popup to guide navigation without breaking immersion.</detail>
+                    </item>
+                    <item>
+                        <detail>Implemented a timed, responsive "papyrus scroll" UI component for introductory text and programmed smooth, interconnected transitions for the astronomer and mythological lore popups.</detail>
+                    </item>
+                </items>
+            </section>
+        </stage>
+
+        <!-- Stage Sprint 8: -->
+        <stage>
+            <title>Interactive Environment &amp; UI Execution</title>
+
+            <section-description>
+                <title>Sprint Objectives &amp; Execution</title>
+                <description>Engineered immersive 3D space environments and implemented dynamic, responsive user interfaces to facilitate engaging, self-paced interactive storytelling across all major devices and browsers.</description>
+            </section-description>
+
+            <section>
+                <title>3D Environment &amp; Interactive Visualization</title>
+                <items>
+                    <item>
+                        <detail>Developed a cohesive 3D space environment featuring a beautified starfield and a dynamically rendered asteroid belt to accurately contextualize the Psyche asteroid.</detail>
+                    </item>
+                    <item>
+                        <detail>Programmed immersive visual effects, including dynamic background blurring, target-focused dimming, and smooth camera transitions to seamlessly guide user attention during satellite orientation.</detail>
+                    </item>
+                </items>
+            </section>
+
+            <section>
+                <title>User Interface &amp; Interactive Storytelling</title>
+                <items>
+                    <item>
+                        <detail>Designed and implemented responsive UI layouts across multiple engagement phases (AMP-L, SMP-C, SMP-E, SMP-L), integrating animated informational modals, cinematic typing effects, and autoplay video.</detail>
+                    </item>
+                    <item>
+                        <detail>Engineered self-paced exploration mechanics utilizing intuitive navigation triggers, time-delayed help popups, and standardized design assets to elevate the lore progression experience.</detail>
+                    </item>
+                </items>
+            </section>
+
+            <section>
+                <title>Cross-Platform Stability &amp; Developer Operations</title>
+                <items>
+                    <item>
+                        <detail>Resolved critical text encoding issues and universal bugs to guarantee a seamless, accessible user experience across all major hardware devices and web browsers.</detail>
+                    </item>
+                    <item>
+                        <detail>Authored comprehensive backend developer documentation and finalized overarching project infrastructure updates, including global footer synchronization.</detail>
+                    </item>
+                </items>
+            </section>
+        </stage>
+
+        <!-- Stage Sprint 9: -->
+
+        <!-- Stage Sprint 10: -->
+
+        <!-- Stage Sprint 11: -->
+
+        <!-- Stage Sprint 12: -->
 
     </stages>
 </project>
