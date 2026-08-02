@@ -89,56 +89,45 @@
 
         <!-- Stage: Sprint 1 -->
         <stage>
-            <title>Sprint 1: Design and Documentation - Part 1</title>
+            <title>Product Ideation, Research &amp; Architectural Planning</title>
+
             <section-description>
-                <title>Low-level Design &amp; Establishing Educational Goals</title>
-                <description>The Psyche mission demands high informational precision, I summarized research papers and established frameworks and libraries for the project.</description>
+                <title>Sprint Objectives &amp; Execution</title>
+                <description>Spearheaded early-stage product discovery by synthesizing NASA scientific research, evaluating Augmented Reality (AR) technology stacks, and engineering comprehensive UX prototypes to define requirements for three distinct interactive experiences.</description>
             </section-description>
+
             <section>
-                <title>AR Technology Evaluation</title>
+                <title>Technical Evaluation &amp; System Architecture</title>
                 <items>
                     <item>
-                        <detail>Researched APIs, libraries, and frameworks, documenting pros/cons to drive the project's technical architecture.</detail>
+                        <detail>Evaluated multiple Augmented Reality (AR) APIs, frontend frameworks, and rendering libraries, documenting comprehensive cost-benefit analyses to dictate the project's core technology stack.</detail>
+                    </item>
+                    <item>
+                        <detail>Architected high-level system workflows by developing detailed Use Case diagrams for the "Satellite," "Lore," and "Detective" modules to establish clear user interaction pathways.</detail>
                     </item>
                 </items>
             </section>
+
             <section>
-                <title>Scientific Research</title>
+                <title>Requirements Engineering &amp; Scientific Research</title>
                 <items>
                     <item>
-                        <detail>Synthesized 13+ NASA Psyche research papers—covering mission objectives, geology, and satellite operations—to ensure scientific accuracy across the project.</detail>
+                        <detail>Synthesized complex scientific data by analyzing extensive NASA research publications, distilling the findings into concise information sheets to ensure narrative and technical accuracy.</detail>
+                    </item>
+                    <item>
+                        <detail>Authored foundational Design Documents and formal Experience Requirements across all planned applications to align stakeholder vision with concrete development milestones.</detail>
                     </item>
                 </items>
             </section>
+
             <section>
-                <title>High-Fidelity Mockups</title>
+                <title>UI/UX Prototyping &amp; Asset Development</title>
                 <items>
                     <item>
-                        <detail>Designed accessible, user-tested UI/UX mockups for three core AR experiences (Detective, Satellite, and Lore/Astronomer).</detail>
+                        <detail>Designed high-fidelity wireframes and accessible UI mockups for central landing pages and immersive AR interfaces, focusing on user engagement and intuitive navigation.</detail>
                     </item>
-                </items>
-            </section>
-            <section>
-                <title>Use Case Architecture</title>
-                <items>
                     <item>
-                        <detail>Developed UML diagrams to map user interactions, logic flows, and system responsibilities.</detail>
-                    </item>
-                </items>
-            </section>
-            <section>
-                <title>Experience Design Documents (EDDs)</title>
-                <items>
-                    <item>
-                        <detail>Defined the narrative, mechanics, and user flows to establish the creative direction for the sprint.</detail>
-                    </item>
-                </items>
-            </section>
-            <section>
-                <title>Requirements Extraction</title>
-                <items>
-                    <item>
-                        <detail>Translated complex design concepts and scientific research into actionable, developer-ready requirements and info sheets.</detail>
+                        <detail>Modeled preliminary 3D assets of the Psyche asteroid to integrate directly into early visual prototypes and formal stakeholder design presentations.</detail>
                     </item>
                 </items>
             </section>
