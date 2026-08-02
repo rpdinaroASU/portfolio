@@ -1060,6 +1060,7 @@ Parent container for all below
     border-radius: var(--border-radius);
     max-width: 95% !important;
     max-height: 610px !important;
+    min-height: 610px !important;
     overflow: hidden !important;
     padding-bottom: 34px;
     aspect-ratio: 1 / 1;
@@ -1078,6 +1079,7 @@ Parent container for all below
 
     max-width: 600px !important;
     max-height: 575px !important;
+    min-height: 575px !important;
 
     border-bottom: var(--border-width) solid var(--tertiary-light-color);
     border-radius: var(--border-radius);
