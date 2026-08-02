@@ -336,7 +336,51 @@
             </section>
         </stage>
 
-        <!-- Stage Sprint 11: -->
+        <!-- Stage Sprint 11: Architecture Refactoring, Documentation & Final Polish-->
+        <stage>
+            <title>Architecture Refactoring, Documentation &amp; Final Polish</title>
+
+            <section-description>
+                <title>Sprint Objectives &amp; Execution</title>
+                <description>Refactored core application architecture for enhanced maintainability, authored comprehensive technical documentation for sponsor handoff, and executed global UX/UI bug fixes to ensure cross-platform stability.</description>
+            </section-description>
+
+            <section>
+                <title>Codebase Modularization &amp; Technical Documentation</title>
+                <items>
+                    <item>
+                        <detail>Refactored monolithic JavaScript files into scalable, modular architectures to improve codebase maintainability and developer readability.</detail>
+                    </item>
+                    <item>
+                        <detail>Authored extensive technical documentation, encompassing inline code comments, comprehensive README guides, and structured post-mortem reviews to facilitate seamless sponsor handoff and future development.</detail>
+                    </item>
+                </items>
+            </section>
+
+            <section>
+                <title>UI/UX Refinement &amp; Visual Polish</title>
+                <items>
+                    <item>
+                        <detail>Enhanced interface consistency by standardizing global typography, rectifying mission timer alignments, and updating context page assets for a cohesive user journey.</detail>
+                    </item>
+                    <item>
+                        <detail>Polished interactive mechanics by adjusting onboarding popup frequencies, resolving 3D asteroid blurriness, and streamlining UI interactions such as disabling the targeting scope post-discovery.</detail>
+                    </item>
+                </items>
+            </section>
+
+            <section>
+                <title>System Integration &amp; Stability Resolution</title>
+                <items>
+                    <item>
+                        <detail>Integrated critical Linux-specific layout fixes and audio subsystems directly into the primary development branch to guarantee cross-platform environmental parity.</detail>
+                    </item>
+                    <item>
+                        <detail>Resolved lingering application bugs by clearing persistent console errors, fixing missing favicon assets, and updating hyperlinking behaviors to finalize application stability.</detail>
+                    </item>
+                </items>
+            </section>
+        </stage>
 
         <!-- Stage Sprint 12: -->
 
