@@ -89,56 +89,45 @@
 
         <!-- Stage: Sprint 1 -->
         <stage>
-            <title>Sprint 1: Design and Documentation - Part 1</title>
+            <title>Product Ideation, Research &amp; Architectural Planning</title>
+
             <section-description>
-                <title>Low-level Design &amp; Establishing Educational Goals</title>
-                <description>The Psyche mission demands high informational precision, I summarized research papers and established frameworks and libraries for the project.</description>
+                <title>Sprint Objectives &amp; Execution</title>
+                <description>Spearheaded early-stage product discovery by synthesizing NASA scientific research, evaluating Augmented Reality (AR) technology stacks, and engineering comprehensive UX prototypes to define requirements for three distinct interactive experiences.</description>
             </section-description>
+
             <section>
-                <title>AR Technology Evaluation</title>
+                <title>Technical Evaluation &amp; System Architecture</title>
                 <items>
                     <item>
-                        <detail>Researched APIs, libraries, and frameworks, documenting pros/cons to drive the project's technical architecture.</detail>
+                        <detail>Evaluated multiple Augmented Reality (AR) APIs, frontend frameworks, and rendering libraries, documenting comprehensive cost-benefit analyses to dictate the project's core technology stack.</detail>
+                    </item>
+                    <item>
+                        <detail>Architected high-level system workflows by developing detailed Use Case diagrams for the "Satellite," "Lore," and "Detective" modules to establish clear user interaction pathways.</detail>
                     </item>
                 </items>
             </section>
+
             <section>
-                <title>Scientific Research</title>
+                <title>Requirements Engineering &amp; Scientific Research</title>
                 <items>
                     <item>
-                        <detail>Synthesized 13+ NASA Psyche research papers—covering mission objectives, geology, and satellite operations—to ensure scientific accuracy across the project.</detail>
+                        <detail>Synthesized complex scientific data by analyzing extensive NASA research publications, distilling the findings into concise information sheets to ensure narrative and technical accuracy.</detail>
+                    </item>
+                    <item>
+                        <detail>Authored foundational Design Documents and formal Experience Requirements across all planned applications to align stakeholder vision with concrete development milestones.</detail>
                     </item>
                 </items>
             </section>
+
             <section>
-                <title>High-Fidelity Mockups</title>
+                <title>UI/UX Prototyping &amp; Asset Development</title>
                 <items>
                     <item>
-                        <detail>Designed accessible, user-tested UI/UX mockups for three core AR experiences (Detective, Satellite, and Lore/Astronomer).</detail>
+                        <detail>Designed high-fidelity wireframes and accessible UI mockups for central landing pages and immersive AR interfaces, focusing on user engagement and intuitive navigation.</detail>
                     </item>
-                </items>
-            </section>
-            <section>
-                <title>Use Case Architecture</title>
-                <items>
                     <item>
-                        <detail>Developed UML diagrams to map user interactions, logic flows, and system responsibilities.</detail>
-                    </item>
-                </items>
-            </section>
-            <section>
-                <title>Experience Design Documents (EDDs)</title>
-                <items>
-                    <item>
-                        <detail>Defined the narrative, mechanics, and user flows to establish the creative direction for the sprint.</detail>
-                    </item>
-                </items>
-            </section>
-            <section>
-                <title>Requirements Extraction</title>
-                <items>
-                    <item>
-                        <detail>Translated complex design concepts and scientific research into actionable, developer-ready requirements and info sheets.</detail>
+                        <detail>Modeled preliminary 3D assets of the Psyche asteroid to integrate directly into early visual prototypes and formal stakeholder design presentations.</detail>
                     </item>
                 </items>
             </section>
@@ -146,32 +135,45 @@
 
         <!-- Stage: Sprint 2 -->
         <stage>
-            <title>Sprint 2: Launch Page and Homepage</title>
+            <title>WebAR Prototyping, 3D Rendering &amp; Accessibility Integration</title>
+
             <section-description>
-                <title>Inclusive Design &amp; Accessibility</title>
-                <description>Driven by the mandate to make the Psyche Satellite experience universally accessible, I designed and implemented a suite of user-controlled visual enhancements.</description>
+                <title>Sprint Objectives &amp; Execution</title>
+                <description>Engineered an interactive 3D frontend architecture and foundational WebAR prototypes, prioritizing inclusive design through comprehensive accessibility settings, mobile-responsive controls, and robust user onboarding.</description>
             </section-description>
+
             <section>
-                <title>High-Contrast Optimization</title>
+                <title>3D Environment &amp; Interactive Rendering</title>
                 <items>
                     <item>
-                        <detail>Designed custom UI themes to ensure strict legibility standards and support users with visual impairments.</detail>
+                        <detail>Engineered an immersive 3D homepage featuring a dynamically lit skybox and a polygon-optimized Psyche satellite model to ensure high graphical fidelity alongside rapid browser load times.</detail>
+                    </item>
+                    <item>
+                        <detail>Implemented mobile-responsive camera mechanics, enabling seamless swipe-to-rotate and pinch-to-zoom gesture controls for intuitive environmental exploration across all devices.</detail>
                     </item>
                 </items>
             </section>
+
             <section>
-                <title>Dynamic Light &amp; Dark Modes</title>
+                <title>Accessibility &amp; Inclusive UX Design</title>
                 <items>
                     <item>
-                        <detail>Integrated adaptable color schemes to reduce eye strain and accommodate diverse viewing environments.</detail>
+                        <detail>Designed and developed a globally accessible configuration matrix, integrating critical visual accessibility modes including dynamic dark/light themes, high-contrast, and color-blind settings.</detail>
+                    </item>
+                    <item>
+                        <detail>Programmed intelligent user onboarding mechanics, constructing a comprehensive help interface that automatically triggers after extended periods of user inactivity to explain interaction gestures.</detail>
                     </item>
                 </items>
             </section>
+
             <section>
-                <title>Centralized Customization Hub</title>
+                <title>Frontend Architecture &amp; AR Research</title>
                 <items>
                     <item>
-                        <detail>Prototyped and developed an intuitive settings menu, empowering users to seamlessly tailor their AR experience to their needs.</detail>
+                        <detail>Architected the core frontend application flow by linking the primary launch, settings, and main engagement pages, enhancing the user journey with scroll-triggered fade animations and polished loading screens.</detail>
+                    </item>
+                    <item>
+                        <detail>Spearheaded early-stage Augmented Reality (AR) research by constructing foundational WebAR prototypes using AR.js and drafting comprehensive activity diagrams to dictate complex application state flows.</detail>
                     </item>
                 </items>
             </section>
@@ -179,32 +181,45 @@
 
         <!-- Stage: Sprint 3 -->
         <stage>
-            <title>Sprint 3: Components Page and Mission Timeline Page</title>
+            <title>Data Integration, Interactive Systems &amp; Audio Implementation</title>
+
             <section-description>
-                <title>Live Mission Tracking &amp; API Integration</title>
-                <description>To bring the Psyche mission to life, I architected a data-driven experience that translates complex spacecraft telemetry into accessible, real-time mission progress on the homepage.</description>
+                <title>Sprint Objectives &amp; Execution</title>
+                <description>Engineered real-time data pipelines for telemetry tracking, implemented modular interactive user interfaces, and integrated comprehensive audio and accessibility systems to enhance the mission exploration experience.</description>
             </section-description>
+
             <section>
-                <title>JPL Horizons API Integration</title>
+                <title>Live Data Integration &amp; API Processing</title>
                 <items>
                     <item>
-                        <detail>Engineered a pipeline to extract and parse live Ephemeris data from the Horizons API, translating raw orbital telemetry into precise distance figures.</detail>
+                        <detail>Developed a robust data pipeline to parse the NASA Horizons API, translating complex ephemeris telemetry into a structured XML database for optimized client-side mission tracking.</detail>
+                    </item>
+                    <item>
+                        <detail>Engineered dynamic frontend rendering mechanics to visualize real-time spacecraft distance and trajectory data directly from the newly generated XML datasets.</detail>
                     </item>
                 </items>
             </section>
+
             <section>
-                <title>Client-Side Data Architecture</title>
+                <title>Interactive UI &amp; Component Architecture</title>
                 <items>
                     <item>
-                        <detail>Generated a structured, localized XML database to manage and serve satellite distance data efficiently to the frontend interface.</detail>
+                        <detail>Designed and implemented an interactive instrument discovery system, utilizing a decoupled JSON data structure to dynamically populate detailed informational modals for all five core satellite instruments.</detail>
+                    </item>
+                    <item>
+                        <detail>Constructed a visual mission timeline interface featuring custom graphics and localized scientific research, supported by refactored, modularized JavaScript architectures to ensure codebase scalability.</detail>
                     </item>
                 </items>
             </section>
+
             <section>
-                <title>Mission Phase Visualization</title>
+                <title>Audio Engineering &amp; Accessibility Configurations</title>
                 <items>
                     <item>
-                        <detail>Developed dynamic UI components to consume the XML data, allowing users to seamlessly track the satellite's journey and explore distinct mission phases.</detail>
+                        <detail>Integrated a responsive audio ecosystem featuring immersive ambient soundscapes and low-latency interactive sound effects (SFX) triggered across critical application state transitions.</detail>
+                    </item>
+                    <item>
+                        <detail>Programmed persistent state management utilizing local storage to retain user preferences across sessions, explicitly supporting volume controls and newly implemented accessibility settings like colorblind mode.</detail>
                     </item>
                 </items>
             </section>
@@ -212,32 +227,45 @@
 
         <!-- Stage: Sprint 4 -->
         <stage>
-            <title>Sprint 4: About Page, Additional Accessibility Features, User Feedback, and Mobile Features</title>
+            <title>Accessibility Integration, Data Visualization &amp; Mobile Polish</title>
+
             <section-description>
-                <title>AR Accessibility &amp; 3D UI Enhancements</title>
-                <description>To make the 3D experience inclusive and visually immersive, I implemented system-wide accessibility themes and refined the 3D environmental UI components.</description>
+                <title>Sprint Objectives &amp; Execution</title>
+                <description>Engineered global accessibility themes, optimized mobile responsiveness, and refined dynamic data visualizations to deliver a polished, inclusive, and rigorously user-tested interactive experience.</description>
             </section-description>
+
             <section>
-                <title>System-Wide Accessibility Theming</title>
+                <title>Accessibility &amp; Interface Refinement</title>
                 <items>
                     <item>
-                        <detail>Engineered dynamic theming architecture to apply high-contrast, light, and color-blind accessible themes across all interactive AR pop-ups and buttons.</detail>
+                        <detail>Implemented comprehensive visual accessibility configurations, successfully propagating high-contrast, color-blind, and light-mode themes across all global UI components and modals.</detail>
+                    </item>
+                    <item>
+                        <detail>Refined core user interface mechanics by programming automated onboarding tutorials, intuitive click-away modal dismissal logic, and cohesive 3D skybox environments.</detail>
                     </item>
                 </items>
             </section>
+
             <section>
-                <title>Persistent User Preferences</title>
+                <title>Dynamic Data Visualization &amp; Narrative Content</title>
                 <items>
                     <item>
-                        <detail>Ensured user accessibility settings translated seamlessly across the entire application, dynamically adapting interface components to meet specific user needs.</detail>
+                        <detail>Engineered dynamic telemetry UI components to accurately render real-time mission metrics, effectively splitting and displaying distance-traveled and time-to-arrival data on the main interface.</detail>
+                    </item>
+                    <item>
+                        <detail>Developed enriched narrative modules featuring integrated launch videos, contextual phase imagery, and a seamlessly integrated About page housing team biographies and project citations.</detail>
                     </item>
                 </items>
             </section>
+
             <section>
-                <title>3D Environment Refinement</title>
+                <title>Mobile Optimization &amp; Beta Testing</title>
                 <items>
                     <item>
-                        <detail>Enhanced the visual cohesion of the virtual space by upgrading the Skybox floor, bridging the gap between functional UI and an immersive 3D aesthetic.</detail>
+                        <detail>Optimized application responsiveness for mobile and tablet devices by overhauling navigation layouts, implementing swipe gestures for instrument popups, and rectifying viewport-specific timer rendering bugs.</detail>
+                    </item>
+                    <item>
+                        <detail>Executed formal beta testing protocols and user feedback loops to drive iterative product improvements, resulting in upgraded 3D satellite models and refined, user-friendly ambient audio profiles.</detail>
                     </item>
                 </items>
             </section>
@@ -245,40 +273,79 @@
 
         <!-- Stage: Sprint 5 -->
         <stage>
-            <title>Sprint 5: Review, Finalization, and Improvement</title>
+            <title>Content Architecture, UX Refinement &amp; Quality Assurance</title>
+
             <section-description>
-                <title>Educational UX Design &amp; Data Architecture</title>
-                <description>To ensure the experience was highly educational and intuitive for users of all ages and cognitive abilities, I overhauled the content strategy, integrated multimedia elements, and optimized the backend data delivery.</description>
+                <title>Sprint Objectives &amp; Execution</title>
+                <description>Engineered JSON-driven content architectures, refined interactive UI components with dynamic animations, and executed comprehensive cross-device quality assurance testing to finalize the application for public deployment.</description>
             </section-description>
+
             <section>
-                <title>Information Architecture &amp; Content Strategy</title>
+                <title>Content Architecture &amp; Data Management</title>
                 <items>
                     <item>
-                        <detail>Restructured complex technical data for the Mission and Instruments sections into an accessible "What, Why, and How" framework to maximize user comprehension across diverse age groups.</detail>
+                        <detail>Architected a scalable data management system by migrating mission phase content into decoupled JSON structures, streamlining information retrieval and content maintainability.</detail>
+                    </item>
+                    <item>
+                        <detail>Enhanced the application's educational value by integrating rich multimedia assets and restructuring technical information into accessible, comprehensive summaries tailored for diverse user demographics.</detail>
                     </item>
                 </items>
             </section>
+
             <section>
-                <title>Multimedia Integration</title>
+                <title>UX/UI Refinement &amp; Interactive Mechanics</title>
                 <items>
                     <item>
-                        <detail>Enriched the educational phases with contextual images and videos, supporting visual learners and increasing overall user retention and engagement.</detail>
+                        <detail>Engineered dynamic 3D camera mechanics to automatically animate and zoom toward specific spacecraft instruments upon user selection, significantly elevating spatial engagement.</detail>
+                    </item>
+                    <item>
+                        <detail>Refined overarching interface cohesion by standardizing media aspect ratios, implementing responsive design protocols for the Index page, and introducing intuitive visual state-changes for interacted UI elements.</detail>
                     </item>
                 </items>
             </section>
+
             <section>
-                <title>Scalable Data Management</title>
+                <title>Quality Assurance &amp; Project Finalization</title>
                 <items>
                     <item>
-                        <detail>Re-engineered content delivery by transitioning hardcoded phase data into a structured JSON architecture, improving system scalability and maintaining consistency across the application.</detail>
+                        <detail>Executed rigorous cross-device compatibility testing targeting iOS and iPadOS environments, systematically resolving platform-specific rendering anomalies to guarantee universal stability.</detail>
+                    </item>
+                    <item>
+                        <detail>Facilitated formal end-user beta testing to validate UX design decisions and finalized stakeholder deliverables by integrating comprehensive project attribution and developer biographies.</detail>
                     </item>
                 </items>
             </section>
+        </stage>
+
+        <!--Stage: Sprint 6 -->
+        <stage>
+            <title>System Review, UI Polish &amp; Final Refinement</title>
+
+            <section-description>
+                <title>Sprint Objectives &amp; Execution</title>
+                <description>Executed comprehensive system reviews and implemented targeted UI/UX refinements to elevate overall application consistency, accessibility, and navigation flow.</description>
+            </section-description>
+
             <section>
-                <title>UX/UI Quality Assurance</title>
+                <title>Quality Assurance &amp; Application Review</title>
                 <items>
                     <item>
-                        <detail>Refined user flows and interface components to guarantee a polished, highly accessible, and confident user experience for all audiences.</detail>
+                        <detail>Conducted rigorous end-to-end application reviews to identify rendering bugs, gather structural reflections, and establish a documented baseline for future architectural improvements.</detail>
+                    </item>
+                </items>
+            </section>
+
+            <section>
+                <title>User Interface (UI) &amp; Navigation Polish</title>
+                <items>
+                    <item>
+                        <detail>Refined interactive settings components by expanding hit areas for configuration controls, significantly improving touch accessibility and overall user experience.</detail>
+                    </item>
+                    <item>
+                        <detail>Standardized global application interfaces by integrating cohesive footer layouts across primary pages, correcting typographical errors, and unifying component styling across all mission exploration modules.</detail>
+                    </item>
+                    <item>
+                        <detail>Restructured administrative pages to enhance user flow, finalizing project citations and implementing intuitive, globally accessible return-navigation mechanics.</detail>
                     </item>
                 </items>
             </section>
