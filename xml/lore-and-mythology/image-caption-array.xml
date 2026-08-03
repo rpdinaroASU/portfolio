@@ -80,7 +80,7 @@
         </slide>
         <slide>
             <image>asteroid modification.png</image>
-            <caption>Full integration of the 3D Psyche asteroid model into the core experience.</caption>
+            <caption>Full integration of high fidelity 3D Psyche asteroid model into the core experience.</caption>
         </slide>
         <slide>
             <image>skybox_search.png</image>
@@ -104,6 +104,10 @@
         <slide>
             <image>historically-acurate-modeling.png</image>
             <caption>Integration of a historically accurate 3D reflection telescope model featuring fully functional scope tracking.</caption>
+        </slide>
+        <slide>
+            <image>low-res-before.png</image>
+            <caption>Decreased poly count on Psyche model, significantly improving performance</caption>
         </slide>
         <slide>
             <image>arrival-countdown.png</image>
@@ -138,9 +142,27 @@
         </slide>
     </stage>
 
-    <stage skip="true"> </stage>
-
-    <stage skip="true"> </stage>
-
-    <stage skip="true"> </stage>
+    <stage path="stage-7/">
+        <slide>
+            <image>titles.png</image>
+            <caption>Implementation of an integrated caption system to provide clear contextual alignment between visual assets and descriptive text.</caption>
+        </slide>
+        <slide>
+            <image>help.png</image>
+            <caption>Redesigned the help interface with a vertical layout and consistent typography to align with global UI patterns across the experience.</caption>
+        </slide>
+        <slide>
+            <image>font.png</image>
+            <caption>Standardized global typography across the application to ensure visual consistency and brand alignment.</caption>
+        </slide>
+        <slide>
+            <image>high-res-psyche.png</image>
+            <caption>Upgraded the 3D Psyche model with a higher polygon count, optimizing the balance between visual fidelity and rendering performance.</caption>
+        </slide>
+        <slide>
+            <image>layout.png</image>
+            <caption>Restructured the arrival countdown UI to ensure fully responsive containment within its primary layout container.</caption>
+        </slide>
+    </stage>
+    
 </project>
