@@ -135,11 +135,16 @@ export class ImageFSM {
             this.navigationDots[sliderId] = [];
 
             // Build the clickable buttons
-            if(this.createNavigationButtons(currentPictureGroup, sliderId)) {
+            let responseCode = this.createNavigationButtons(currentPictureGroup, sliderId);
+            if(responseCode===1) {
                 const navigationWrapper = document.createElement("div");
                 navigationWrapper.className = "navigation-wrapper";
                 navigationWrapper.appendChild(this.navigationDotAreas[sliderId])
                 currentDisplayArea.appendChild(navigationWrapper);
+                console.log(currentDisplayArea)
+            } else if(responseCode===0) {
+                currentDisplayArea.classList.add("stage-image-container-no-navigation");
+                currentDisplayArea.children[0].classList.add("carousel-parent-container-no-navigation")
             }
         }
     }
@@ -162,11 +167,13 @@ export class ImageFSM {
      *
      * @param {string[]} pictureSuffixes - The list of image name endings.
      * @param {number} sliderId - Which slider is being built.
-     * @return {boolean} navigation controls created
+     * @return {int} exit code
      */
     createNavigationButtons(pictureSuffixes, sliderId) {
-        if (!pictureSuffixes || typeof pictureSuffixes[FOLDER_PREFIX_POSITION] !== 'string'
-            || (pictureSuffixes && pictureSuffixes.length === 2)) return false;
+        if (!pictureSuffixes || typeof pictureSuffixes[FOLDER_PREFIX_POSITION] !== 'string') return -1;
+        if(pictureSuffixes && pictureSuffixes.length === 2) {
+            return 0;
+        }
 
         const htmlMemoryBank = document.createDocumentFragment();
         this.navigationDots[sliderId] = [];
@@ -204,7 +211,7 @@ export class ImageFSM {
         this.navigationDotAreas[sliderId].appendChild(htmlMemoryBank);
         this.startAutomaticTimer(sliderId);
 
-        return true;
+        return 1;
     }
 
     /**
