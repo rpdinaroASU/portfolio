@@ -101,7 +101,7 @@
         <stage>
             <title>Sprint 1: System Architecture &amp; Frontend Implementation</title>
             <section-description>
-                <title>System Architecture &amp; Frontend Implementation</title>
+                <title>Sprint Objectives &amp; Execution</title>
                 <description>Architected system flows and engineered the foundational frontend elements for the second phase of the gamified lore experience, translating comprehensive UI/UX mockups into interactive user features.</description>
             </section-description>
 
@@ -147,7 +147,7 @@
             <title>Sprint 2: Implementation &amp; Asset Development</title>
 
             <section-description>
-                <title>Implementation &amp; Asset Development</title>
+                <title>Sprint Objectives &amp; Execution</title>
                 <description>Executed the development of the Asteroid Mythos Phase (AMP) by engineering an interactive mobile-compatible telescope search mechanic, designing realistic 3D and 2D environmental assets, and implementing responsive UI/UX control popups to seamlessly guide the user's lore experience.</description>
             </section-description>
 
@@ -191,7 +191,7 @@
             <title>Sprint 3: Interactive Environment &amp; UI Execution</title>
 
             <section-description>
-                <title>Interactive Environment &amp; UI Execution</title>
+                <title>Sprint Objectives &amp; Execution</title>
                 <description>Engineered immersive 3D space environments and implemented dynamic, responsive user interfaces to facilitate engaging, self-paced interactive storytelling across all major devices and browsers.</description>
             </section-description>
 
@@ -237,7 +237,7 @@
             <title>Sprint 4: Asset Refinement, Audio Integration &amp; Quality Assurance</title>
 
             <section-description>
-                <title>Asset Refinement, Audio Integration &amp; Quality Assurance</title>
+                <title>Sprint Objectives &amp; Execution</title>
                 <description>Engineered historically accurate 3D visual assets, integrated immersive audio systems, and executed rigorous cross-platform testing protocols to optimize the interactive narrative experience for final delivery.</description>
             </section-description>
 
@@ -283,7 +283,7 @@
             <title>Sprint 5: Performance Optimization, Asset Refinement &amp; Quality Assurance</title>
 
             <section-description>
-                <title>Performance Optimization, Asset Refinement &amp; Quality Assurance</title>
+                <title>Sprint Objectives &amp; Execution</title>
                 <description>Engineered high-performance 3D assets, integrated immersive audio systems, and executed comprehensive cross-platform optimizations to finalize a historically accurate, highly responsive interactive narrative.</description>
             </section-description>
 
@@ -335,7 +335,7 @@
             <title>Sprint 6: Architecture Refactoring, Documentation &amp; Final Polish</title>
 
             <section-description>
-                <title>Architecture Refactoring, Documentation &amp; Final Polish</title>
+                <title>Sprint Objectives &amp; Execution</title>
                 <description>Refactored core application architecture for enhanced maintainability, authored comprehensive technical documentation for sponsor handoff, and executed global UX/UI bug fixes to ensure cross-platform stability.</description>
             </section-description>
 
@@ -381,7 +381,7 @@
             <title>Sprint 7: Quality Assurance, Mobile Optimization &amp; Public Release Finalization</title>
 
             <section-description>
-                <title>Quality Assurance, Mobile Optimization &amp; Public Release Finalization</title>
+                <title>Sprint Objectives &amp; Execution</title>
                 <description>Executed rigorous quality assurance protocols, engineered mobile-responsive interface updates, and resolved critical application logic bugs to finalize the interactive experience for public deployment.</description>
             </section-description>
 

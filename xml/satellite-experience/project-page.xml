@@ -89,7 +89,7 @@
 
         <!-- Stage: Sprint 1 -->
         <stage>
-            <title>Product Ideation, Research &amp; Architectural Planning</title>
+            <title>Sprint 1: Product Ideation, Research &amp; Architectural Planning</title>
 
             <section-description>
                 <title>Sprint Objectives &amp; Execution</title>
@@ -135,7 +135,7 @@
 
         <!-- Stage: Sprint 2 -->
         <stage>
-            <title>WebAR Prototyping, 3D Rendering &amp; Accessibility Integration</title>
+            <title>Sprint 2: WebAR Prototyping, 3D Rendering &amp; Accessibility Integration</title>
 
             <section-description>
                 <title>Sprint Objectives &amp; Execution</title>
@@ -181,7 +181,7 @@
 
         <!-- Stage: Sprint 3 -->
         <stage>
-            <title>Data Integration, Interactive Systems &amp; Audio Implementation</title>
+            <title>Sprint 3: Data Integration, Interactive Systems &amp; Audio Implementation</title>
 
             <section-description>
                 <title>Sprint Objectives &amp; Execution</title>
@@ -227,7 +227,7 @@
 
         <!-- Stage: Sprint 4 -->
         <stage>
-            <title>Accessibility Integration, Data Visualization &amp; Mobile Polish</title>
+            <title>Sprint 4: Accessibility Integration, Data Visualization &amp; Mobile Polish</title>
 
             <section-description>
                 <title>Sprint Objectives &amp; Execution</title>
@@ -273,7 +273,7 @@
 
         <!-- Stage: Sprint 5 -->
         <stage>
-            <title>Content Architecture, UX Refinement &amp; Quality Assurance</title>
+            <title>Sprint 5: Content Architecture, UX Refinement &amp; Quality Assurance</title>
 
             <section-description>
                 <title>Sprint Objectives &amp; Execution</title>
@@ -319,7 +319,7 @@
 
         <!--Stage: Sprint 6 -->
         <stage>
-            <title>System Review, UI Polish &amp; Final Refinement</title>
+            <title>Sprint 6: System Review, UI Polish &amp; Final Refinement</title>
 
             <section-description>
                 <title>Sprint Objectives &amp; Execution</title>

@@ -204,8 +204,6 @@ Parent container for all below
 .image-caption-wrapper {
     height: 100px;
     display: flex;
-    align-items: center;
-    margin:0 20px 0 20px;
 }
 
 .image-caption {
@@ -215,8 +213,7 @@ Parent container for all below
     font-size: 1rem;
     line-height: 1.5;
     color: #fff;
-    margin-top: auto;
-    margin-bottom: auto;
+    margin: 15px auto auto auto;
 
     background-color: rgba(0,0,0,.2) !important;
 }

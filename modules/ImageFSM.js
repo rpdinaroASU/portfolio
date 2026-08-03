@@ -1,5 +1,6 @@
 import { FSMFunctions } from './FSMFunctions.js';
 
+
 const TIME_BETWEEN_PICTURES_MS = 7000;
 const FADE_ANIMATION_TIMEOUT_MS = 1000;
 
@@ -86,23 +87,19 @@ export class ImageFSM {
             this.topPictureBoxes[sliderId] = document.createElement("div");
             this.topPictureBoxes[sliderId].className = "slide-wrapper top-slide-wrapper";
 
-            // 3. Create the text description elements for both layers, now inside a wrapper!
+            // 3. Create the text description elements for both layers
             for (let layerId = 0; layerId < TOTAL_IMAGE_LAYERS; layerId++) {
-                const captionWrapper = document.createElement("div");
-                captionWrapper.className = "image-caption-wrapper"; // New Wrapper
-
                 const textElement = document.createElement("div");
-                textElement.className = "image-caption"; // Original text div
+                const textWrapper = document.createElement("div");
+                textElement.className = "image-caption";
+                textWrapper.className = "image-caption-wrapper";
 
                 if (this.imageTextDescriptions && this.imageTextDescriptions[sliderId]) {
                     textElement.innerText = this.imageTextDescriptions[sliderId][FIRST_PICTURE_POSITION] || "";
                 }
+                textWrapper.appendChild(textElement);
 
-                // Place the text inside the wrapper
-                captionWrapper.appendChild(textElement);
-
-                // Store the WRAPPER instead of just the text, so the fade animation applies to the whole container
-                this.textDescriptionLayers[sliderId][layerId] = captionWrapper;
+                this.textDescriptionLayers[sliderId][layerId] = textWrapper;
             }
 
             // 4. Create the actual image elements
@@ -388,6 +385,7 @@ export class ImageFSM {
         });
 
         // 5. Cleanup: Make the top box instantly match the bottom box so it acts as our new base
+        // UPDATED: Grab the actual <img> tag sitting inside the top wrapper
         const topImg = this.topPictures[sliderId].querySelector("img");
         topImg.src = bottomImg.src;
 
