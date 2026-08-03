@@ -115,7 +115,28 @@
         </slide>
     </stage>
 
-    <stage skip="true"> </stage>
+    <stage path="stage-6/">
+        <slide>
+            <image>auto-find.png</image>
+            <caption>Implementation of an auto-find mechanic to assist and guide users during the discovery phase.</caption>
+        </slide>
+        <slide>
+            <image>continue-track.png</image>
+            <caption>Integration of a progress tracking system and streamlined navigation to enhance overall user experience.</caption>
+        </slide>
+        <slide>
+            <image>fonts.png</image>
+            <caption>Configured local font hosting to ensure typography consistency and align with brand guidelines.</caption>
+        </slide>
+        <slide>
+            <image>transition.png</image>
+            <caption>Refined UI animations during transition phase to create a more seamless and intuitive flow between sequence phases.</caption>
+        </slide>
+        <slide>
+            <image>project-end.png</image>
+            <caption>Implementation of a dedicated end screen to provide a cohesive conclusion to the narrative journey.</caption>
+        </slide>
+    </stage>
 
     <stage skip="true"> </stage>
 
