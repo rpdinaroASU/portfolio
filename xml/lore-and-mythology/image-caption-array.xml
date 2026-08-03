@@ -164,5 +164,12 @@
             <caption>Restructured the arrival countdown UI to ensure fully responsive containment within its primary layout container.</caption>
         </slide>
     </stage>
+
+    <stage path="stage-8/">
+        <slide>
+            <image>about.png</image>
+            <caption>Meet the Mission to Psyche - Iridium team</caption>
+        </slide>
+    </stage>
     
 </project>
