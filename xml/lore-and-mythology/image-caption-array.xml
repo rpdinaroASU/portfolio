@@ -57,7 +57,7 @@
         </slide>
         <slide>
             <image>implementing-3d-elements.png</image>
-            <caption>Integration of the early Psyche 3D model prototype into the skybox environment.</caption>
+            <caption>Integration of the early Psyche 3D model prototype into the Skybox environment.</caption>
         </slide>
         <slide>
             <image>initial-help-screen.png</image>
@@ -68,12 +68,52 @@
             <caption>Contextual UI pop-ups designed to enhance in-world lore and narrative delivery.</caption>
         </slide>
         <slide>
-            <image>lore design.png</image>
+            <image>lore-design.png</image>
             <caption>Early prototyping and layout design for the AMP lore system.</caption>
         </slide>
     </stage>
 
-    <stage skip="true"> </stage>
+    <stage path="stage-4/">
+        <slide>
+            <image>amp-lore.png</image>
+            <caption>Implementation of the opening scene, establishing the narrative context for the discovery of Psyche.</caption>
+        </slide>
+        <slide>
+            <image>asteroid modification.png</image>
+            <caption>Full integration of the 3D Psyche asteroid model into the core experience.</caption>
+        </slide>
+        <slide>
+            <image>skybox_search.png</image>
+            <caption>Refined Skybox exploration sequence, featuring upgraded visuals and a dynamic blur mechanic to obscure undiscovered elements.</caption>
+        </slide>
+        <slide>
+            <image>smp-prototyping.png</image>
+            <caption>Implementation of the UI text system prototype for the satellite mission phase.</caption>
+        </slide>
+    </stage>
+
+    <stage path="stage-5/">
+        <slide>
+            <image>reworked-launchpage.png</image>
+            <caption>Redesigned launch page UI incorporating the Psyche brand color palette and an optimized layout to reduce text density.</caption>
+        </slide>
+        <slide>
+            <image>telescope-tracking.png</image>
+            <caption>Prototype of positional scope tracking mechanics utilizing a placeholder telescope asset.</caption>
+        </slide>
+        <slide>
+            <image>historically-acurate-modeling.png</image>
+            <caption>Integration of a historically accurate 3D reflection telescope model featuring fully functional scope tracking.</caption>
+        </slide>
+        <slide>
+            <image>arrival-countdown.png</image>
+            <caption>Implementation of a dynamic countdown system tracking the Psyche spacecraft's arrival at the asteroid's orbit.</caption>
+        </slide>
+        <slide>
+            <image>overlay-corrections.png</image>
+            <caption>Resolved layout positioning issues to ensure precise alignment of constellation overlays with the underlying background imagery.</caption>
+        </slide>
+    </stage>
 
     <stage skip="true"> </stage>
 
