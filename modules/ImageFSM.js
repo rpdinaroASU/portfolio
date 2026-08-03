@@ -136,7 +136,10 @@ export class ImageFSM {
 
             // Build the clickable buttons
             if(this.createNavigationButtons(currentPictureGroup, sliderId)) {
-                currentDisplayArea.appendChild(this.navigationDotAreas[sliderId]);
+                const navigationWrapper = document.createElement("div");
+                navigationWrapper.className = "navigation-wrapper";
+                navigationWrapper.appendChild(this.navigationDotAreas[sliderId])
+                currentDisplayArea.appendChild(navigationWrapper);
             }
         }
     }
