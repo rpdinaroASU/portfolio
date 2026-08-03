@@ -50,7 +50,28 @@
 
     </stage>
 
-    <stage skip="true"> </stage>
+    <stage path="stage-3/">
+        <slide>
+            <image>asset-creation.png</image>
+            <caption>Asset creation process for the Psyche and Persephone narrative sequence.</caption>
+        </slide>
+        <slide>
+            <image>implementing-3d-elements.png</image>
+            <caption>Integration of the early Psyche 3D model prototype into the skybox environment.</caption>
+        </slide>
+        <slide>
+            <image>initial-help-screen.png</image>
+            <caption>Initial user interface prototype for the help and onboarding screen.</caption>
+        </slide>
+        <slide>
+            <image>lore-context-pop-ups.png</image>
+            <caption>Contextual UI pop-ups designed to enhance in-world lore and narrative delivery.</caption>
+        </slide>
+        <slide>
+            <image>lore design.png</image>
+            <caption>Early prototyping and layout design for the AMP lore system.</caption>
+        </slide>
+    </stage>
 
     <stage skip="true"> </stage>
 
