@@ -175,11 +175,10 @@ Parent container for all below
 
     /* Allows the wrapper to be 500px, but shrink if a multi-line caption needs the room */
     height: 100%;
-    max-height: 500px;
+    max-height: 475px !important;
+    min-height: 475px !important;
     width: 100%;
 
-    /* CRITICAL: Stops flexbox from breaking out of the container when large images load */
-    min-height: 0 !important;
     min-width: 0 !important;
 }
 
@@ -206,6 +205,7 @@ Parent container for all below
     height: 100px;
     display: flex;
     align-items: center;
+    margin:0 20px 0 20px;
 }
 
 .image-caption {
