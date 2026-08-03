@@ -118,7 +118,7 @@ export class XMLInterpreter {
                         <div class="stage-title">${stageTitle}</div>
                         <img src="../images/icons/down-arrow.svg" alt=" ∨ " class="stage-image">
                     </div>
-                    <div class="stage-image-container stage-${index}"></div>
+                    <div class="stage-image-container"></div>
                     <div class="stage-description left-align-text">
                         <div class="text text-top project-title-font">
                             ${allSectionsHtml}

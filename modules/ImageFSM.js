@@ -127,7 +127,7 @@ export class ImageFSM {
             const totalGridColumns = currentPictureGroup.length + GRID_COLUMN_START_OFFSET;
             this.navigationDotAreas[sliderId].style.gridTemplateColumns = `repeat(${totalGridColumns}, auto)`;
 
-            currentDisplayArea.appendChild(this.navigationDotAreas[sliderId]);
+
 
             // Set up the starting status for this slider
             this.currentPictureNumbers[sliderId] = 0;
@@ -135,7 +135,12 @@ export class ImageFSM {
             this.navigationDots[sliderId] = [];
 
             // Build the clickable buttons
-            this.createNavigationButtons(currentPictureGroup, sliderId);
+            if(this.createNavigationButtons(currentPictureGroup, sliderId)) {
+                const navigationWrapper = document.createElement("div");
+                navigationWrapper.className = "navigation-wrapper";
+                navigationWrapper.appendChild(this.navigationDotAreas[sliderId])
+                currentDisplayArea.appendChild(navigationWrapper);
+            }
         }
     }
 
@@ -157,9 +162,11 @@ export class ImageFSM {
      *
      * @param {string[]} pictureSuffixes - The list of image name endings.
      * @param {number} sliderId - Which slider is being built.
+     * @return {boolean} navigation controls created
      */
     createNavigationButtons(pictureSuffixes, sliderId) {
-        if (!pictureSuffixes || typeof pictureSuffixes[FOLDER_PREFIX_POSITION] !== 'string') return;
+        if (!pictureSuffixes || typeof pictureSuffixes[FOLDER_PREFIX_POSITION] !== 'string'
+            || (pictureSuffixes && pictureSuffixes.length === 2)) return false;
 
         const htmlMemoryBank = document.createDocumentFragment();
         this.navigationDots[sliderId] = [];
@@ -194,9 +201,10 @@ export class ImageFSM {
         // Add the Right Arrow at the very end
         const rightArrowGridColumn = pictureSuffixes.length + GRID_COLUMN_START_OFFSET;
         htmlMemoryBank.appendChild(this.createArrowButton(true, rightArrowGridColumn, sliderId));
-
         this.navigationDotAreas[sliderId].appendChild(htmlMemoryBank);
         this.startAutomaticTimer(sliderId);
+
+        return true;
     }
 
     /**

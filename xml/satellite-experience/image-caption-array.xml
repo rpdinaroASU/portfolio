@@ -100,6 +100,11 @@
         </slide>
     </stage>
 
-    <stage skip="true"> </stage>
+    <stage path="stage-6/">
+        <slide>
+            <image>about.png</image>
+            <caption>Meet the Mission to Psyche - Iridium team</caption>
+        </slide>
+    </stage>
 
 </project>
