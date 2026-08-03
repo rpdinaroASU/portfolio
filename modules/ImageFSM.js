@@ -141,7 +141,6 @@ export class ImageFSM {
                 navigationWrapper.className = "navigation-wrapper";
                 navigationWrapper.appendChild(this.navigationDotAreas[sliderId])
                 currentDisplayArea.appendChild(navigationWrapper);
-                console.log(currentDisplayArea)
             } else if(responseCode===0) {
                 currentDisplayArea.classList.add("stage-image-container-no-navigation");
                 currentDisplayArea.children[0].classList.add("carousel-parent-container-no-navigation")

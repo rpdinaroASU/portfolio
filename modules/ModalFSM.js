@@ -4,7 +4,7 @@ export class ModalFSM {
         this.contactBackground = contactBackground;
         this.contactBackgroundHitbox = contactBackgroundHitbox;
         this.lastState = this.modals.HOME_MODAL;
-        this.projectModals = new Set([this.modals.SATELLITE_MODAL, this.modals.GENETIC_ALGORITHM_MODAL, this.modals.LORE_MYTHOLOGY_MODAL]);
+        this.projectModals = new Set([this.modals.SATELLITE_MODAL, this.modals.LORE_MYTHOLOGY_MODAL]);
         this.contact = false;
         this.currentProject = this.modals.HOME_MODAL;
         this.projectContainer = projectContainer;
