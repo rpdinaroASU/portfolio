@@ -153,8 +153,9 @@ Parent container for all below
 }
 
 .stage-image-container-no-navigation {
-    min-height: 575px !important;
-    height: 575px !important;
+    min-height: 525px !important;
+    height: 525px !important;
+    overflow: hidden !important;
 }
 .carousel-parent-container-no-navigation {
     border-bottom: none !important;
