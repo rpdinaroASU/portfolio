@@ -1,7 +1,7 @@
 import { FSMFunctions } from './FSMFunctions.js';
 
 
-const TIME_BETWEEN_PICTURES_MS = 7000;
+const TIME_BETWEEN_PICTURES_MS = 10000;
 const FADE_ANIMATION_TIMEOUT_MS = 1000;
 
 // Grid layout and array positioning offsets
@@ -145,6 +145,7 @@ export class ImageFSM {
             } else if(responseCode===0) {
                 currentDisplayArea.classList.add("stage-image-container-no-navigation");
                 currentDisplayArea.children[0].classList.add("carousel-parent-container-no-navigation")
+                currentDisplayArea.children[0].removeChild(currentDisplayArea.children[0].children[1]);
             }
         }
     }
