@@ -98,6 +98,7 @@ Parent container for all below
     max-width: 95% !important;
     max-height: 610px !important;
     min-height: 610px !important;
+    height: 610px !important;
     overflow: hidden !important;
     padding-bottom: 34px;
     aspect-ratio: 1 / 1;
@@ -117,12 +118,12 @@ Parent container for all below
     max-width: 600px !important;
     max-height: 575px !important;
     min-height: 575px !important;
+    height: 575px !important;
 
     border-bottom: var(--border-width) solid var(--tertiary-light-color);
     border-radius: var(--border-radius);
-    overflow: hidden; /* Ensures nothing spills outside the rounded borders */
+    overflow: hidden;
 
-    /* Kills invisible whitespace gaps */
     font-size: 0;
     line-height: 0;
 
@@ -134,53 +135,66 @@ Parent container for all below
     margin-right: auto !important;
 }
 
-/* 2. Wrappers - Upgraded to CSS Grid */
+/* 1. The Slide Wrappers */
 .bottom-slide-wrapper,
 .top-slide-wrapper {
     display: grid;
-    /* Row 1 gets remaining space (1fr), Row 2 perfectly fits the caption (auto) */
-    grid-template-rows: 1fr auto;
+    grid-template-rows: minmax(0, 1fr) auto;
     width: 100%;
+
+    height: 100%;
     max-height: 575px !important;
     min-height: 575px !important;
-    background-color:  rgba(0,0,0,.2) !important;
+    background-color: rgba(0,0,0,.2) !important;
 }
 
+.bottom-slide-wrapper {
+    position: relative;
+    z-index: 1;
+}
+
+.top-slide-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+/* 2. Slide Wrapper Setup */
 .slide-wrapper {
     margin-top: 15px;
     padding-bottom: 10px;
-    max-height: 575px !important;
-    min-height: 575px !important;
+    box-sizing: border-box;
 }
 
-/* 1. The Wrapper */
+/* 3. The Image Wrapper */
 .stage-image-wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
 
-    /* 1. Provides a rigid, explicit height so Grid doesn't guess based on the image */
-    height: 500px !important;
-    min-height: 500px;
+    /* Allows the wrapper to be 500px, but shrink if a multi-line caption needs the room */
+    height: 100%;
     max-height: 500px;
-
     width: 100%;
 
-    /* Override CSS Grid's intrinsic sizing bug */
-    min-width: 0;
+    /* CRITICAL: Stops flexbox from breaking out of the container when large images load */
+    min-height: 0 !important;
+    min-width: 0 !important;
 }
 
-/* 2. The Image (Handles the natural scaling and tight border) */
+/* 4. The Image */
 .stage-description-image {
     display: block;
 
-    /* Prevent the image from overflowing the 500px wrapper or grid cell */
-    max-height: 100% !important;
+    max-height: 500px !important;
     max-width: 100% !important;
     width: auto !important;
     height: auto !important;
 
-    /* Tight border wrapped around the image itself */
+    min-height: 0 !important;
+    min-width: 0 !important;
+
     border: var(--border-width) solid white;
     border-radius: var(--border-radius);
     box-sizing: border-box;
@@ -188,7 +202,6 @@ Parent container for all below
 
 /* 4. Captions */
 .image-caption {
-    /* REMOVED position: absolute and bottom: 0. It now flows naturally in the grid! */
     position: relative;
     width: 100%;
     box-sizing: border-box;
