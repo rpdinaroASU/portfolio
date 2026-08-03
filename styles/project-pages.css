@@ -214,9 +214,10 @@ Parent container for all below
     justify-content: center;
 
     /* Allows the wrapper to be 500px, but shrink if a multi-line caption needs the room */
-    height: 100%;
+    height: 475px !important;
     max-height: 475px !important;
     min-height: 475px !important;
+
     width: 100%;
 
     min-width: 0 !important;
