@@ -123,11 +123,8 @@
     align-content: center;
     border: var(--border-width) solid white;
     border-radius: var(--border-radius);
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 10px;
+    margin: 20px;
     height: fit-content;
-    width: 95%;
     grid-area: 4 / 1 / 5 / 2;
 }
 /**

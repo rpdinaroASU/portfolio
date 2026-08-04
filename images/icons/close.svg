@@ -1,8 +1,8 @@
 <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
   <!-- Circle outline -->
-  <circle cx="24" cy="24" r="22" stroke="white" stroke-width="2"></circle>
+  <circle cx="24" cy="24" r="22" stroke="white" fill="rgba(56,54,63,.4)" stroke-width=".5"></circle>
 
   <!-- X icon -->
-  <line x1="16" y1="16" x2="32" y2="32" stroke="white" stroke-width="3" stroke-linecap="round"></line>
-  <line x1="32" y1="16" x2="16" y2="32" stroke="white" stroke-width="3" stroke-linecap="round"></line>
+  <line x1="16" y1="16" x2="32" y2="32" stroke="white" stroke-width="1" stroke-linecap="round"></line>
+  <line x1="32" y1="16" x2="16" y2="32" stroke="white" stroke-width="1" stroke-linecap="round"></line>
 </svg>
