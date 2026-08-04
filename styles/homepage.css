@@ -311,11 +311,8 @@
     flex-direction: row;
     color: var(--text-color);
     font-weight: bold;
-    margin: 0 0 8px;
-    padding-bottom: 0.5vh;
-    border-width: 1px;
-    border-style: solid;
-    border-color: var(--secondary-light-color) var(--secondary-light-color) white var(--secondary-light-color);
+    border-top: white 1px solid;
+    margin: 5px 10px -5px;
 }
 
 /* Dropdown Menu */
@@ -358,11 +355,12 @@
 }
 
 .project-image-container {
-    background-color: var(--tertiary-light-color);
+    background-color: var(--secondary-dark-color);
+    box-shadow: var(--tertiary-dark-color) 0 0 15px;
     padding: 10px;
     border-radius: var(--border-radius);
     max-width: 280px;
-    margin: 10px auto 0 auto;
+    margin: 20px auto 20px auto;
 }
 
 .project-tags {
@@ -380,7 +378,7 @@
     border-radius: var(--border-radius);
     margin-left: 5px;
     margin-right: 0;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     white-space: nowrap;
     padding: 5px;
     cursor: pointer;
@@ -426,13 +424,12 @@
 
 .more-information-button {
     color: var(--text-color);
-    border: 4px solid white;
+    border: 3px solid white;
     border-radius: var(--border-radius);
     white-space: nowrap;
     padding: 8px;
-    font-weight: bold;
-    margin: 15px 0 0 5px;
-    font-family: KGLoveMolly, serif;
+    margin: -20px 20px 0 10px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     cursor: pointer;
 }
 
@@ -476,6 +473,8 @@ body {
     border-style: solid;
     justify-content: center;
     background-image: url("../images/icons/pride-flags/transflag.svg");
+
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
     background-size: cover;
     background-position: left;
@@ -925,4 +924,8 @@ body {
 
 .top-banner {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.bottom-container {
+    margin-bottom: 20px;
 }
