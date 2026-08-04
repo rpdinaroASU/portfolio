@@ -158,8 +158,9 @@ export class ImageFSM {
      * @returns {number} A valid picture number within the allowed range.
      */
     keepNumberWithinBounds(targetPictureNumber, sliderId) {
-        const totalPictures = this.navigationDots[sliderId].length;
-        return FSMFunctions.mod(targetPictureNumber, totalPictures);
+        const dots = this.navigationDots[sliderId];
+        if (!dots || dots.length === 0) return 0;
+        return FSMFunctions.mod(targetPictureNumber, dots.length);
     }
 
     /**
@@ -342,19 +343,22 @@ export class ImageFSM {
      * @returns {Promise<void>} Resolves when the fading visual effect finishes.
      */
     async changeToNextPicture(sliderId) {
-        // Stop the user from clicking repeatedly and breaking the animation
+        // 1. Safety check: ensure slider elements still exist in DOM
+        if (!this.bottomPictures[sliderId] || !this.topPictures[sliderId]) {
+            this.stopAutomaticTimer(sliderId);
+            return;
+        }
+
         if (this.isCurrentlyFading && this.isCurrentlyFading[sliderId]) return;
         if (!this.isCurrentlyFading) this.isCurrentlyFading = [];
         this.isCurrentlyFading[sliderId] = true;
 
-        // Remove the active styling from all dots
         if (this.navigationDots[sliderId]) {
             this.navigationDots[sliderId].forEach(dotElement => {
                 dotElement.classList.toggle("image-circle-transition-grow", false);
             });
         }
 
-        // Figure out what the next picture number should be (+1 or -1)
         const directionModifier = this.isMovingForward[sliderId] ? 1 : -1;
         this.currentPictureNumbers[sliderId] = this.keepNumberWithinBounds(
             this.currentPictureNumbers[sliderId] + directionModifier,
@@ -362,55 +366,67 @@ export class ImageFSM {
         );
 
         const nextPictureTarget = this.currentPictureNumbers[sliderId] + FIRST_PICTURE_POSITION;
-        const sharedPrefix = this.imageFileNames[sliderId][FOLDER_PREFIX_POSITION];
-        const nextPictureSuffix = this.imageFileNames[sliderId][nextPictureTarget];
+        const sharedPrefix = this.imageFileNames[sliderId]?.[FOLDER_PREFIX_POSITION];
+        const nextPictureSuffix = this.imageFileNames[sliderId]?.[nextPictureTarget];
 
-        // 1. Load the new picture and text onto the hidden bottom box
-        // UPDATED: Grab the actual <img> tag sitting inside the bottom wrapper
+        // 2. Guard against missing image elements
         const bottomImg = this.bottomPictures[sliderId].querySelector("img");
-        bottomImg.src = `${this.folderPath}${sharedPrefix}${nextPictureSuffix}`;
+        if (!bottomImg) {
+            this.stopAutomaticTimer(sliderId);
+            return;
+        }
 
+        bottomImg.src = `${this.folderPath}${sharedPrefix}${nextPictureSuffix}`;
         this.updateTextDescription(sliderId, false, nextPictureTarget);
 
-        // 2. Trigger a CSS effect to fade out the top box (revealing the bottom box)
-        // Note: Fading the wrapper itself works perfectly to hide everything inside it
         this.topPictures[sliderId].classList.toggle("image-fade-out", true);
-        this.textDescriptionLayers[sliderId][TOP_LAYER_ID].classList.toggle("image-fade-out", true);
+        if (this.textDescriptionLayers[sliderId]?.[TOP_LAYER_ID]) {
+            this.textDescriptionLayers[sliderId][TOP_LAYER_ID].classList.toggle("image-fade-out", true);
+        }
 
-        // 3. Highlight the new dot
         const newActiveDotNumber = this.keepNumberWithinBounds(this.currentPictureNumbers[sliderId], sliderId);
-        const newActiveDotElement = this.navigationDots[sliderId][newActiveDotNumber];
+        const newActiveDotElement = this.navigationDots[sliderId]?.[newActiveDotNumber];
 
         if (newActiveDotElement) {
             newActiveDotElement.classList.toggle("image-circle-transition-grow", true);
         }
 
-        // 4. Wait for the CSS fading animation to finish
+        // 3. Handle asynchronous fade safely
         await new Promise(resolve => {
             const onAnimationFinish = (event) => {
                 if (event.target === this.topPictures[sliderId]) {
-                    this.topPictures[sliderId].removeEventListener("animationend", onAnimationFinish);
+                    this.topPictures[sliderId]?.removeEventListener("animationend", onAnimationFinish);
                     resolve();
                 }
             };
-            this.topPictures[sliderId].addEventListener("animationend", onAnimationFinish);
-
-            // Backup timer just in case the browser fails to report the animation finishing
+            this.topPictures[sliderId]?.addEventListener("animationend", onAnimationFinish);
             setTimeout(resolve, FADE_ANIMATION_TIMEOUT_MS);
         });
 
-        // 5. Cleanup: Make the top box instantly match the bottom box so it acts as our new base
-        // UPDATED: Grab the actual <img> tag sitting inside the top wrapper
-        const topImg = this.topPictures[sliderId].querySelector("img");
-        topImg.src = bottomImg.src;
+        // 4. Verify elements still exist after async delay
+        const topImg = this.topPictures[sliderId]?.querySelector("img");
+        if (topImg && bottomImg) {
+            topImg.src = bottomImg.src;
+            this.updateTextDescription(sliderId, true, nextPictureTarget);
+            this.topPictures[sliderId].classList.toggle("image-fade-out", false);
+            if (this.textDescriptionLayers[sliderId]?.[TOP_LAYER_ID]) {
+                this.textDescriptionLayers[sliderId][TOP_LAYER_ID].classList.toggle("image-fade-out", false);
+            }
+        }
 
-        this.updateTextDescription(sliderId, true, nextPictureTarget);
-
-        // 6. Turn off the fade-out effect classes so the top layer is visible and opaque again
-        this.topPictures[sliderId].classList.toggle("image-fade-out", false);
-        this.textDescriptionLayers[sliderId][TOP_LAYER_ID].classList.toggle("image-fade-out", false);
-
-        // Allow clicking again now that the animation is completely done
         this.isCurrentlyFading[sliderId] = false;
     }
+
+    /**
+     * Stops all running auto-scroll timers and cleans up resources.
+     * Call this method when closing or switching project modals.
+     */
+    destroy() {
+        for (let sliderId = 0; sliderId < this.automaticScrollTimers.length; sliderId++) {
+            this.stopAutomaticTimer(sliderId);
+        }
+        this.automaticScrollTimers = [];
+        this.isCurrentlyFading = [];
+    }
+
 }

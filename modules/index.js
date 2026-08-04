@@ -298,6 +298,19 @@ window.onload = () => {
     }
 };
 
+let currentImageSliderInstance = null;
+
+function loadProjectModal(imageArr, captionArr,  wrapper, imagePath) {
+    // 1. Clean up existing active timers before switching
+    if (currentImageSliderInstance) {
+        currentImageSliderInstance.destroy();
+        currentImageSliderInstance = null;
+    }
+
+    // 2. Instantiate new slider for the opened modal
+    currentImageSliderInstance = new ImageFSM(imageArr, captionArr,  wrapper, imagePath);
+}
+
 /**
  * Attaches a click event listener to a project button to open its corresponding modal,
  * instantiate its image gallery FSM, and collapse open menus.
@@ -320,7 +333,7 @@ function addProjectInfoButtonListener(button, projectInfo, imageArr, captionArr,
         }
 
         modalFSM.setState(modal);
-        new ImageFSM(imageArr, captionArr, projectInfo.querySelectorAll(".stage-image-container"), imagePath);
+        loadProjectModal(imageArr, captionArr, projectInfo.querySelectorAll(".stage-image-container"), imagePath);
 
         if (expandedMenu) expandingMenuButton.dispatchEvent(new Event("click"));
         if (expandedProjectMenu) projectArrow.dispatchEvent(new Event("click"));
