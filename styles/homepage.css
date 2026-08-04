@@ -454,7 +454,7 @@ body {
 .background-image {
     position: absolute;
     z-index: -1;
-    left: 25vw;
+    left: -7vw;
     top: -600px;
     height: 100vh;
     width: 25vw;
@@ -474,6 +474,10 @@ body {
     background-size: cover; /* Stretches the image to cover the full background */
     background-repeat: no-repeat; /* Prevents the image from repeating/tiling */
     background-position: center; /* Keeps the image centered */
+}
+.reverse {
+    transform: scaleX(-1);
+    left: 82%;
 }
 
 .portfolio-header {
