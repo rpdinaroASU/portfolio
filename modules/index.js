@@ -56,6 +56,7 @@ let projectButton;
  * once the window content has fully loaded.
  */
 window.onload = () => {
+    mobileStyle();
     const interpreter = new XMLInterpreter();
 
     for( let i = 0; i <PROJECT_PAGE_XML_FILEPATH.length; i=i+2 ) {
@@ -147,13 +148,18 @@ window.onload = () => {
         if (expandedProjectMenu) projectArrow.dispatchEvent(new Event("click"));
     });
 
-    // Expanding menu toggle handler
     expandingMenuButton.addEventListener("click", () => {
-        expandingMenu.classList.toggle("hidden");
-        expandingMenu.classList.toggle("expanding-animation");
+        // 1. Toggle the single 'open' state class
+        expandingMenu.classList.toggle("open");
         expandingMenuButton.classList.toggle("project-hovered");
-        expandedMenu = !expandedMenu;
-        if (expandedProjectMenu) projectArrow.dispatchEvent(new Event("click"));
+
+        // 2. Sync state tracking variable
+        expandedMenu = expandingMenu.classList.contains("open");
+
+        // 3. Trigger project arrow event if open
+        if (expandedMenu && expandedProjectMenu) {
+            projectArrow.dispatchEvent(new Event("click"));
+        }
     });
 
     // Nested project dropdown toggle handler
@@ -309,6 +315,25 @@ function loadProjectModal(imageArr, captionArr,  wrapper, imagePath) {
 
     // 2. Instantiate new slider for the opened modal
     currentImageSliderInstance = new ImageFSM(imageArr, captionArr,  wrapper, imagePath);
+}
+
+function mobileStyle() {
+    let details = navigator.userAgent;
+    let regexp = /android|iphone|kindle|ipad/i;
+    let isMobileDevice = regexp.test(details);
+    console.log(isMobileDevice)
+    console.log(details)
+
+    if (isMobileDevice) {
+        let head = document.head;
+        let link = document.createElement("link");
+
+        link.type = "text/css";
+        link.rel = "stylesheet";
+        link.href = "../styles/mobile.css";
+
+        head.appendChild(link);
+    }
 }
 
 /**

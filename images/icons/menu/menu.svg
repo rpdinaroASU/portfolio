@@ -1,8 +1,8 @@
-<svg width="32" height="26" viewBox="6 8 38 24" xmlns="http://www.w3.org/2000/svg">
+<svg width="32" height="20" viewBox="12 3 16 20" xmlns="http://www.w3.org/2000/svg">
     <!-- Top line -->
-    <rect x="6" y="8" width="32" height="3" fill="#FFFFFF" />
+    <rect x="6" y="8" width="27" height="1" fill="#FFFFFF" />
     <!-- Middle line -->
-    <rect x="6" y="17" width="32" height="3" fill="#FFFFFF" />
+    <rect x="6" y="12" width="27" height="1" fill="#FFFFFF" />
     <!-- Bottom line -->
-    <rect x="6" y="26" width="32" height="3" fill="#FFFFFF" />
+    <rect x="6" y="16" width="27" height="1" fill="#FFFFFF" />
 </svg>

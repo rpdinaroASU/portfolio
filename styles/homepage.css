@@ -217,7 +217,7 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-    height: 120px;
+    height: 200px;
     margin: 0;
     background-color: var(--transparent-color);
     border-bottom: var(--border-width) solid var(--secondary-light-color);
@@ -273,7 +273,7 @@
 }
 .menu-icon {
     height: 100%;
-    margin-right: auto;
+    margin-right: 5px;
 }
 
 
@@ -306,8 +306,8 @@
     flex-direction: row;
     color: var(--text-color);
     font-weight: bold;
-    border-top: white 1px solid;
-    margin: 5px 10px -5px;
+    border-bottom: white 3px solid !important;
+    margin: 0 10px 0 10px;
 }
 
 /* Dropdown Menu */
@@ -680,6 +680,7 @@ body {
     grid-area: 1 / 1 / 2 / 2;
     border-radius: var(--border-radius);
     border-color: white !important;
+    border-style: solid !important;
     cursor: default !important;
     padding: 10px !important;
     margin: auto 15px auto 15px;

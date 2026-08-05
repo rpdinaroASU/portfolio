@@ -1,0 +1,178 @@
+.project-image-container {
+    background-color: var(--secondary-dark-color);
+    box-shadow: var(--tertiary-dark-color) 0 0 15px;
+    padding: 10px;
+    border-radius: var(--border-radius);
+    width: auto;
+    max-width: none;
+    height: auto;
+}
+.stage-description-image{
+    max-height: none;
+    max-width: none;
+    height: 100%;
+    width: auto;
+}
+body {
+    overflow-x: hidden;
+}
+.project-title-font {
+    font-size: 40px !important;
+}
+.portfolio-header {
+    font-size: 120px !important;
+    margin-bottom: 10px;
+}
+.secondary-title {
+    font-size: 60px !important;
+}
+
+
+.dropdown-menu {
+    background-color: var(--secondary-dark-color) !important;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 75px;
+    width: 100%;
+    margin-left: 10px;
+    font-family: "Open Sans", sans-serif;
+    font-weight: bold;
+    color: var(--text-color);
+    cursor: pointer;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    padding-right: 5px;
+    border-bottom: 2px solid var(--secondary-dark-color);
+}
+
+.menu-horizontal {
+    display: none;
+}
+.project-horizontal {
+    position-anchor: --project;
+    max-width: 120px;
+}
+.project-horizontal:hover #large-screen-projects {
+    max-height: 300px;
+    z-index: 10;
+}
+
+#large-screen-projects {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 177px;
+    width: 400px;
+    max-height: 0;
+    overflow: hidden;
+    z-index: 15;
+    anchor-name: --project;
+}
+
+.hidden-dropdown-item {
+    display: block;
+    background-color: var(--secondary-dark-color);
+    overflow: hidden;
+}
+
+.project {
+    display: flex;
+    flex-direction: row;
+    background-color: var(--secondary-dark-color);
+    border-bottom: 2px solid var(--secondary-dark-color);
+    cursor: pointer;
+    margin: 0 auto 0 50px;
+    padding-bottom: 4px;
+}
+
+.project:hover {
+    border-bottom-color: white;
+}
+.project-hovered {
+    border-bottom: 2px solid white;
+}
+
+.menu-icon-projects {
+    max-width: 30px;
+    max-height: 30px;
+    margin: auto 10px auto 0;
+}
+
+.expanding-project-container {
+    margin: auto 10px auto 0;
+}
+
+#menu-container {
+    width: 100%;
+    border-bottom: 2px solid white;
+    background-color: var(--secondary-dark-color);
+}
+.menu {
+    display: flex;
+    max-width: none;
+    margin-left: 20px;
+    background-color: var(--secondary-dark-color);
+    height: 100%;
+}
+.menu-main-icon{
+    height: 100px;
+    width: 75px;
+}
+.parent-title{
+    font-size: 40px !important;
+    margin-left: 20px;
+}
+#expanding-menu-button {
+    display: flex !important;
+    anchor-name: Menu;
+    flex-direction: row;
+    align-items: center;
+}
+
+#expanding-menu-background{
+    background-color: var(--primary-color);
+}
+
+/* Base state (CLOSED) */
+#expanding-menu {
+    width: 75%;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    border: 3px solid transparent; /* Keeps layout space reserved */
+    box-sizing: border-box;
+
+    transition: max-height 0.4s ease-in-out,
+    border-color 0.3s ease-in-out,
+    opacity 0.3s ease-in-out;
+}
+
+/* Expanded state (ID + Class gives it top specificity) */
+#expanding-menu.open {
+    position: absolute;
+    max-height: 500px;
+    opacity: 1;
+    border-color: white !important; /* Forces the border to turn white */
+}
+
+.expanding-animation {
+    transition: max-height .5s linear;
+    max-height: 350px !important;
+}
+
+.project-hovered {
+    border-bottom: 2px solid white;
+}
+
+.project-tag {
+    font-size: 35px !important;
+    border-width: var(--border-width);
+}
+.tag-label {
+    font-size: 30px !important;
+}
+.more-information-button {
+    font-size: 35px !important;
+    border-color: white !important;
+}
